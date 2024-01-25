@@ -12,6 +12,10 @@ const config: Config = {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
+			gridTemplateColumns: {
+				searchNavigation: "0.2fr 1fr",
+				searchNavigationMid: "0.2fr 1fr 1fr",
+			},
 		},
 	},
 	plugins: [],

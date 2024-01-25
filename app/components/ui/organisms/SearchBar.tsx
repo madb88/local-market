@@ -1,11 +1,9 @@
 export default function SearchBar() {
 	return (
-		<div className="bg-slate-100 px-40 pt-8">
-			<div className="flex">
-				<div className="h-14 w-14">Logo</div>
-				<div className="w-64">Search</div>
-				<div className="w-32">Buttons</div>
-			</div>
+		<div className="grid-cols-searchNavigation md:grid-cols-searchNavigationMid grid grid-rows-2 bg-slate-100 md:grid-rows-1 md:px-10 md:py-5 md:pt-6">
+			<div className="">Logo</div>
+			<div className="order-3 col-span-2 md:order-2 md:col-span-1">SearchInput</div>
+			<div className="order-2 md:order-3">UserPanelIcons</div>
 		</div>
 	);
 }
