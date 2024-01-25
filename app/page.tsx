@@ -14,7 +14,7 @@ export default function Home() {
 				</div>
 			</main>
 			<div className="fixed bottom-0 w-full">
-				<div className="order-3 h-16 bg-slate-300 md:hidden">
+				<div className="order-3 h-16 bg-slate-300 dark:bg-black md:hidden">
 					<BottomNavigation />
 				</div>
 			</div>
