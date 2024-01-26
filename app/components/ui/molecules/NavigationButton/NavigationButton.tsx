@@ -1,4 +1,4 @@
-import { type FC } from "react";
+import type { FC } from "react";
 import { Button } from "../../atoms/button";
 import { INavigationButton } from "./interface";
 
