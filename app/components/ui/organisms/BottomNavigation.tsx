@@ -1,4 +1,4 @@
-import NavigationButton from "../molecules/NavigationButton";
+import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 
 export default function BottomNavigation() {
 	return (
