@@ -5,7 +5,7 @@ export default function Navigation() {
 		<div className="h-full bg-slate-300 dark:bg-black">
 			<ul>
 				{categories.map((categoryItem) => {
-					return <li>{categoryItem}</li>;
+					return <li key={categoryItem}>{categoryItem}</li>;
 				})}
 			</ul>
 		</div>
