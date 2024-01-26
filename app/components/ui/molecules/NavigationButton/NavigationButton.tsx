@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { type FC } from "react";
 import { Button } from "../../atoms/button";
-import type { NavigationButtonType } from "./types";
+import { INavigationButton } from "./interface";
 
-const NavigationButton: FC<NavigationButtonType> = ({ children }) => {
+const NavigationButton: FC<INavigationButton> = ({ children }) => {
 	return (
 		<Button size="sm">
 			<p>{children}</p>
