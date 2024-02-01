@@ -1,8 +1,8 @@
-import { ModeToggle } from "../../toggle-mode";
+import Link from "next/link";
 import { Store, User, Search } from "lucide-react";
+import { ModeToggle } from "../../toggle-mode";
 import { Button } from "../atoms/button";
 import { Input } from "../atoms/input";
-import Link from "next/link";
 
 export default function SearchBar() {
 	return (

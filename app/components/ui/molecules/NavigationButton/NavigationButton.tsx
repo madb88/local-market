@@ -1,14 +1,9 @@
-"use client";
-
-import { type FC } from "react";
-import { Button } from "../../atoms/button";
-import { type NavigationT } from "./type";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { type FC } from "react";
+import { type NavigationT } from "./type";
+import { Button } from "../../atoms/button";
 
 const NavigationButton: FC<NavigationT> = ({ text, size, url, icon }) => {
-	const pathName = usePathname();
-
 	return (
 		<>
 			<Button size={size} variant={"ghost"} asChild className="justify-start px-2">
