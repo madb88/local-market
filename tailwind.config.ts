@@ -73,8 +73,8 @@ const config = {
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},
 			gridTemplateColumns: {
-				searchNavigation: "0.2fr 1fr 1fr",
-				searchNavigationMid: "0.2fr 1fr 1fr 1fr",
+				searchNavigation: "1fr 0.1fr 0.1fr",
+				searchNavigationMid: "0.5fr 2fr 0.2fr 0.2fr",
 			},
 		},
 	},
