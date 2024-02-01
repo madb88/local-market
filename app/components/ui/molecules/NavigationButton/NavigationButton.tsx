@@ -1,7 +1,7 @@
 import Link from "next/link";
+import { Button } from "../../atoms/button";
 import { type FC } from "react";
 import { type NavigationT } from "./type";
-import { Button } from "../../atoms/button";
 
 const NavigationButton: FC<NavigationT> = ({ text, size, url, icon }) => {
 	return (

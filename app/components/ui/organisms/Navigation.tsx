@@ -1,5 +1,5 @@
-import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 import { Calculator, Flower2, LampFloor, Hammer } from "lucide-react";
+import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 
 export default function Navigation() {
 	const categories = [
