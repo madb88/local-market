@@ -1,5 +1,5 @@
-import BottomNavigationButton from "../molecules/BottomNavigationButton/BottomNavigationButton";
 import { Home, List, User } from "lucide-react";
+import BottomNavigationButton from "../molecules/BottomNavigationButton/BottomNavigationButton";
 
 export default function BottomNavigation() {
 	return (
