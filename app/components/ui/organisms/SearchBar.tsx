@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Store, User, Search } from "lucide-react";
+import { Store, Search } from "lucide-react";
+import { UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "../../toggle-mode";
 import { Button } from "../atoms/button";
 import { Input } from "../atoms/input";
@@ -21,10 +22,8 @@ export default function SearchBar() {
 					</Button>
 				</div>
 			</div>
-			<div className="order-2 md:order-3">
-				<Button variant="outline" size="icon">
-					<User />
-				</Button>
+			<div className="order-2 flex justify-end px-3 pt-1.5 md:order-3 md:px-1">
+				<UserButton afterSignOutUrl="/" />
 			</div>
 			<div className="order-3 flex justify-end">
 				<ModeToggle />

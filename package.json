@@ -9,12 +9,17 @@
 		"lint": "next lint --fix"
 	},
 	"dependencies": {
+		"@clerk/nextjs": "^4.29.5",
 		"@radix-ui/react-dropdown-menu": "^2.0.6",
 		"@radix-ui/react-slot": "^1.0.2",
+		"@supabase/auth-helpers-nextjs": "^0.9.0",
+		"@supabase/auth-ui-react": "^0.4.7",
+		"@supabase/ssr": "^0.1.0",
+		"@supabase/supabase-js": "^2.39.3",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.0",
 		"lucide-react": "^0.315.0",
-		"next": "14.0.2",
+		"next": "^14.1.0",
 		"next-themes": "^0.2.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
