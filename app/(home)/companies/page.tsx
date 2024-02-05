@@ -1,5 +1,5 @@
-import { createSupabaseServerClient } from "@/lib/supabase/serverAppRouter";
 import { auth } from "@clerk/nextjs";
+import { createSupabaseServerClient } from "@/lib/supabase/serverAppRouter";
 
 export default async function Companies() {
 	const { userId, getToken } = auth();
