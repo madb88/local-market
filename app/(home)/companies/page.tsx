@@ -1,7 +1,7 @@
 import { Suspense } from "react";
+import { notFound } from "next/navigation";
 import { getAllCompanies } from "@/api/companies";
 import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
-import { notFound } from "next/navigation";
 
 export const revalidate = 5;
 
