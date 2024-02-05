@@ -69,7 +69,8 @@
 		"@typescript-eslint/restrict-template-expressions": [
 			"error",
 			{ "allowNumber": true, "allowBoolean": true }
-		]
+		],
+		"typescript-eslint/no-unsafe-assignment": "warn"
 	},
 	"overrides": [
 		{
