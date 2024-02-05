@@ -1,15 +1,8 @@
-import { auth } from "@clerk/nextjs";
-import { createSupabaseServerClient } from "@/lib/supabase/serverAppRouter";
+import getAllCompanies from "@/api/companies";
+import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
 
 export default async function Companies() {
-	const { userId, getToken } = auth();
-	console.log(userId);
-	const token = await getToken({ template: "supabase" });
-	console.log(token);
-	if (token) {
-		const supabase = createSupabaseServerClient(token);
-		const { data: companies } = await supabase.from("companies").select();
-		console.log(companies);
-	}
-	return <>Companies list</>;
+	const companies = await getAllCompanies();
+
+	return <>{companies && <CompaniesList companies={companies} />}</>;
 }

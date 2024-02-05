@@ -1,10 +1,17 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { Database } from "./types";
+import { auth } from "@clerk/nextjs";
 
-export function createSupabaseServerClient(token: string, serverComponent = false) {
+export type CompanyType = Database["public"]["Tables"]["companies"]["Row"];
+
+export async function createSupabaseServerClient(shouldBeAuth = true, serverComponent = false) {
+	const { getToken } = auth();
+	const token = await getToken({ template: "supabase" });
+
 	const cookieStore = cookies();
 
-	return createServerClient(
+	return createServerClient<Database>(
 		process.env.NEXT_PUBLIC_SUPABASE_URL!,
 		process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
 		{
@@ -21,7 +28,7 @@ export function createSupabaseServerClient(token: string, serverComponent = fals
 					cookieStore.set({ name, value: "", ...options });
 				},
 			},
-			global: { headers: { Authorization: `Bearer ${token}` } },
+			global: { headers: { Authorization: `${shouldBeAuth && `Bearer ${token}`}` } },
 		},
 	);
 }
