@@ -5,8 +5,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 type PaginationProps = {
 	hasNextPage: boolean;
 	hasPrevPage: boolean;
-	currentPage: string | string[];
-	perPage: string | string[];
+	currentPage: string;
+	perPage: string;
 	count: number;
 };
 

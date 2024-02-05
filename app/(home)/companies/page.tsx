@@ -11,8 +11,8 @@ export default async function Companies({
 }: {
 	searchParams: { [key: string]: string | string[] };
 }) {
-	const page = searchParams["page"] ?? "1";
-	const per_page = searchParams["per_page"] ?? "4";
+	const page = (searchParams["page"] as string) ?? "1";
+	const per_page = (searchParams["per_page"] as string) ?? "4";
 	const start = (Number(page) - 1) * Number(per_page);
 	const end = start - 1 + Number(per_page);
 
