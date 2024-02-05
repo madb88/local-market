@@ -70,7 +70,8 @@
 			"error",
 			{ "allowNumber": true, "allowBoolean": true }
 		],
-		"@typescript-eslint/no-unsafe-argument": "off"
+		"@typescript-eslint/no-unsafe-argument": "off",
+		"@typescript-eslint/no-redundant-type-constituents": "off"
 	},
 	"overrides": [
 		{
