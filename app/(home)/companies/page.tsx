@@ -12,7 +12,7 @@ export default async function Companies({
 	searchParams: { [key: string]: string | string[] };
 }) {
 	const page = (searchParams["page"] as string) ?? "1";
-	const per_page = (searchParams["per_page"] as string) ?? "4";
+	const per_page = (searchParams["per_page"] as string) ?? "8";
 	const start = (Number(page) - 1) * Number(per_page);
 	const end = start - 1 + Number(per_page);
 
@@ -21,21 +21,25 @@ export default async function Companies({
 	if (!companies) {
 		notFound();
 	}
-	console.log("start", start);
-	console.log("end", end);
-	console.log(count);
+
 	return (
 		<>
 			<Suspense fallback={<div>Loading</div>}>
-				{companies && <CompaniesList companies={companies} />}
+				{companies && (
+					<div>
+						<CompaniesList companies={companies} />
+					</div>
+				)}
 				{count && (
-					<Pagination
-						hasNextPage={end < count}
-						hasPrevPage={start > 0}
-						currentPage={page}
-						perPage={per_page}
-						count={count}
-					/>
+					<div className="flex justify-center pb-10 pt-10 lg:fixed lg:bottom-10 lg:w-11/12">
+						<Pagination
+							hasNextPage={end < count}
+							hasPrevPage={start > 0}
+							currentPage={page}
+							perPage={per_page}
+							count={count}
+						/>
+					</div>
 				)}
 			</Suspense>
 		</>
