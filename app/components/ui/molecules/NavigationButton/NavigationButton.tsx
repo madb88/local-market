@@ -1,6 +1,4 @@
-import Link from "next/link";
 import { type FC } from "react";
-import { Button } from "../../atoms/button";
 import { type NavigationT } from "./type";
 import { ActiveLink } from "../../atoms/ActiveLink";
 

@@ -20,20 +20,16 @@ export const ActiveLink = ({ href, children, exact = false, button = false }: Ac
 
 	const className = "text-white-500 hover:text-gray-900 w-full";
 	const activeClassName = "text-gray-900 border-b-2 border-gray-900";
-	const buttonClassName = "w-full";
+	const buttonClassName = "flex w-full gap-5 h-full";
 
 	return (
 		<>
 			{button ? (
-				<Button variant={isActive ? "active" : "default"} className={buttonClassName}>
-					<Link
-						href={href}
-						className={buttonClassName}
-						aria-current={isActive ? "page" : undefined}
-					>
+				<Link href={href} className={buttonClassName} aria-current={isActive ? "page" : undefined}>
+					<Button variant={isActive ? "active" : "default"} className={buttonClassName}>
 						{children}
-					</Link>
-				</Button>
+					</Button>
+				</Link>
 			) : (
 				<Link
 					href={href}
