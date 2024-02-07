@@ -10,7 +10,7 @@ export default function Navigation() {
 	];
 
 	return (
-		<div className="flex h-full bg-slate-300 dark:bg-black">
+		<div className="flex h-full px-1 pt-2.5 dark:bg-black">
 			<ul className="space-y-2">
 				{categories.map((categoryItem) => {
 					return (
