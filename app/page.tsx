@@ -5,7 +5,7 @@ import BottomNavigation from "./components/ui/organisms/BottomNavigation";
 export default function Home() {
 	return (
 		<>
-			<main className="flex  flex-col bg-slate-500 md:flex-row md:overflow-hidden">
+			<main className="flex flex-col bg-slate-500 md:flex-row md:overflow-hidden">
 				<div className="order-2 hidden md:order-1 md:flex">
 					<Navigation />
 				</div>

@@ -1,10 +1,11 @@
-import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getCompanies } from "@/api/companies";
 import { Pagination } from "@/app/components/ui/molecules/Pagination";
 import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
+import { Suspense } from "react";
+import Loading from "./loading";
 
-export const revalidate = 5;
+export const revalidate = 60;
 
 export default async function Companies({
 	searchParams,
@@ -23,25 +24,19 @@ export default async function Companies({
 	}
 
 	return (
-		<>
-			<Suspense fallback={<div>Loading</div>}>
-				{companies && (
-					<div>
-						<CompaniesList companies={companies} />
-					</div>
-				)}
-				{count && (
-					<div className="flex justify-center pb-10 pt-10 lg:fixed lg:bottom-10 lg:w-11/12">
-						<Pagination
-							hasNextPage={end < count}
-							hasPrevPage={start > 0}
-							currentPage={page}
-							perPage={per_page}
-							count={count}
-						/>
-					</div>
-				)}
-			</Suspense>
-		</>
+		<Suspense fallback={<Loading />}>
+			{companies && <CompaniesList companies={companies} />}
+			{count && (
+				<div className="flex justify-center pb-10 pt-10 lg:fixed lg:bottom-10 lg:w-11/12">
+					<Pagination
+						hasNextPage={end < count}
+						hasPrevPage={start > 0}
+						currentPage={page}
+						perPage={per_page}
+						count={count}
+					/>
+				</div>
+			)}
+		</Suspense>
 	);
 }
