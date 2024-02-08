@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { getAllCompanies, getCompany } from "@/api/companies";
 import Loading from "./loading";
+import { getAllCompanies, getCompany } from "@/api/companies";
 
 export const dynamicParams = false;
 

@@ -1,6 +1,6 @@
+import { Menu } from "lucide-react";
 import Navigation from "../organisms/Navigation";
 import { Sheet, SheetTrigger, SheetContent } from "../atoms/sheet";
-import { Menu } from "lucide-react";
 
 export default function SheetNavigation() {
 	return (

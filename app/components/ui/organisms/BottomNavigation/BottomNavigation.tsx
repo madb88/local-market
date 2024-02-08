@@ -1,4 +1,4 @@
-import { Home, List, User } from "lucide-react";
+import { Home, User } from "lucide-react";
 import BottomNavigationButton from "../../molecules/BottomNavigationButton/BottomNavigationButton";
 import BottomNavigationCategories from "./NavigationElements/BottomNavigationCategories";
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Store, Search, Menu } from "lucide-react";
+import { Store, Search } from "lucide-react";
 import { UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "../../toggle-mode";
 import { Button } from "../atoms/button";

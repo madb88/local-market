@@ -1,7 +1,7 @@
 "use client";
 
-import { Sheet, SheetTrigger, SheetContent } from "../../../atoms/sheet";
 import { List } from "lucide-react";
+import { Sheet, SheetTrigger, SheetContent } from "../../../atoms/sheet";
 import Navigation from "../../Navigation";
 
 export default function BottomNavigationCategories() {

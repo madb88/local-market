@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import type { Route } from "next";
 import { Button } from "./button";
-import { SheetClose, Sheet } from "./sheet";
+import { SheetClose } from "./sheet";
 
 type ActiveLinkProps = {
 	href: Route<string> | UrlObject;

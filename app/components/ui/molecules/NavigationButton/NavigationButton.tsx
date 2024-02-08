@@ -1,6 +1,6 @@
+import { ActiveLink } from "../../atoms/ActiveLink";
 import { type FC } from "react";
 import { type NavigationT } from "./type";
-import { ActiveLink } from "../../atoms/ActiveLink";
 
 const NavigationButton: FC<NavigationT> = ({ text, url, icon, inSheet }) => {
 	return (
