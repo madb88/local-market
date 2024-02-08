@@ -1,8 +1,8 @@
-import { unstable_cache } from "next/cache";
 import {
 	createSupabaseServerClient,
 	createSupabaseServerComponentClient,
 } from "@/lib/supabase/serverAppRouter";
+import { unstable_cache } from "next/cache";
 
 export const getCompanies = unstable_cache(
 	async (start: number, end: number) => {
@@ -14,7 +14,7 @@ export const getCompanies = unstable_cache(
 		return { companies: companies, count: count };
 	},
 	["companies"],
-	{ tags: ["companies"] },
+	{ tags: ["companies"], revalidate: 10 },
 );
 
 export const getAllCompanies = async () => {
