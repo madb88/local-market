@@ -1,4 +1,4 @@
-import { Calculator, Flower2, LampFloor, Hammer } from "lucide-react";
+import { Calculator, Flower2, Hammer, LampFloor } from "lucide-react";
 import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 
 type NavigationT = {

@@ -6,7 +6,10 @@ import { unstable_cache } from "next/cache";
 
 export const getCompanies = unstable_cache(
 	async (start: number, end: number) => {
-		const supabase = await createSupabaseServerClient({ shouldBeAuth: false });
+		const supabase = await createSupabaseServerClient({
+			shouldBeAuth: false,
+			serverComponent: true,
+		});
 		const { data: companies, count } = await supabase
 			.from("companies")
 			.select("id, name, description", { count: "exact" })

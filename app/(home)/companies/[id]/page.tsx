@@ -1,8 +1,9 @@
 import { getAllCompanies, getCompany } from "@/api/companies";
+import Company from "@/app/components/pages/Companies/DetailsPage/Company";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading";
 
-export const dynamicParams = false;
 export const dynamic = "force-static";
 
 type PageParams = {
@@ -21,9 +22,14 @@ export async function generateStaticParams(): Promise<PageParams[]> {
 
 export default async function CompanyPage({ params }: { params: { id: string } }) {
 	const company = await getCompany(params.id);
+
+	if (!company) {
+		notFound();
+	}
+
 	return (
 		<Suspense fallback={<Loading />}>
-			<div>{company && `Company ${company.name}`}</div>
+			<div className="h-screen p-10">{company && <Company company={company} />}</div>
 		</Suspense>
 	);
 }

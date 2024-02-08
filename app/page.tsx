@@ -1,11 +1,11 @@
-import Navigation from "./components/ui/organisms/Navigation";
-import HomeInfo from "./components/ui/organisms/HomeInfo";
 import BottomNavigation from "./components/ui/organisms/BottomNavigation/BottomNavigation";
+import HomeInfo from "./components/ui/organisms/HomeInfo";
+import Navigation from "./components/ui/organisms/Navigation";
 
 export default function Home() {
 	return (
 		<>
-			<main className="flex flex-col bg-slate-500 md:flex-row md:overflow-hidden">
+			<main className="flex flex-col md:flex-row md:overflow-hidden">
 				<div className="order-2 hidden md:order-1 md:flex">
 					<Navigation inSheet={false} />
 				</div>

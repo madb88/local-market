@@ -1,10 +1,10 @@
-import Navigation from "../components/ui/organisms/Navigation";
 import BottomNavigation from "../components/ui/organisms/BottomNavigation/BottomNavigation";
+import Navigation from "../components/ui/organisms/Navigation";
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
-			<div className="flex h-screen flex-col bg-slate-100 dark:bg-slate-600 md:flex-row md:overflow-hidden">
+			<div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
 				<div className="order-2 hidden h-screen md:order-1 md:flex">
 					<Navigation inSheet={false} />
 				</div>
