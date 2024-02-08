@@ -27,7 +27,7 @@ export default async function Companies({
 		<Suspense fallback={<Loading />}>
 			{companies && <CompaniesList companies={companies} />}
 			{count && (
-				<div className="flex justify-center pb-10 pt-10 lg:fixed lg:bottom-10 lg:w-11/12">
+				<div className="flex justify-center pb-10 pt-10 ">
 					<Pagination
 						hasNextPage={end < count}
 						hasPrevPage={start > 0}

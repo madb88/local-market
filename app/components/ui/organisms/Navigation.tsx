@@ -1,7 +1,11 @@
 import { Calculator, Flower2, LampFloor, Hammer } from "lucide-react";
 import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 
-export default function Navigation() {
+type NavigationT = {
+	inSheet: boolean;
+};
+
+export default function Navigation({ inSheet }: NavigationT) {
 	const categories = [
 		{ name: "Elektronika", url: "/categories/elektronika", icon: <Calculator /> },
 		{ name: "Ogród", url: "/categories/ogrod", icon: <Flower2 /> },
@@ -10,16 +14,16 @@ export default function Navigation() {
 	];
 
 	return (
-		<div className="flex h-full px-1 pt-2.5 dark:bg-black">
+		<div className="dark:bg-black-300 flex h-full px-1 pt-2.5">
 			<ul className="space-y-2">
 				{categories.map((categoryItem) => {
 					return (
 						<li key={categoryItem.url}>
 							<NavigationButton
 								text={categoryItem.name}
-								size="navigation"
 								url={categoryItem.url}
 								icon={categoryItem.icon}
+								inSheet={inSheet}
 							/>
 						</li>
 					);

@@ -1,6 +1,6 @@
 import Navigation from "./components/ui/organisms/Navigation";
 import HomeInfo from "./components/ui/organisms/HomeInfo";
-import BottomNavigation from "./components/ui/organisms/BottomNavigation";
+import BottomNavigation from "./components/ui/organisms/BottomNavigation/BottomNavigation";
 
 export default function Home() {
 	return (

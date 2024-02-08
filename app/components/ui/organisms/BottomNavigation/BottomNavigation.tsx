@@ -1,5 +1,6 @@
 import { Home, List, User } from "lucide-react";
-import BottomNavigationButton from "../molecules/BottomNavigationButton/BottomNavigationButton";
+import BottomNavigationButton from "../../molecules/BottomNavigationButton/BottomNavigationButton";
+import BottomNavigationCategories from "./NavigationElements/BottomNavigationCategories";
 
 export default function BottomNavigation() {
 	return (
@@ -8,7 +9,7 @@ export default function BottomNavigation() {
 				<Home />
 			</BottomNavigationButton>
 			<BottomNavigationButton>
-				<List />
+				<BottomNavigationCategories />
 			</BottomNavigationButton>
 			<BottomNavigationButton>
 				<User />
