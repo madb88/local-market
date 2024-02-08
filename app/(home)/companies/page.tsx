@@ -1,7 +1,7 @@
-import { notFound } from "next/navigation";
 import { getCompanies } from "@/api/companies";
-import { Pagination } from "@/app/components/ui/molecules/Pagination";
 import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
+import { Pagination } from "@/app/components/ui/molecules/Pagination";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading";
 // import { auth } from "@clerk/nextjs";
