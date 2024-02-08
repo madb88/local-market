@@ -7,7 +7,7 @@ export default function Home() {
 		<>
 			<main className="flex flex-col bg-slate-500 md:flex-row md:overflow-hidden">
 				<div className="order-2 hidden md:order-1 md:flex">
-					<Navigation />
+					<Navigation inSheet={false} />
 				</div>
 				<div className="order-1 h-screen md:order-2">
 					<HomeInfo />
