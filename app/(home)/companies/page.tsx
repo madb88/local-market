@@ -4,6 +4,7 @@ import { Pagination } from "@/app/components/ui/molecules/Pagination";
 import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
 import { Suspense } from "react";
 import Loading from "./loading";
+// import { auth } from "@clerk/nextjs";
 
 export const revalidate = 60;
 
@@ -12,6 +13,9 @@ export default async function Companies({
 }: {
 	searchParams: { [key: string]: string | string[] };
 }) {
+	// const { getToken } = auth();
+	// const token = await getToken({ template: "supabase" });
+
 	const page = (searchParams["page"] as string) ?? "1";
 	const per_page = (searchParams["per_page"] as string) ?? "8";
 	const start = (Number(page) - 1) * Number(per_page);

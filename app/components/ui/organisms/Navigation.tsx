@@ -18,7 +18,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 			<ul className="space-y-2">
 				{categories.map((categoryItem) => {
 					return (
-						<li key={categoryItem.url}>
+						<li key={categoryItem.name}>
 							<NavigationButton
 								text={categoryItem.name}
 								url={categoryItem.url}
