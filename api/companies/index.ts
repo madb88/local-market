@@ -27,9 +27,13 @@ export const getAllCompanies = async () => {
 	return companies;
 };
 
-export const getCompany = unstable_cache(async (id: string) => {
-	const supabase = await createSupabaseServerClient({ shouldBeAuth: false });
-	const { data: company } = await supabase.from("companies").select().match({ id }).single();
+export const getCompany = unstable_cache(
+	async (id: string) => {
+		const supabase = await createSupabaseServerClient({ shouldBeAuth: false });
+		const { data: company } = await supabase.from("companies").select().match({ id }).single();
 
-	return company;
-});
+		return company;
+	},
+	["company"],
+	{ tags: ["company"], revalidate: 360 },
+);

@@ -1,8 +1,6 @@
 import { getAllCompanies, getCompany } from "@/api/companies";
 import Company from "@/app/components/pages/Companies/DetailsPage/Company";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import Loading from "./loading";
 
 export const dynamic = "force-static";
 
@@ -28,8 +26,8 @@ export default async function CompanyPage({ params }: { params: { id: string } }
 	}
 
 	return (
-		<Suspense fallback={<Loading />}>
+		<>
 			<div className="h-screen p-10">{company && <Company company={company} />}</div>
-		</Suspense>
+		</>
 	);
 }
