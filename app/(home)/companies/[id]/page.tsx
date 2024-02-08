@@ -1,15 +1,21 @@
 import { Suspense } from "react";
 import { getAllCompanies, getCompany } from "@/api/companies";
 import Loading from "./loading";
-import { CompanyType } from "@/lib/supabase/serverAppRouter";
 
 export const dynamicParams = false;
 
-export async function generateStaticParams() {
+type PageParams = {
+	id: string;
+};
+
+export async function generateStaticParams(): Promise<PageParams[]> {
 	const companies = await getAllCompanies();
-	return companies?.map((company) => ({
+
+	const result = companies?.map((company) => ({
 		id: String(company.id),
 	}));
+
+	return result as PageParams[];
 }
 
 export default async function CompanyPage({ params }: { params: { id: string } }) {
