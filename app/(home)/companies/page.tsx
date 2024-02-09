@@ -1,4 +1,5 @@
 import { getCompanies } from "@/api/companies";
+import CompaniesHeader from "@/app/components/pages/Companies/CompaniesHeader";
 import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
 import { Pagination } from "@/app/components/ui/molecules/Pagination";
 import { notFound } from "next/navigation";
@@ -29,6 +30,8 @@ export default async function Companies({
 
 	return (
 		<Suspense fallback={<Loading />}>
+			<CompaniesHeader />
+
 			{companies && <CompaniesList companies={companies} />}
 			{count && (
 				<div className="flex justify-center pb-10 pt-10 ">
