@@ -2,7 +2,7 @@
 
 import { createCompany } from "@/api/companies";
 import { auth } from "@clerk/nextjs";
-import { PostgrestError } from "@supabase/supabase-js";
+import { type PostgrestError } from "@supabase/supabase-js";
 
 export async function createCompanyAction(values: {
 	name: string;

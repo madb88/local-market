@@ -31,12 +31,21 @@
 			}
 		],
 
+		"@typescript-eslint/no-misused-promises": [
+			2,
+			{
+				"checksVoidReturn": {
+					"attributes": false
+				}
+			}
+		],
+
 		"@typescript-eslint/consistent-type-imports": [
 			"error",
 			{
 				"prefer": "type-imports",
 				"fixStyle": "inline-type-imports",
-				"disallowTypeAnnotations": false
+				"disallowTypeAnnotations": true
 			}
 		],
 

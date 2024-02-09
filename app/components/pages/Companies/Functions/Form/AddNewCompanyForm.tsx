@@ -47,6 +47,7 @@ export default function AddNewCompanyForm() {
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		const { message, error } = await createCompanyAction(values);
+		console.log(message, error);
 	}
 
 	return (
