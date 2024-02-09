@@ -1,5 +1,5 @@
 import CompanyHeader from "./CompanyHeader";
-import { CompanyDetailsPageT } from "./types";
+import { type CompanyDetailsPageT } from "./types";
 
 export default function Company({ company }: CompanyDetailsPageT) {
 	return (

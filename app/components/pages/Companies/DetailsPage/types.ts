@@ -1,4 +1,4 @@
-import { CompanyType } from "@/lib/supabase/serverAppRouter";
+import { type CompanyType } from "@/lib/supabase/serverAppRouter";
 
 export type CompanyDetailsPageT = {
 	company: CompanyType;
