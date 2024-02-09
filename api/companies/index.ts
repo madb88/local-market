@@ -2,7 +2,7 @@ import {
 	createSupabaseServerClient,
 	createSupabaseServerComponentClient,
 } from "@/lib/supabase/serverAppRouter";
-import { PostgrestError } from "@supabase/supabase-js";
+import { type PostgrestError } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
 
 export const getCompanies = unstable_cache(
