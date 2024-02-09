@@ -2,6 +2,7 @@ import {
 	createSupabaseServerClient,
 	createSupabaseServerComponentClient,
 } from "@/lib/supabase/serverAppRouter";
+import { PostgrestError } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
 
 export const getCompanies = unstable_cache(
@@ -38,17 +39,18 @@ export const getCompany = unstable_cache(
 	{ tags: ["company"], revalidate: 360 },
 );
 
-export const createCompany = async (data: { name: string; description: string }, token: string) => {
+export const createCompany = async (
+	data: { name: string; description: string },
+	token: string,
+): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
 	const supabase = await createSupabaseServerClient({
 		shouldBeAuth: true,
 		token: token,
 		serverComponent: true,
 	});
-	const { status, error } = await supabase
+	const { status, error, statusText } = await supabase
 		.from("companies")
 		.insert({ name: data.name, description: data.description });
 
-	console.log(status, error);
-
-	return { status, error };
+	return { status: status, error: error, message: statusText };
 };

@@ -46,43 +46,51 @@ export default function AddNewCompanyForm() {
 	});
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		console.log("asdsadas");
-		await createCompanyAction(values);
+		const { message, error } = await createCompanyAction(values);
 	}
 
 	return (
-		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-				<FormField
-					control={form.control}
-					name="name"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Nazwa</FormLabel>
-							<FormControl>
-								<Input placeholder="Nazwa Firmy" {...field} />
-							</FormControl>
-							<FormDescription>Nazwa firmy.</FormDescription>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="description"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Opis</FormLabel>
-							<FormControl>
-								<Textarea placeholder="Opis" {...field} />
-							</FormControl>
-							<FormDescription>Opis tego czym zajmuje się firma.</FormDescription>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<Button type="submit">Submit</Button>
-			</form>
-		</Form>
+		<>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+					<FormField
+						control={form.control}
+						name="name"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Nazwa</FormLabel>
+								<FormControl>
+									<Input placeholder="Nazwa Firmy" {...field} />
+								</FormControl>
+								<FormDescription>Nazwa firmy.</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="description"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Opis</FormLabel>
+								<FormControl>
+									<Textarea placeholder="Opis" {...field} />
+								</FormControl>
+								<FormDescription>Opis tego czym zajmuje się firma.</FormDescription>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<Button
+						disabled={
+							form.formState.isSubmitting || !form.formState.isDirty || !form.formState.isValid
+						}
+						type="submit"
+					>
+						Submit
+					</Button>
+				</form>
+			</Form>
+		</>
 	);
 }
