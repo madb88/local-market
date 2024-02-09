@@ -37,3 +37,18 @@ export const getCompany = unstable_cache(
 	["company"],
 	{ tags: ["company"], revalidate: 360 },
 );
+
+export const createCompany = async (data: { name: string; description: string }, token: string) => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+	const { status, error } = await supabase
+		.from("companies")
+		.insert({ name: data.name, description: data.description });
+
+	console.log(status, error);
+
+	return { status, error };
+};

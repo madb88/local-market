@@ -42,6 +42,7 @@
 		"eslint-config-next": "14.0.2",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-import": "^2.29.0",
+		"flowbite-typography": "^1.0.3",
 		"postcss": "^8",
 		"prettier": "^3.1.0",
 		"prettier-plugin-tailwindcss": "^0.5.7",

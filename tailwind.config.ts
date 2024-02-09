@@ -78,7 +78,7 @@ const config = {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require("flowbite-typography")],
 } satisfies Config;
 
 export default config;

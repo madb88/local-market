@@ -8,7 +8,7 @@ export default function AddNewCompanyPage() {
 				<h2 className="text-4xl font-extrabold dark:text-white">Dodaj nową firmę</h2>
 				<BackButton />
 			</div>
-			<div>
+			<div className="w-3/6">
 				<AddNewCompanyForm />
 			</div>
 		</div>

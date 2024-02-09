@@ -10,7 +10,9 @@ export default function AddNewCompanyButton() {
 
 	return (
 		<Link href={`${pathname}/addCompany`}>
-			<Button>Dodaj firmę</Button>
+			<Button>
+				<p>Dodaj firmę</p>
+			</Button>
 		</Link>
 	);
 }
