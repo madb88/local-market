@@ -41,7 +41,7 @@ export const getCompany = unstable_cache(
 );
 
 export const createCompany = async (
-	data: { name: string; description: string },
+	data: { name: string; description: string; images: string },
 	token: string,
 ): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
 	const supabase = await createSupabaseServerClient({
@@ -49,9 +49,10 @@ export const createCompany = async (
 		token: token,
 		serverComponent: true,
 	});
+	console.log(data);
 	const { status, error, statusText } = await supabase
 		.from("companies")
-		.insert({ name: data.name, description: data.description });
+		.insert({ name: data.name, description: data.description, images: data.images });
 
 	return { status: status, error: error, message: statusText };
 };

@@ -1,4 +1,4 @@
-import { getAllCompanies, getCompany } from "@/api/companies";
+import { getAllCompanies, getCompany } from "@/app/api/companies";
 import Company from "@/app/components/pages/Companies/DetailsPage/Company";
 import { notFound } from "next/navigation";
 

@@ -1,7 +1,10 @@
+import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ClerkProvider } from "@clerk/nextjs";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
+import { extractRouterConfig } from "uploadthing/server";
 import { ThemeProvider } from "./components/theme-provider";
 import SearchBar from "./components/ui/organisms/SearchBar";
 import "./globals.css";
@@ -18,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<ClerkProvider>
 			<html lang="en" suppressHydrationWarning>
 				<body className={`${inter.className} bg-slate-100 dark:bg-slate-600`}>
+					<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
 					<Toaster position="top-center" richColors />
 					<ThemeProvider
 						attribute="class"

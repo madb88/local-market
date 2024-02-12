@@ -1,3 +1,4 @@
+import Image from "next/image";
 import CompanyHeader from "./CompanyHeader";
 import { type CompanyDetailsPageT } from "./types";
 
@@ -15,6 +16,13 @@ export default function Company({ company }: CompanyDetailsPageT) {
 					<p className="text-lg font-normal text-gray-500 dark:text-gray-400  lg:text-xl">
 						{company.description}
 					</p>
+				</div>
+				<div>
+					{company.images ? (
+						<Image src={company.images} width={500} height={500} alt="Zdjecie firmy" />
+					) : (
+						""
+					)}
 				</div>
 			</div>
 		</div>

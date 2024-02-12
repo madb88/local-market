@@ -11,6 +11,7 @@ export interface Database {
 					name: string | null;
 					updated_at?: string | null;
 					user_id?: string | null;
+					images?: string | null;
 				};
 				Insert: {
 					created_at?: string | null;
@@ -19,6 +20,7 @@ export interface Database {
 					name?: string | null;
 					updated_at?: string | null;
 					user_id?: string | null;
+					images?: string | null;
 				};
 				Update: {
 					created_at?: string | null;
@@ -27,6 +29,7 @@ export interface Database {
 					name?: string | null;
 					updated_at?: string | null;
 					user_id?: string | null;
+					images?: string | null;
 				};
 				Relationships: [];
 			};

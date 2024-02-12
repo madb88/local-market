@@ -1,4 +1,4 @@
-import { getCompanies } from "@/api/companies";
+import { getCompanies } from "@/app/api/companies";
 import CompaniesHeader from "@/app/components/pages/Companies/CompaniesHeader";
 import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
 import { Pagination } from "@/app/components/ui/molecules/Pagination";
