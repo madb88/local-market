@@ -1,6 +1,6 @@
 "use client";
-import { useSearchParams, useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type PaginationProps = {
 	hasNextPage: boolean;

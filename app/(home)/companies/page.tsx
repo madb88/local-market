@@ -2,21 +2,19 @@ import { getCompanies } from "@/api/companies";
 import CompaniesHeader from "@/app/components/pages/Companies/CompaniesHeader";
 import CompaniesList from "@/app/components/pages/Companies/CompaniesList";
 import { Pagination } from "@/app/components/ui/molecules/Pagination";
+import { revalidateTag } from "next/cache";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading";
-// import { auth } from "@clerk/nextjs";
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export default async function Companies({
 	searchParams,
 }: {
 	searchParams: { [key: string]: string | string[] };
 }) {
-	// const { getToken } = auth();
-	// const token = await getToken({ template: "supabase" });
-
+	revalidateTag("companies");
 	const page = (searchParams["page"] as string) ?? "1";
 	const per_page = (searchParams["per_page"] as string) ?? "8";
 	const start = (Number(page) - 1) * Number(per_page);
@@ -33,7 +31,7 @@ export default async function Companies({
 			<CompaniesHeader />
 
 			{companies && <CompaniesList companies={companies} />}
-			{count && (
+			{count ? (
 				<div className="flex justify-center pb-10 pt-10 ">
 					<Pagination
 						hasNextPage={end < count}
@@ -43,6 +41,8 @@ export default async function Companies({
 						count={count}
 					/>
 				</div>
+			) : (
+				""
 			)}
 		</Suspense>
 	);

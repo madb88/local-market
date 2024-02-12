@@ -14,11 +14,12 @@ export const getCompanies = unstable_cache(
 		const { data: companies, count } = await supabase
 			.from("companies")
 			.select("id, name, description", { count: "exact" })
+			.match({ status: "accepted" })
 			.range(start, end);
 		return { companies: companies, count: count };
 	},
 	["companies"],
-	{ tags: ["companies"], revalidate: 10 },
+	{ tags: ["companies"], revalidate: 1 },
 );
 
 export const getAllCompanies = async () => {
@@ -36,7 +37,7 @@ export const getCompany = unstable_cache(
 		return company;
 	},
 	["company"],
-	{ tags: ["company"], revalidate: 360 },
+	{ tags: ["company"] },
 );
 
 export const createCompany = async (

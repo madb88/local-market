@@ -14,10 +14,15 @@ import {
 	FormMessage,
 } from "@/app/components/ui/molecules/form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 export default function AddNewCompanyForm() {
+	const router = useRouter();
+
 	const formSchema = z.object({
 		name: z
 			.string()
@@ -45,9 +50,23 @@ export default function AddNewCompanyForm() {
 		},
 	});
 
+	useEffect(() => {
+		if (form.formState.isSubmitSuccessful) {
+			form.reset();
+		}
+	}, [form.formState, form.reset]);
+
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		const { message, error } = await createCompanyAction(values);
-		console.log(message, error);
+		const { error } = await createCompanyAction(values);
+		if (error) {
+			return toast.error("There was error");
+		}
+
+		return toast.success("Nowa firma została dodana, i oczekuję na akceptację", {
+			closeButton: true,
+			onAutoClose: () => router.back(),
+			duration: 5000,
+		});
 	}
 
 	return (
