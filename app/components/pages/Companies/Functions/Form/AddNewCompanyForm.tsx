@@ -21,29 +21,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { UploadFileResponse } from "uploadthing/client";
 import { z } from "zod";
+import ImageList from "./ImageList";
 
 export default function AddNewCompanyForm() {
-	const [images, setImages] = useState<
-		UploadFileResponse<{
-			UploadedFile: string;
-		}>[]
-	>([]);
-
-	const title = <>{images.length ? <p>Zdjęcie dodane</p> : null}</>;
-
-	const imageList = (
-		<div className="flex justify-center">
-			{title}
-			<ul>
-				{images.map((image) => (
-					<li className={"mt-2"} key={image.key}>
-						{image.url}
-						{image.name}
-					</li>
-				))}
-			</ul>
-		</div>
-	);
+	const [images, setImages] = useState<UploadFileResponse<{ uploadedFile: string }>[]>([]);
+	const [imageUpload, setImageUpload] = useState(false);
 
 	const formSchema = z.object({
 		name: z
@@ -95,7 +77,7 @@ export default function AddNewCompanyForm() {
 	}
 
 	return (
-		<>
+		<div className="">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 					<FormField
@@ -131,32 +113,51 @@ export default function AddNewCompanyForm() {
 						name="images"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>ZDJECIE</FormLabel>
 								<FormControl>
-									<Input placeholder="" {...field} />
+									<Input type="hidden" placeholder="" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
 					<UploadButton
+						content={{
+							button({ ready }) {
+								if (ready) return <div>Załaduj zdjęcie</div>;
+								return "Ładuje się";
+							},
+							allowedContent({ ready, fileTypes, isUploading }) {
+								if (!ready) return "Sprawdzam uprawnienia";
+								if (isUploading) return "Zdjęcie jest wrzucane";
+								return `Rozmiar zdjęcia: 4mb`;
+							},
+						}}
 						endpoint="imageUploader"
 						onClientUploadComplete={(res: UploadFileResponse<{ uploadedFile: string }>[]) => {
-							console.log("Files: ", res);
 							toast.success("Zdjęcie dodane", { duration: 1000 });
 							if (res) {
 								form.setValue("images", res[0].url);
+								setImages(res);
 							}
+							setImageUpload(false);
 						}}
 						onUploadError={(error: Error) => {
 							toast.error("Wystąpił błąd poczas dodawania zdjęcia");
 							console.log(`ERROR! ${error.message}`);
+							setImageUpload(false);
+						}}
+						onUploadProgress={() => {
+							setImageUpload(true);
 						}}
 					/>
-					{imageList}
+					{images.length > 0 ? <ImageList images={images} /> : null}
+
 					<Button
 						disabled={
-							form.formState.isSubmitting || !form.formState.isDirty || !form.formState.isValid
+							form.formState.isSubmitting ||
+							!form.formState.isDirty ||
+							!form.formState.isValid ||
+							imageUpload
 						}
 						type="submit"
 					>
@@ -164,6 +165,6 @@ export default function AddNewCompanyForm() {
 					</Button>
 				</form>
 			</Form>
-		</>
+		</div>
 	);
 }

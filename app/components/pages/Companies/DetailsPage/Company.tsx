@@ -1,5 +1,5 @@
-import Image from "next/image";
 import CompanyHeader from "./CompanyHeader";
+import CompanyImage from "./CompanyImage";
 import { type CompanyDetailsPageT } from "./types";
 
 export default function Company({ company }: CompanyDetailsPageT) {
@@ -17,12 +17,9 @@ export default function Company({ company }: CompanyDetailsPageT) {
 						{company.description}
 					</p>
 				</div>
-				<div>
-					{company.images ? (
-						<Image src={company.images} width={500} height={500} alt="Zdjecie firmy" />
-					) : (
-						""
-					)}
+				<div className="flex w-2/12 flex-col pt-5">
+					<h3>Zdjęcia</h3>
+					<CompanyImage company={company} />
 				</div>
 			</div>
 		</div>
