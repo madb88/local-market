@@ -4,7 +4,7 @@ import { Skeleton } from "@/app/components/ui/atoms/skeleton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { CompanyDetailsPageT } from "./types";
+import { type CompanyDetailsPageT } from "./types";
 
 export default function CompanyImage({ company }: CompanyDetailsPageT) {
 	const [reveal, setReveal] = useState(false);

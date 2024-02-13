@@ -19,7 +19,7 @@ import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { UploadFileResponse } from "uploadthing/client";
+import { type UploadFileResponse } from "uploadthing/client";
 import { z } from "zod";
 import ImageList from "./ImageList";
 
@@ -61,7 +61,7 @@ export default function AddNewCompanyForm() {
 			form.reset();
 			redirect("/companies");
 		}
-	}, [form.formState, form.reset]);
+	}, [form.formState, form.reset, form]);
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		const { error } = await createCompanyAction(values);
@@ -126,7 +126,7 @@ export default function AddNewCompanyForm() {
 								if (ready) return <div>Załaduj zdjęcie</div>;
 								return "Ładuje się";
 							},
-							allowedContent({ ready, fileTypes, isUploading }) {
+							allowedContent({ ready, isUploading }) {
 								if (!ready) return "Sprawdzam uprawnienia";
 								if (isUploading) return "Zdjęcie jest wrzucane";
 								return `Rozmiar zdjęcia: 4mb`;
