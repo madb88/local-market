@@ -13,7 +13,7 @@ export const getCompanies = unstable_cache(
 		});
 		const { data: companies, count } = await supabase
 			.from("companies")
-			.select("id, name, description", { count: "exact" })
+			.select("*", { count: "exact" })
 			.match({ status: "accepted" })
 			.range(start, end);
 		return { companies: companies, count: count };
@@ -41,7 +41,7 @@ export const getCompany = unstable_cache(
 );
 
 export const createCompany = async (
-	data: { name: string; description: string; images: string },
+	data: { name: string; description: string; images: string; imageObject: {} },
 	token: string,
 ): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
 	const supabase = await createSupabaseServerClient({
@@ -49,10 +49,15 @@ export const createCompany = async (
 		token: token,
 		serverComponent: true,
 	});
-	console.log(data);
+
 	const { status, error, statusText } = await supabase
 		.from("companies")
-		.insert({ name: data.name, description: data.description, images: data.images });
+		.insert({
+			name: data.name,
+			description: data.description,
+			images: data.images,
+			image_object: data.imageObject,
+		});
 
 	return { status: status, error: error, message: statusText };
 };

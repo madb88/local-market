@@ -13,7 +13,7 @@ export default function Home() {
 					<HomeInfo />
 				</div>
 			</main>
-			<div className="fixed bottom-0 w-full">
+			<div className="fixed bottom-0 z-50 w-full">
 				<div className="order-3 h-16 bg-slate-300 dark:bg-black md:hidden">
 					<BottomNavigation />
 				</div>
