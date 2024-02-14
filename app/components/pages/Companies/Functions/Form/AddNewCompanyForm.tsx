@@ -13,6 +13,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/app/components/ui/molecules/form";
+import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { redirect } from "next/navigation";
@@ -62,6 +63,11 @@ export default function AddNewCompanyForm() {
 			redirect("/companies");
 		}
 	}, [form.formState, form.reset, form]);
+
+	useBeforeUnload(
+		form.formState.isDirty,
+		"Po opuszczeniu strony stracisz niezapisane dane w formularzu",
+	);
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		const { error } = await createCompanyAction(values);

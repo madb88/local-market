@@ -1,14 +1,17 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "./button";
 
 export default function BackButton() {
-	const router = useRouter();
+	const pathname = usePathname();
+	const finalSlashIndex = pathname.lastIndexOf("/");
+	const previousPathname = pathname.slice(0, finalSlashIndex);
 
 	return (
-		<Button variant={"outline"} onClick={() => router.back()}>
-			Wróć
-		</Button>
+		<Link href={previousPathname}>
+			<Button variant={"outline"}>Wróć</Button>
+		</Link>
 	);
 }
