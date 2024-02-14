@@ -1,3 +1,4 @@
+import { nextui } from "@nextui-org/react";
 import type { Config } from "tailwindcss";
 import { withUt } from "uploadthing/tw";
 
@@ -8,6 +9,7 @@ const config = withUt({
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+		"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
 	],
 	prefix: "",
 	theme: {
@@ -79,7 +81,7 @@ const config = withUt({
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animate"), require("flowbite-typography")],
+	plugins: [require("tailwindcss-animate"), require("flowbite-typography"), nextui()],
 }) satisfies Config;
 
 export default config;

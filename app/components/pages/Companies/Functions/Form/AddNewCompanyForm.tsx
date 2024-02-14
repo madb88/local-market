@@ -1,7 +1,6 @@
 "use client";
 
 import { createCompanyAction } from "@/app/actions/createCompanyAction";
-import { Button } from "@/app/components/ui/atoms/button";
 import { Input } from "@/app/components/ui/atoms/input";
 import { Textarea } from "@/app/components/ui/atoms/textarea";
 import {
@@ -16,6 +15,7 @@ import {
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@nextui-org/react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -166,8 +166,10 @@ export default function AddNewCompanyForm() {
 							imageUpload
 						}
 						type="submit"
+						color="primary"
+						size="lg"
 					>
-						Submit
+						Dodaj
 					</Button>
 				</form>
 			</Form>

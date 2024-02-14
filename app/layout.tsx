@@ -8,6 +8,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ThemeProvider } from "./components/theme-provider";
 import SearchBar from "./components/ui/organisms/SearchBar";
 import "./globals.css";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<div className="sticky top-0 z-50">
 							<SearchBar />
 						</div>
-						{children}
+						<Providers>{children}</Providers>
 					</ThemeProvider>
 				</body>
 			</html>

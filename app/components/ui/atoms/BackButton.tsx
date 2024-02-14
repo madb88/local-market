@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { Button, Link } from "@nextui-org/react";
+import { ArrowLeft } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { Button } from "./button";
 
 export default function BackButton() {
 	const pathname = usePathname();
@@ -10,8 +10,17 @@ export default function BackButton() {
 	const previousPathname = pathname.slice(0, finalSlashIndex);
 
 	return (
-		<Link href={previousPathname}>
-			<Button variant={"outline"}>Wróć</Button>
-		</Link>
+		<>
+			<Button
+				href={previousPathname}
+				as={Link}
+				color="primary"
+				variant="solid"
+				size="md"
+				startContent={<ArrowLeft />}
+			>
+				<p className="text-base">Wróć</p>
+			</Button>
+		</>
 	);
 }

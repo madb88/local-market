@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/app/components/ui/atoms/button";
-import Link from "next/link";
+import { Button, Link } from "@nextui-org/react";
+import { Plus } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function AddNewCompanyButton() {
@@ -9,10 +9,15 @@ export default function AddNewCompanyButton() {
 	console.log(pathname);
 
 	return (
-		<Link href={`${pathname}/addCompany`}>
-			<Button>
-				<p>Dodaj firmę</p>
-			</Button>
-		</Link>
+		<Button
+			href={`${pathname}/addCompany`}
+			as={Link}
+			color="primary"
+			variant="solid"
+			size="md"
+			endContent={<Plus />}
+		>
+			<p className="text-base">Dodaj firmę</p>
+		</Button>
 	);
 }
