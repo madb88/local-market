@@ -1,8 +1,11 @@
+import { revalidateTag } from "next/cache";
 import CompanyHeader from "./CompanyHeader";
 import CompanyImage from "./CompanyImage";
 import { type CompanyDetailsPageT } from "./types";
 
+export const revalidate = 1;
 export default function Company({ company }: CompanyDetailsPageT) {
+	revalidateTag("company");
 	return (
 		<div className="flex flex-col gap-5">
 			<div className="flex justify-end">

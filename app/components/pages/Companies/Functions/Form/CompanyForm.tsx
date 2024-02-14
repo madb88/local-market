@@ -64,7 +64,7 @@ export default function CompanyForm({ data }: FormData) {
 				setImages(data.image_object as UploadFileResponse<{ uploadedFile: string }>[]);
 			}
 		}
-	}, [data, data?.image_object]);
+	}, []);
 
 	useEffect(() => {
 		if (form.formState.isSubmitSuccessful) {
