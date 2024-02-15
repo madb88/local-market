@@ -1,6 +1,7 @@
 "use client";
 
 import { createCompanyAction } from "@/app/actions/createCompanyAction";
+import { updateCompanyAction } from "@/app/actions/updateCompanyAction";
 import { Button } from "@/app/components/ui/atoms/button";
 import { Input } from "@/app/components/ui/atoms/input";
 import { Textarea } from "@/app/components/ui/atoms/textarea";
@@ -13,6 +14,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/app/components/ui/molecules/form";
+import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -79,12 +81,18 @@ export default function CompanyForm({ data }: FormData) {
 	);
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		const data = { ...values, imageObject: [images[0]] };
-		console.log(data);
-		const { error } = await createCompanyAction(data);
-		if (error) {
-			console.log(error.message);
-			return toast.error(`${error.message}`, { duration: 6000 });
+		const companyData = { ...values, imageObject: [images[0]] };
+
+		if (data) {
+			const { error, message } = await updateCompanyAction(data.id, companyData);
+			if (error) {
+				return toast.error(supabaseErrorCode[message].message, { duration: 6000 });
+			}
+		} else {
+			const { error } = await createCompanyAction(companyData);
+			if (error) {
+				return toast.error(`${error.message}`, { duration: 6000 });
+			}
 		}
 
 		return toast.success("Nowa firma została dodana, i oczekuję na akceptację", {
@@ -185,7 +193,7 @@ export default function CompanyForm({ data }: FormData) {
 								type="submit"
 								size="lg"
 							>
-								Dodaj
+								{data ? <p className="text-base">Edytuj</p> : <p className="text-base">Dodaj</p>}
 							</Button>
 						</div>
 					</div>

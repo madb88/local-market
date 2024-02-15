@@ -50,14 +50,38 @@ export const createCompany = async (
 		serverComponent: true,
 	});
 
+	const { status, error, statusText } = await supabase.from("companies").insert({
+		name: data.name,
+		description: data.description,
+		images: data.images,
+		image_object: data.imageObject,
+	});
+
+	return { status: status, error: error, message: statusText };
+};
+
+export const updateCompany = async (
+	id: number,
+	data: { name: string; description: string; images: string; imageObject: {} },
+	token: string,
+): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+
+	console.log(id, data);
+
 	const { status, error, statusText } = await supabase
 		.from("companies")
-		.insert({
+		.update({
 			name: data.name,
 			description: data.description,
 			images: data.images,
 			image_object: data.imageObject,
-		});
+		})
+		.eq("id", id);
 
 	return { status: status, error: error, message: statusText };
 };

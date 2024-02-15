@@ -2,7 +2,13 @@ import CompanyForm from "@/app/components/pages/Companies/Functions/Form/Company
 import BackButton from "@/app/components/ui/atoms/BackButton";
 
 export const revalidate = 1;
-export default function AddNewCompanyPage() {
+export default async function AddNewCompanyPage() {
+	// const user = await currentUser();
+
+	// if (!user) {
+	// 	console.log("asdsada");
+	// 	return null;
+	// }
 	return (
 		<div className="flex flex-col gap-5 px-5 pt-2">
 			<div className="flex justify-end pt-2">
