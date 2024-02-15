@@ -27,7 +27,7 @@ export default async function CompanyPage({ params }: { params: { id: string } }
 
 	return (
 		<>
-			<div className="h-screen p-10">{company && <Company company={company} />}</div>
+			<div className="h-full p-10">{company && <Company company={company} />}</div>
 		</>
 	);
 }

@@ -9,20 +9,23 @@ export default function Company({ company }: CompanyDetailsPageT) {
 	return (
 		<div className="flex flex-col gap-5">
 			<div className="flex justify-end">
-				<CompanyHeader />
+				<CompanyHeader authorId={company.user_id ? company.user_id : null} />
 			</div>
-			<div>
-				<h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-					{company.name}
-				</h1>
+			<div className="lg:grid-row-2 lg:grid">
 				<div>
-					<p className="text-lg font-normal text-gray-500 dark:text-gray-400  lg:text-xl">
-						{company.description}
-					</p>
+					<h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+						{company.name}
+					</h1>
 				</div>
-				<div className="flex w-2/12 flex-col pt-5">
-					<h3>Zdjęcia</h3>
-					<CompanyImage company={company} />
+				<div className="grid-cols-2 lg:grid">
+					<div>
+						<p className="text-lg font-normal text-gray-500 dark:text-gray-400  lg:text-xl">
+							{company.description}
+						</p>
+					</div>
+					<div className="flex flex-col gap-2 pt-5">
+						<CompanyImage company={company} />
+					</div>
 				</div>
 			</div>
 		</div>

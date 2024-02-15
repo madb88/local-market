@@ -18,6 +18,7 @@ import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Image } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -45,8 +46,8 @@ export default function CompanyForm({ data }: FormData) {
 			.min(1, {
 				message: "Opis musi mieć minimum 1 znak",
 			})
-			.max(120, {
-				message: "Opis moze mieć maksymalnie 120 znaków",
+			.max(300, {
+				message: "Opis moze mieć maksymalnie 300 znaków",
 			}),
 		images: z.string(),
 	});
@@ -88,6 +89,11 @@ export default function CompanyForm({ data }: FormData) {
 			if (error) {
 				return toast.error(supabaseErrorCode[message].message, { duration: 6000 });
 			}
+
+			return toast.success(`Firma ${data.name} została zaktualizowana`, {
+				closeButton: true,
+				duration: 3000,
+			});
 		} else {
 			const { error } = await createCompanyAction(companyData);
 			if (error) {
@@ -185,10 +191,7 @@ export default function CompanyForm({ data }: FormData) {
 
 							<Button
 								disabled={
-									form.formState.isSubmitting ||
-									!form.formState.isDirty ||
-									!form.formState.isValid ||
-									imageUpload
+									form.formState.isSubmitting || (!data && !form.formState.isDirty) || imageUpload
 								}
 								type="submit"
 								size="lg"
@@ -200,7 +203,13 @@ export default function CompanyForm({ data }: FormData) {
 				</form>
 			</Form>
 			<div>
-				{images.length > 0 ? <ImageList images={images} removeImage={removeImage} /> : null}
+				{images.length > 0 ? (
+					<ImageList images={images} removeImage={removeImage} />
+				) : (
+					<span className="h-6/6 pt-50 flex justify-center ">
+						<Image size={44} />
+					</span>
+				)}
 			</div>
 		</div>
 	);

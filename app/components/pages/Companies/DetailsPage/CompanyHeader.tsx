@@ -6,17 +6,21 @@ import { Star } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function CompanyHeader() {
+type CompanyHeaderT = {
+	authorId: string | null;
+};
+
+export default function CompanyHeader({ authorId }: CompanyHeaderT) {
 	const pathname = usePathname();
 
-	const { isSignedIn } = useUser();
+	const { user } = useUser();
 
 	return (
 		<div className="flex gap-5">
 			<Button aria-label="Do ulubionych" size="icon" variant="outline">
 				<Star />
 			</Button>
-			{isSignedIn ? (
+			{user && user.id === authorId ? (
 				<Button variant="outline">
 					<Link href={`${pathname}/edit`}>
 						<p className="text-base">Edytuj</p>
