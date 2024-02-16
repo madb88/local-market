@@ -16,7 +16,7 @@ export default async function Companies({
 }) {
 	revalidateTag("companies");
 	const page = (searchParams["page"] as string) ?? "1";
-	const per_page = (searchParams["per_page"] as string) ?? "8";
+	const per_page = (searchParams["per_page"] as string) ?? "10";
 	const start = (Number(page) - 1) * Number(per_page);
 	const end = start - 1 + Number(per_page);
 

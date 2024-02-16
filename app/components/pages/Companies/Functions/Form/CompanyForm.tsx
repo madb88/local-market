@@ -18,6 +18,7 @@ import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Spinner } from "@nextui-org/react";
 import { Image as ImageIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -202,12 +203,16 @@ export default function CompanyForm({ data }: FormData) {
 					</div>
 				</form>
 			</Form>
-			<div>
+			<div className="">
 				{images.length > 0 ? (
 					<ImageList images={images} removeImage={removeImage} />
 				) : (
-					<span className="h-6/6 pt-50 flex justify-center ">
-						<ImageIcon size={44} />
+					<span className="flex h-60 justify-center align-middle">
+						{imageUpload ? (
+							<Spinner size="lg" label="Ładuje zdjęcie" labelColor="primary" />
+						) : (
+							<ImageIcon size={44} />
+						)}
 					</span>
 				)}
 			</div>
