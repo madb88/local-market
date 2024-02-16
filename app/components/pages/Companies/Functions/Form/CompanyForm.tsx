@@ -3,22 +3,21 @@
 import { createCompanyAction } from "@/app/actions/createCompanyAction";
 import { updateCompanyAction } from "@/app/actions/updateCompanyAction";
 import { Button } from "@/app/components/ui/atoms/button";
-import { Input } from "@/app/components/ui/atoms/input";
-import { Textarea } from "@/app/components/ui/atoms/textarea";
+import { Input as AtomInput } from "@/app/components/ui/atoms/input";
+import { Input } from "@nextui-org/react";
+
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 } from "@/app/components/ui/molecules/form";
 import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Spinner } from "@nextui-org/react";
+import { Spinner, Textarea } from "@nextui-org/react";
 import { Image as ImageIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -114,21 +113,25 @@ export default function CompanyForm({ data }: FormData) {
 	};
 
 	return (
-		<div className="grid h-full grid-cols-1 gap-10 md:grid-cols-2">
+		<div className="grid h-full grid-cols-1 gap-10 md:grid-cols-2 ">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 					<div className="">
-						<div>
+						<div className="space-y-8 pt-10">
 							<FormField
 								control={form.control}
 								name="name"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Nazwa</FormLabel>
 										<FormControl>
-											<Input placeholder="Nazwa Firmy" {...field} />
+											<Input
+												label="Nazwa Firmy"
+												labelPlacement="outside"
+												placeholder="Nazwa Firmy"
+												{...field}
+												isRequired
+											/>
 										</FormControl>
-										<FormDescription>Nazwa firmy.</FormDescription>
 										<FormMessage />
 									</FormItem>
 								)}
@@ -138,11 +141,17 @@ export default function CompanyForm({ data }: FormData) {
 								name="description"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Opis</FormLabel>
 										<FormControl>
-											<Textarea placeholder="Opis" {...field} className="resize-y" cols={100} />
+											<Textarea
+												label="Opis działalności firmy"
+												labelPlacement="outside"
+												placeholder="Opis"
+												{...field}
+												className="resize-y"
+												cols={100}
+												isRequired
+											/>
 										</FormControl>
-										<FormDescription>Opis tego czym zajmuje się firma.</FormDescription>
 										<FormMessage />
 									</FormItem>
 								)}
@@ -153,7 +162,7 @@ export default function CompanyForm({ data }: FormData) {
 								render={({ field }) => (
 									<FormItem>
 										<FormControl>
-											<Input type="hidden" placeholder="" {...field} />
+											<AtomInput type="hidden" placeholder="" {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
