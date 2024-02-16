@@ -1,6 +1,7 @@
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 							<SearchBar />
 						</div>
 						<Providers>{children}</Providers>
+						<Analytics />
 					</ThemeProvider>
 				</body>
 			</html>
