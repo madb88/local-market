@@ -4,8 +4,6 @@ import { createCompanyAction } from "@/app/actions/createCompanyAction";
 import { updateCompanyAction } from "@/app/actions/updateCompanyAction";
 import { Button } from "@/app/components/ui/atoms/button";
 import { Input as AtomInput } from "@/app/components/ui/atoms/input";
-import { Input } from "@nextui-org/react";
-
 import {
 	Form,
 	FormControl,
@@ -17,7 +15,7 @@ import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Spinner, Textarea } from "@nextui-org/react";
+import { Input, Spinner, Textarea } from "@nextui-org/react";
 import { Image as ImageIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
