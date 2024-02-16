@@ -13,7 +13,9 @@ export default function Home() {
 				<div className="order-1 h-screen md:order-2">
 					<HomeInfo />
 				</div>
-				<Footer />
+				<div className="hidden md:block">
+					<Footer />
+				</div>
 			</main>
 			<div className="fixed bottom-0 z-50 w-full">
 				<div className="order-3 h-16 bg-slate-300 dark:bg-black md:hidden">

@@ -12,7 +12,9 @@ export default function HomeLayout({ children }: { children: React.ReactNode }) 
 				<div className="order-1  w-screen pb-12 md:order-2">{children}</div>
 			</div>
 			<div className=" fixed bottom-0 z-50 w-full">
-				<Footer />
+				<div className="hidden md:block">
+					<Footer />
+				</div>
 
 				<div className="order-3 h-16 bg-slate-300 dark:bg-black md:hidden">
 					<BottomNavigation />
