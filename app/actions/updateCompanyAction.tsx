@@ -4,7 +4,7 @@ import { updateCompany } from "@/app/api/companies";
 import { auth } from "@clerk/nextjs";
 import { type PostgrestError } from "@supabase/supabase-js";
 import { revalidateTag } from "next/cache";
-import { UploadFileResponse } from "uploadthing/client";
+import { type UploadFileResponse } from "uploadthing/client";
 
 export async function updateCompanyAction(
 	id: number,

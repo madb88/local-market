@@ -18,7 +18,7 @@ import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Image } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -67,7 +67,7 @@ export default function CompanyForm({ data }: FormData) {
 				setImages(data.image_object as UploadFileResponse<{ uploadedFile: string }>[]);
 			}
 		}
-	}, []);
+	}, [data]);
 
 	useEffect(() => {
 		if (form.formState.isSubmitSuccessful) {
@@ -207,7 +207,7 @@ export default function CompanyForm({ data }: FormData) {
 					<ImageList images={images} removeImage={removeImage} />
 				) : (
 					<span className="h-6/6 pt-50 flex justify-center ">
-						<Image size={44} />
+						<ImageIcon size={44} />
 					</span>
 				)}
 			</div>

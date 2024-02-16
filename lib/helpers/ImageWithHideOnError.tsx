@@ -2,7 +2,9 @@ import { Image } from "@nextui-org/react";
 import { CameraOff } from "lucide-react";
 import { useState } from "react";
 
-const ImageWithHideOnError = (props: any) => {
+type ImageWithHideOnErrorT = { src: string; width: number; height: number; alt: string };
+
+export const ImageWithHideOnError = (props: ImageWithHideOnErrorT) => {
 	const [hideImage, setHideImage] = useState(false);
 
 	return !hideImage ? (
@@ -16,5 +18,3 @@ const ImageWithHideOnError = (props: any) => {
 		<CameraOff />
 	);
 };
-
-export default ImageWithHideOnError;

@@ -43,9 +43,9 @@ export const useBeforeUnload = (
 				const anchor = findClosestAnchor(target);
 				if (anchor) {
 					const currentUrl = window.location.href;
-					const newUrl = (anchor as HTMLAnchorElement).href;
+					const newUrl = anchor.href;
 					const isAnchor = isAnchorOfCurrentUrl(currentUrl, newUrl);
-					const isDownloadLink = (anchor as HTMLAnchorElement).download !== "";
+					const isDownloadLink = anchor.download !== "";
 
 					const isPageLeaving = !(newUrl === currentUrl || isAnchor || isDownloadLink);
 
