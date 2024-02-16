@@ -180,7 +180,7 @@ export default function CompanyForm({ data }: FormData) {
 									}
 									setImageUpload(false);
 								}}
-								onUploadError={(error: Error) => {
+								onUploadError={() => {
 									toast.error("Wystąpił błąd poczas dodawania zdjęcia");
 									setImageUpload(false);
 								}}

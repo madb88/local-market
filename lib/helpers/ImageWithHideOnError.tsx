@@ -9,7 +9,10 @@ export const ImageWithHideOnError = (props: ImageWithHideOnErrorT) => {
 
 	return !hideImage ? (
 		<Image
-			{...props}
+			src={props.src}
+			width={props.width}
+			height={props.height}
+			alt={props.alt}
 			onError={() => {
 				setHideImage(true);
 			}}
