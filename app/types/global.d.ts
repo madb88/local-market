@@ -7,6 +7,7 @@ declare global {
 		metadata: {
 			role?: Roles;
 			messangerId: string;
+			number: string;
 		};
 	}
 }
