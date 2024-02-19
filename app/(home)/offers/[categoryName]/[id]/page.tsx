@@ -2,7 +2,7 @@ import { getAllOffers, getOffer } from "@/app/api/offers";
 import Offer from "@/app/components/pages/Offers/DetailsPage/Offer";
 import { notFound } from "next/navigation";
 
-export const dynamic = "force-static";
+// export const dynamic = "force-static";
 
 type PageParams = {
 	id: string;

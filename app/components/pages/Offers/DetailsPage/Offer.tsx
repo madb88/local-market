@@ -1,12 +1,10 @@
 import DetailPageImage from "@/app/components/ui/molecules/DetailPageImage";
 import { OfferType } from "@/lib/supabase/serverAppRouter";
 import { CameraOff } from "lucide-react";
-import { revalidateTag } from "next/cache";
+import ContactAuthor from "./ContactAuthor";
 import OfferHeader from "./OfferHeader";
 
-export const revalidate = 1;
 export default function Offer({ offer }: { offer: OfferType }) {
-	revalidateTag("offer");
 	return (
 		<div className="flex flex-col gap-5">
 			{offer ? <OfferHeader categoryName={offer.category_name} name={offer.name} /> : null}
@@ -17,8 +15,16 @@ export default function Offer({ offer }: { offer: OfferType }) {
 						{offer.name}
 					</h1>
 				</div>
-				<div className=""></div>
-				<div className="">
+				<div className="flex flex-col gap-2">
+					<p>
+						Dodał: {offer.author?.firstName} {offer.author?.lastName}
+					</p>
+					<div>
+						<ContactAuthor />
+					</div>
+				</div>
+
+				<div className="pt-5">
 					<p className="text-lg font-normal text-gray-500 dark:text-gray-400  lg:text-xl">
 						{offer.description}
 					</p>

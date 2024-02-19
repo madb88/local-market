@@ -5,14 +5,19 @@ export default authMiddleware({
 		"/",
 		"/companies",
 		"/companies/(.*)",
+		"/offers/(.*)",
+		"/offers",
 		"/offers/dom",
+		"/offers/dom/(.*)",
 		"/offers/elektronika",
+		"/offers/elektronika/(.*)",
 		"/offers/ogrod",
+		"/offers/ogrod/(.*)",
 		"/api/uploadthing",
 	],
 	ignoredRoutes: ["/api/uploadthing"],
 });
 
 export const config = {
-	matcher: ["/", "/((?!.+\\.[\\w]+$|_next).*)", "/(api|trpc)(.*)"],
+	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };

@@ -1,3 +1,3 @@
-export default function CategoryPage() {
+export default async function CategoryPage() {
 	return <>Główna strona kategorii</>;
 }
