@@ -9,6 +9,7 @@ import {
 import { Search, Store } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../../toggle-mode";
+import LoginButton from "../atoms/LoginButton";
 import SheetNavigation from "../molecules/SheetNavigation";
 
 export default function SearchBar() {
@@ -53,6 +54,8 @@ export default function SearchBar() {
 				<NavbarItem>
 					<ModeToggle />
 				</NavbarItem>
+				<LoginButton />
+				<NavbarItem />
 			</NavbarContent>
 		</Navbar>
 	);

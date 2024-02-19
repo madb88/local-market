@@ -4,7 +4,7 @@ export default authMiddleware({
 	publicRoutes: [
 		"/",
 		"/companies",
-		"/companies/([^/.])",
+		"/companies/(.*)",
 		"/categories/dom",
 		"/categories/elektronika",
 		"/categories/ogrod",
@@ -14,5 +14,5 @@ export default authMiddleware({
 });
 
 export const config = {
-	matcher: ["/companies/add", "/", "/(api|trpc)(.*)", "/companies/:path*/edit"],
+	matcher: ["/", "/((?!.+\\.[\\w]+$|_next).*)", "/(api|trpc)(.*)"],
 };
