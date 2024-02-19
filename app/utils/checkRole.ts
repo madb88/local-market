@@ -1,8 +1,7 @@
-import { type Roles } from "@/app/types/global";
 import { auth } from "@clerk/nextjs";
 import { includes } from "ramda";
 
-export const checkRole = (role?: Roles) => {
+export const checkRole = () => {
 	const allowedAuthorized = ["admin", "authorizedUser"];
 
 	const { sessionClaims } = auth();

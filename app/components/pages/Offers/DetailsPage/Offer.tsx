@@ -1,5 +1,5 @@
 import DetailPageImage from "@/app/components/ui/molecules/DetailPageImage";
-import { OfferType } from "@/lib/supabase/serverAppRouter";
+import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import { CameraOff } from "lucide-react";
 import ContactAuthor from "./ContactAuthor";
 import OfferHeader from "./OfferHeader";

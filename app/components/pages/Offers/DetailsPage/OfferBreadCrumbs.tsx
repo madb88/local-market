@@ -1,4 +1,4 @@
-import capitalizeFirstLetter from "@/lib/helpers/functions";
+import { capitalizeFirstLetter } from "@/lib/helpers/functions";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 import Link from "next/link";
 

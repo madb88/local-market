@@ -1,5 +1,5 @@
 import { Button } from "@/app/components/ui/atoms/button";
-import { OfferType } from "@/lib/supabase/serverAppRouter";
+import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import { Chip, Image } from "@nextui-org/react";
 import { format } from "date-fns";
 import { Camera, Star } from "lucide-react";

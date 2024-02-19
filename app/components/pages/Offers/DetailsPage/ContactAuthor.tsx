@@ -11,7 +11,7 @@ export default function ContactAuthor() {
 			{messangerId ? (
 				<Link href={`https://m.me/${messangerId}`} target="_blank">
 					<Button color="primary">
-						<MessageCircleMore /> Kontakt przez messanger'a
+						<MessageCircleMore /> Kontakt przez messangera
 					</Button>
 				</Link>
 			) : (

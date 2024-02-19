@@ -1,4 +1,4 @@
-import { OfferType } from "@/lib/supabase/serverAppRouter";
+import { type OfferType } from "@/lib/supabase/serverAppRouter";
 
 export type OfferListT = {
 	name: string;

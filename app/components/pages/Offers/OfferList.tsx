@@ -1,4 +1,4 @@
-import { OfferType } from "@/lib/supabase/serverAppRouter";
+import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import { Folder } from "lucide-react";
 import { isEmpty } from "ramda";
 import { type FC } from "react";
