@@ -1,19 +1,18 @@
 "use client";
 import { ImageWithHideOnError } from "@/lib/helpers/ImageWithHideOnError";
 import { CameraOff } from "lucide-react";
-import { type CompanyDetailsPageT } from "./types";
 
-export default function CompanyImage({ company }: CompanyDetailsPageT) {
+export default function DetailPageImage({ element }: { element: string }) {
 	const timeStamp = new Date().getTime();
 
 	return (
 		<>
-			{company.images ? (
+			{element ? (
 				<>
 					<ImageWithHideOnError
-						src={`${company.images}?${timeStamp}`}
-						width={500}
-						height={500}
+						src={`${element}?${timeStamp}`}
+						width={250}
+						height={250}
 						alt="Zdjecie firmy"
 					/>
 				</>

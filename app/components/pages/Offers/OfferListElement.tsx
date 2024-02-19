@@ -10,8 +10,8 @@ import { Card, CardContent, CardTitle } from "../../ui/atoms/card";
 export default function OfferListElement({ offer }: { offer: OfferType }) {
 	return (
 		<>
-			<Link href={`/offers/${offer.id}`}>
-				<Card className="flex h-36 flex-row overflow-hidden hover:bg-gray-100 dark:hover:bg-gray-900">
+			<Link href={`/offers/${offer.category_name}/${offer.id}`}>
+				<Card className="flex h-36 flex-row overflow-hidden shadow-lg hover:bg-gray-100 dark:hover:bg-gray-900">
 					<div className=" w-2/6 ">
 						{offer.image ? (
 							<Image

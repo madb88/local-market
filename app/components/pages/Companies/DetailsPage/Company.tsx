@@ -1,6 +1,7 @@
+import { CameraOff } from "lucide-react";
 import { revalidateTag } from "next/cache";
+import DetailPageImage from "../../../ui/molecules/DetailPageImage";
 import CompanyHeader from "./CompanyHeader";
-import CompanyImage from "./CompanyImage";
 import { type CompanyDetailsPageT } from "./types";
 
 export const revalidate = 1;
@@ -24,7 +25,7 @@ export default function Company({ company }: CompanyDetailsPageT) {
 						</p>
 					</div>
 					<div className="flex flex-col gap-2 pt-5">
-						<CompanyImage company={company} />
+						{company.images ? <DetailPageImage element={company.images} /> : <CameraOff />}
 					</div>
 				</div>
 			</div>
