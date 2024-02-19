@@ -7,9 +7,9 @@ type NavigationT = {
 
 export default function Navigation({ inSheet }: NavigationT) {
 	const categories = [
-		{ name: "Elektronika", url: "/categories/elektronika", icon: <Calculator /> },
-		{ name: "Ogród", url: "/categories/ogrod", icon: <Flower2 /> },
-		{ name: "Dom", url: "/categories/dom", icon: <LampFloor /> },
+		{ name: "Elektronika", url: "/offers/elektronika", icon: <Calculator /> },
+		{ name: "Ogród", url: "/offers/ogrod", icon: <Flower2 /> },
+		{ name: "Dom", url: "/offers/dom", icon: <LampFloor /> },
 		{ name: "Firmy", url: "/companies", icon: <Hammer /> },
 	];
 

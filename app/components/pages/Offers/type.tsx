@@ -1,6 +1,6 @@
 import { OfferType } from "@/lib/supabase/serverAppRouter";
 
-export type CategoryListT = {
+export type OfferListT = {
 	name: string;
 	offers: OfferType[];
 };

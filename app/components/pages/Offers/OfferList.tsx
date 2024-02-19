@@ -2,10 +2,10 @@ import { OfferType } from "@/lib/supabase/serverAppRouter";
 import { Folder } from "lucide-react";
 import { isEmpty } from "ramda";
 import { type FC } from "react";
-import CategoryListElement from "./CategoryListElement";
-import { type CategoryListT } from "./type";
+import CategoryListElement from "./OfferListElement";
+import { type OfferListT } from "./type";
 
-const CategoryList: FC<CategoryListT> = ({ offers, name }) => {
+const OfferList: FC<OfferListT> = ({ offers, name }) => {
 	return (
 		<div className="h-fit">
 			{!isEmpty(offers) ? (
@@ -28,4 +28,4 @@ const CategoryList: FC<CategoryListT> = ({ offers, name }) => {
 	);
 };
 
-export default CategoryList;
+export default OfferList;
