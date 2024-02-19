@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { type Database } from "./types";
 
 export type CompanyType = Database["public"]["Tables"]["companies"]["Row"];
+export type OfferType = Database["public"]["Tables"]["offers"]["Row"];
 
 type ServerClientType = {
 	token?: string;

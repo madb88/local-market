@@ -45,6 +45,45 @@ export type Database = {
         }
         Relationships: []
       }
+      offers: {
+        Row: {
+          category_name: string | null
+          created_at: string
+          description: string | null
+          id: number
+          image: string | null
+          image_object: Json | null
+          name: string | null
+          status: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          category_name?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          image?: string | null
+          image_object?: Json | null
+          name?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          category_name?: string | null
+          created_at?: string
+          description?: string | null
+          id?: number
+          image?: string | null
+          image_object?: Json | null
+          name?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

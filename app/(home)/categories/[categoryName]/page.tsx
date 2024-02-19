@@ -1,8 +1,40 @@
-"use client";
-import { useParams } from "next/navigation";
-import CategoryContainer from "@/app/components/pages/Categories/CategoryContainer";
+import { getOffersByCategory } from "@/app/api/offers";
+import CategoryList from "@/app/components/pages/Categories/CategoryList";
+import { Pagination } from "@/app/components/ui/molecules/Pagination";
+import { Suspense } from "react";
 
-export default function CategoryPage() {
-	const params = useParams<{ categoryName: string }>();
-	return <CategoryContainer name={params.categoryName} />;
+export default async function DetailCategoryPage({
+	params,
+	searchParams,
+}: {
+	params: { categoryName: string };
+	searchParams: { [key: string]: string | string[] };
+}) {
+	const page = (searchParams["page"] as string) ?? "1";
+	const per_page = (searchParams["per_page"] as string) ?? "10";
+	const start = (Number(page) - 1) * Number(per_page);
+	const end = start - 1 + Number(per_page);
+	const { offers, count } = await getOffersByCategory(start, end, params.categoryName);
+
+	if (!offers) {
+		return "Brak ofert";
+	}
+
+	return (
+		<Suspense fallback="...Loading">
+			{offers ? <CategoryList offers={offers} name={params.categoryName} /> : "Brak Ofert"}
+			{count ? (
+				<div className="flex justify-center pb-10 pt-10 ">
+					<Pagination
+						hasNextPage={end < count}
+						hasPrevPage={start > 0}
+						currentPage={page}
+						perPage={per_page}
+						count={count}
+						url={`categories/${params.categoryName}`}
+					/>
+				</div>
+			) : null}
+		</Suspense>
+	);
 }
