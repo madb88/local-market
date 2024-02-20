@@ -1,4 +1,4 @@
-import { getAllOffers, getOffer } from "@/app/api/offers";
+import { getOffer } from "@/app/api/offers";
 import Offer from "@/app/components/pages/Offers/DetailsPage/Offer";
 import { notFound } from "next/navigation";
 
@@ -8,15 +8,15 @@ type PageParams = {
 	id: string;
 };
 
-export async function generateStaticParams(): Promise<PageParams[]> {
-	const offers = await getAllOffers();
+// export async function generateStaticParams(): Promise<PageParams[]> {
+// 	const offers = await getAllOffers();
 
-	const result = offers?.map((offer) => ({
-		id: String(offer.id),
-	}));
+// 	const result = offers?.map((offer) => ({
+// 		id: String(offer.id),
+// 	}));
 
-	return result as PageParams[];
-}
+// 	return result as PageParams[];
+// }
 
 export default async function OfferPage({ params }: { params: { id: string } }) {
 	const offer = await getOffer(params.id);
