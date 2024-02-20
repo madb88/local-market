@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 
 // export const dynamic = "force-static";
 
-type PageParams = {
-	id: string;
-};
+// type PageParams = {
+// 	id: string;
+// };
 
 // export async function generateStaticParams(): Promise<PageParams[]> {
 // 	const offers = await getAllOffers();
