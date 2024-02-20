@@ -1,5 +1,11 @@
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
+export type ContactOptionsT = {
+	messanger: boolean;
+	whatsapp: boolean;
+	email: boolean;
+};
+
 export type Database = {
 	public: {
 		Tables: {
@@ -41,14 +47,9 @@ export type Database = {
 			};
 			offers: {
 				Row: {
-					author: {
-						firstName?: string;
-						lastName?: string;
-						phone?: string;
-						address?: string;
-						social: {};
-					} | null;
+					author: Json | null;
 					category_name: string | null;
+					contact_options: ContactOptionsT | null;
 					created_at: string;
 					description: string | null;
 					id: number;
@@ -62,6 +63,7 @@ export type Database = {
 				Insert: {
 					author?: Json | null;
 					category_name?: string | null;
+					contact_options?: ContactOptionsT | null;
 					created_at?: string;
 					description?: string | null;
 					id?: number;
@@ -75,6 +77,7 @@ export type Database = {
 				Update: {
 					author?: Json | null;
 					category_name?: string | null;
+					contact_options?: ContactOptionsT | null;
 					created_at?: string;
 					description?: string | null;
 					id?: number;

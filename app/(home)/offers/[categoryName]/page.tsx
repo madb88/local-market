@@ -1,5 +1,6 @@
 import { getOffersByCategory } from "@/app/api/offers";
 import OfferList from "@/app/components/pages/Offers/OfferList";
+import OffersHeader from "@/app/components/pages/Offers/OffersHeader";
 import { Pagination } from "@/app/components/ui/molecules/Pagination";
 import { Suspense } from "react";
 import Loading from "./loading";
@@ -23,6 +24,7 @@ export default async function DetailCategoryPage({
 
 	return (
 		<Suspense fallback={<Loading />}>
+			<OffersHeader />
 			{offers ? <OfferList offers={offers} name={params.categoryName} /> : "Brak Ofert"}
 			{count ? (
 				<div className="flex justify-center pb-10 pt-10 ">

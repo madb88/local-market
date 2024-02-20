@@ -12,13 +12,13 @@ export default function OfferListElement({ offer }: { offer: OfferType }) {
 		<>
 			<Link href={`/offers/${offer.category_name}/${offer.id}`}>
 				<Card className="flex h-36 flex-row overflow-hidden shadow-lg hover:bg-gray-100 dark:hover:bg-gray-900">
-					<div className=" w-2/6 ">
+					<div className="w-40">
 						{offer.image ? (
 							<Image
 								src={offer.image}
 								alt="Obrazek Oferty"
-								width="100%"
-								height="100%"
+								width={250}
+								height={250}
 								sizes="(min-width: 2880px) 400px, (min-width: 780px) calc(16.06vw - 59px), calc(33.7vw - 30px)"
 								radius="md"
 								className="object-cover"

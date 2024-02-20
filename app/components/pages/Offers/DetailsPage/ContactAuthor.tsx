@@ -12,11 +12,12 @@ export default function ContactAuthor() {
 	const messangerId = user?.publicMetadata.messangerId as string;
 	const number = user?.publicMetadata.number as string;
 	return (
-		<div className="flex gap-2">
+		<div className="flex flex-col gap-2">
+			Kontakt:
 			{messangerId ? (
 				<Link href={`https://m.me/${messangerId}`} target="_blank">
 					<Button color="primary">
-						<MessageCircleMore /> Kontakt przez messangera
+						<MessageCircleMore /> Messanger
 					</Button>
 				</Link>
 			) : (
@@ -25,7 +26,7 @@ export default function ContactAuthor() {
 			{number ? (
 				<Link href={`https://wa.me/${number}`} target="_blank">
 					<Button color="success">
-						<MessageCircleMore /> Kontakt przez whatsappa
+						<MessageCircleMore /> Whatsapp
 					</Button>
 				</Link>
 			) : (

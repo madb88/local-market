@@ -19,9 +19,7 @@ export default function Offer({ offer }: { offer: OfferType }) {
 					<p>
 						Dodał: {offer.author?.firstName} {offer.author?.lastName}
 					</p>
-					<div>
-						<ContactAuthor />
-					</div>
+					<ContactAuthor />
 				</div>
 
 				<div className="pt-5">
