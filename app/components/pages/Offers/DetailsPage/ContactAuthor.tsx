@@ -9,8 +9,8 @@ export default function ContactAuthor() {
 	const { user } = useUser();
 	console.log(user);
 	// const { messangerId, number } = checkContact();
-	const messangerId = user?.publicMetadata.messangerId;
-	const number = user?.publicMetadata.number;
+	const messangerId = user?.publicMetadata.messangerId as string;
+	const number = user?.publicMetadata.number as string;
 	return (
 		<div className="flex gap-2">
 			{messangerId ? (
