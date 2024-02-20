@@ -9,11 +9,12 @@ export default function ContactAuthor() {
 	const { user } = useUser();
 	console.log(user);
 	// const { messangerId, number } = checkContact();
-
+	const messangerId = user?.publicMetadata.messangerId;
+	const number = user?.publicMetadata.number;
 	return (
 		<div className="flex gap-2">
-			{user?.publicMetadata.messangerId ? (
-				<Link href={`https://m.me/${user?.publicMetadata.messangerId}`} target="_blank">
+			{messangerId ? (
+				<Link href={`https://m.me/${messangerId}`} target="_blank">
 					<Button color="primary">
 						<MessageCircleMore /> Kontakt przez messangera
 					</Button>
@@ -21,8 +22,8 @@ export default function ContactAuthor() {
 			) : (
 				"Brak profilu FB w ustawieniach"
 			)}
-			{user?.publicMetadata.number ? (
-				<Link href={` https://wa.me/${user?.publicMetadata.number}`} target="_blank">
+			{number ? (
+				<Link href={`https://wa.me/${number}`} target="_blank">
 					<Button color="success">
 						<MessageCircleMore /> Kontakt przez whatsappa
 					</Button>
