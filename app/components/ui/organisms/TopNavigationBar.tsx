@@ -1,18 +1,13 @@
 import { UserButton } from "@clerk/nextjs";
-import {
-	Navbar,
-	NavbarBrand,
-	NavbarContent,
-	NavbarItem,
-	Input as NextInput,
-} from "@nextui-org/react";
-import { Search, Store } from "lucide-react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
+import { Store } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../../toggle-mode";
 import LoginButton from "../atoms/LoginButton";
+import SearchBar from "../molecules/SearchBar";
 import SheetNavigation from "../molecules/SheetNavigation";
 
-export default function SearchBar() {
+export default function TopNavigationBar() {
 	return (
 		<Navbar shouldHideOnScroll>
 			<NavbarContent justify="start">
@@ -33,29 +28,18 @@ export default function SearchBar() {
 				</NavbarBrand>
 			</NavbarContent>
 			<NavbarContent as="div" className="w-full items-center" justify="center">
-				<NextInput
-					classNames={{
-						base: "w-full h-10",
-						mainWrapper: "h-full",
-						input: "text-small",
-						inputWrapper:
-							"h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-					}}
-					placeholder="Szukaj"
-					size="sm"
-					startContent={<Search size={18} />}
-					type="search"
-				/>
+				<SearchBar />
 			</NavbarContent>
 			<NavbarContent justify="end">
-				<NavbarItem>
+				<NavbarItem className="hidden md:inline-block">
 					<UserButton afterSignOutUrl="/" />
 				</NavbarItem>
-				<NavbarItem>
+				<NavbarItem className="hidden md:inline-block">
 					<ModeToggle />
 				</NavbarItem>
-				<LoginButton />
-				<NavbarItem />
+				<NavbarItem className="hidden md:inline-block">
+					<LoginButton />
+				</NavbarItem>
 			</NavbarContent>
 		</Navbar>
 	);

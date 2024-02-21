@@ -13,6 +13,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/app/components/ui/molecules/form";
+import { categories } from "@/app/utils/categoriesData";
 import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
@@ -32,12 +33,6 @@ export default function OfferForm({ categoryName, data }: FormData) {
 	const router = useRouter();
 	const [images, setImages] = useState<UploadFileResponse<{ uploadedFile: string }>[]>([]);
 	const [imageUpload, setImageUpload] = useState(false);
-
-	const categories = [
-		{ key: "elektronika", value: "elektronika", label: "Elektronika" },
-		{ key: "dom", value: "dom", label: "Dom" },
-		{ key: "ogrod", value: "ogrod", label: "Ogród" },
-	];
 
 	const formSchema = z.object({
 		name: z

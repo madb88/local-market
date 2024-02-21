@@ -7,7 +7,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { extractRouterConfig } from "uploadthing/server";
 import { ThemeProvider } from "./components/theme-provider";
-import SearchBar from "./components/ui/organisms/SearchBar";
+import SearchBar from "./components/ui/organisms/TopNavigationBar";
 import "./globals.css";
 import { Providers } from "./providers";
 
