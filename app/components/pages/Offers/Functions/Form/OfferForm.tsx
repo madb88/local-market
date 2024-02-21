@@ -1,5 +1,7 @@
 "use client";
 
+import { createOfferAction } from "@/app/actions/offers/createOfferAction";
+import { updateOfferAction } from "@/app/actions/offers/updateOfferAction";
 import { Button } from "@/app/components/ui/atoms/button";
 import { Input as AtomInput } from "@/app/components/ui/atoms/input";
 import {
@@ -11,13 +13,13 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/app/components/ui/molecules/form";
-// import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
-import { createOfferAction } from "@/app/actions/offers/createOfferAction";
+import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Checkbox, Input, Select, SelectItem, Spinner, Textarea } from "@nextui-org/react";
-import { Image as ImageIcon } from "lucide-react";
+import { ImageIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -26,14 +28,15 @@ import { z } from "zod";
 import ImageList from "../../../Companies/Functions/Form/ImageList";
 import { type FormData } from "./FormData";
 
-export default function OfferForm({ data }: FormData) {
+export default function OfferForm({ categoryName, data }: FormData) {
+	const router = useRouter();
 	const [images, setImages] = useState<UploadFileResponse<{ uploadedFile: string }>[]>([]);
 	const [imageUpload, setImageUpload] = useState(false);
 
 	const categories = [
-		{ value: "elektronika", label: "Elektronika" },
-		{ value: "dom", label: "Dom" },
-		{ value: "ogrod", label: "Ogród" },
+		{ key: "elektronika", value: "elektronika", label: "Elektronika" },
+		{ key: "dom", value: "dom", label: "Dom" },
+		{ key: "ogrod", value: "ogrod", label: "Ogród" },
 	];
 
 	const formSchema = z.object({
@@ -69,7 +72,7 @@ export default function OfferForm({ data }: FormData) {
 			email: data && data.contact_options?.email ? data.contact_options.email : false,
 			whatsapp: data && data.contact_options?.whatsapp ? data.contact_options.whatsapp : false,
 			image: data && data.image ? data.image : "",
-			categoryName: data && data.category_name ? data.category_name : "",
+			categoryName: data && data.category_name ? data.category_name : categoryName,
 		},
 	});
 
@@ -83,8 +86,8 @@ export default function OfferForm({ data }: FormData) {
 
 	useEffect(() => {
 		if (form.formState.isSubmitSuccessful) {
-			// form.reset();
-			// redirect("/offers");
+			form.reset();
+			router.back();
 		}
 	}, [form.formState, form.reset, form]);
 
@@ -94,27 +97,22 @@ export default function OfferForm({ data }: FormData) {
 	);
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		const offerData = { ...values, imageObject: [images[0]] };
-		console.log(offerData);
-		// if (data) {
-		// 	const { error, message } = await updateCompanyAction(data.id, companyData);
-		// 	if (error) {
-		// 		return toast.error(supabaseErrorCode[message].message, { duration: 6000 });
-		// 	}
+		const offerData = { ...values, imageObject: images[0] ? [images[0]] : [] };
+		if (data) {
+			const { error, message } = await updateOfferAction(data.id, offerData);
+			if (error) {
+				return toast.error(supabaseErrorCode[message].message, { duration: 6000 });
+			}
 
-		// 	return toast.success(`Firma ${data.name} została zaktualizowana`, {
-		// 		closeButton: true,
-		// 		duration: 3000,
-		// 	});
-		// } else {
-		// 	const { error } = await createCompanyAction(companyData);
-		// 	if (error) {
-		// 		return toast.error(`${error.message}`, { duration: 6000 });
-		// 	}
-		// }
-		const { error } = await createOfferAction(offerData);
-		if (error) {
-			return toast.error(`${error.message}`, { duration: 6000 });
+			return toast.success(`Oferta ${data.name} została zaktualizowana`, {
+				closeButton: true,
+				duration: 3000,
+			});
+		} else {
+			const { error } = await createOfferAction(offerData);
+			if (error) {
+				return toast.error(`${error.message}`, { duration: 6000 });
+			}
 		}
 
 		return toast.success("Nowa oferta została dodana, i oczekuję na akceptację", {
@@ -214,14 +212,16 @@ export default function OfferForm({ data }: FormData) {
 								<Controller
 									control={form.control}
 									name="categoryName"
-									render={({ field }) => (
+									render={({ field, fieldState, formState }) => (
 										<Select
+											{...field}
 											items={categories}
 											label="Kategoria"
 											placeholder="Wybierz kategorię"
 											className="max-w-xs"
-											defaultSelectedKeys={["dom"]}
-											{...field}
+											isInvalid={fieldState.invalid}
+											errorMessage={formState.errors.categoryName?.message}
+											defaultSelectedKeys={[categoryName]}
 										>
 											{(category) => <SelectItem key={category.value}>{category.label}</SelectItem>}
 										</Select>

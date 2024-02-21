@@ -50,6 +50,14 @@ export const createOffer = async (
 		messanger: boolean;
 		email: boolean;
 		whatsapp: boolean;
+		categoryName: string;
+	},
+	userInfo: {
+		firstName: string;
+		lastName: string;
+		role: string;
+		messengerId: string;
+		email: string;
 	},
 	token: string,
 ): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
@@ -61,12 +69,49 @@ export const createOffer = async (
 
 	const { status, error, statusText } = await supabase.from("offers").insert({
 		name: data.name,
+		category_name: data.categoryName,
 		description: data.description,
 		image: data.image,
 		image_object: data.imageObject,
 		contact_options: { email: data.email, messanger: data.messanger, whatsapp: data.whatsapp },
+		author: { userInfo },
 		status: "pending",
 	});
+
+	return { status: status, error: error, message: statusText };
+};
+
+export const updateOffer = async (
+	id: number,
+	data: {
+		name: string;
+		description: string;
+		image: string;
+		imageObject: {};
+		messanger: boolean;
+		email: boolean;
+		whatsapp: boolean;
+		categoryName: string;
+	},
+	token: string,
+): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+
+	const { status, error, statusText } = await supabase
+		.from("offers")
+		.update({
+			name: data.name,
+			description: data.description,
+			category_name: data.categoryName,
+			contact_options: { email: data.email, messanger: data.messanger, whatsapp: data.whatsapp },
+			image: data.image,
+			image_object: data.imageObject,
+		})
+		.eq("id", id);
 
 	return { status: status, error: error, message: statusText };
 };

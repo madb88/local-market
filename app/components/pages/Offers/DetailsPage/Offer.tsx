@@ -7,7 +7,13 @@ import OfferHeader from "./OfferHeader";
 export default function Offer({ offer }: { offer: OfferType }) {
 	return (
 		<div className="flex flex-col gap-5">
-			{offer ? <OfferHeader categoryName={offer.category_name} name={offer.name} /> : null}
+			{offer ? (
+				<OfferHeader
+					categoryName={offer.category_name}
+					name={offer.name}
+					authorId={offer.user_id ? offer.user_id : null}
+				/>
+			) : null}
 
 			<div className="lg:grid-row-2 lg:grid">
 				<div>
@@ -17,9 +23,13 @@ export default function Offer({ offer }: { offer: OfferType }) {
 				</div>
 				<div className="flex flex-col gap-2">
 					<p>
-						Dodał: {offer.author?.firstName} {offer.author?.lastName}
+						Dodał: {offer.author?.userInfo.firstName} {offer.author?.userInfo.lastName}
 					</p>
-					<ContactAuthor />
+					{offer.contact_options && offer.author?.userInfo ? (
+						<ContactAuthor contactOptions={offer.contact_options} userInfo={offer.author} />
+					) : (
+						"Brak informacji odnośnie kontaktu"
+					)}
 				</div>
 
 				<div className="pt-5">

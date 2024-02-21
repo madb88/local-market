@@ -7,7 +7,6 @@ export async function deleteCompanyImageAction(imageKey: string) {
 	revalidateTag("companyImage");
 
 	if (success) {
-		console.log(success);
 		return { success };
 	}
 

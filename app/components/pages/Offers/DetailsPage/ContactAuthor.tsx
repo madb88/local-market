@@ -1,37 +1,41 @@
 "use client";
+import { AuthorT, ContactOptionsT } from "@/lib/supabase/types";
 // import { checkContact } from "@/app/utils/checkIfMessangerAvailable";
-import { useUser } from "@clerk/nextjs";
 import { Button } from "@nextui-org/react";
-import { MessageCircleMore } from "lucide-react";
+import { Mail, MessageCircleMore } from "lucide-react";
 import Link from "next/link";
 
-export default function ContactAuthor() {
-	const { user } = useUser();
-	console.log(user);
-	// const { messangerId, number } = checkContact();
-	const messangerId = user?.publicMetadata.messangerId as string;
-	const number = user?.publicMetadata.number as string;
+export default function ContactAuthor({
+	contactOptions,
+	userInfo,
+}: {
+	contactOptions: ContactOptionsT;
+	userInfo: AuthorT;
+}) {
 	return (
-		<div className="flex flex-col gap-2">
+		<div className="flex- ali flex gap-2 md:flex-row">
 			Kontakt:
-			{messangerId ? (
-				<Link href={`https://m.me/${messangerId}`} target="_blank">
-					<Button color="primary">
-						<MessageCircleMore /> Messanger
+			{contactOptions.messanger ? (
+				<Link href={`https://m.me/${userInfo.userInfo.messengerId}`} target="_blank">
+					<Button className="bg-gradient-to-tr from-blue-500 to-pink-500 shadow-lg">
+						<MessageCircleMore /> Messenger
 					</Button>
 				</Link>
-			) : (
-				"Brak profilu FB w ustawieniach"
-			)}
-			{number ? (
-				<Link href={`https://wa.me/${number}`} target="_blank">
-					<Button color="success">
+			) : null}
+			{contactOptions.whatsapp ? (
+				<Link href={`https://wa.me/${userInfo.userInfo.number}`} target="_blank">
+					<Button className="bg-gradient-to-tr from-green-700 to-green-500 shadow-lg">
 						<MessageCircleMore /> Whatsapp
 					</Button>
 				</Link>
-			) : (
-				"Brak numeru telefonu w profilu"
-			)}
+			) : null}
+			{contactOptions.email ? (
+				<Link href={`mailto:${userInfo.userInfo.email}`} target="_blank">
+					<Button className="bg-gradient-to-tr from-blue-700 to-blue-500 shadow-lg">
+						<Mail /> {`Email: ${userInfo.userInfo.email}`}
+					</Button>
+				</Link>
+			) : null}
 		</div>
 	);
 }

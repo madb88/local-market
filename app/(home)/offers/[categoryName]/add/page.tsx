@@ -3,7 +3,7 @@ import BackButton from "@/app/components/ui/atoms/BackButton";
 import { currentUser } from "@clerk/nextjs";
 
 export const revalidate = 1;
-export default async function AddNewOfferPage() {
+export default async function AddNewOfferPage({ params }: { params: { categoryName: string } }) {
 	const user = await currentUser();
 
 	if (!user) {
@@ -17,7 +17,7 @@ export default async function AddNewOfferPage() {
 			</div>
 			<div className="xl:w-6/6">
 				<h2 className="text-4xl font-extrabold dark:text-white">Dodaj nową ofertę</h2>
-				<OfferForm />
+				<OfferForm categoryName={params.categoryName} />
 			</div>
 		</div>
 	);

@@ -71,8 +71,6 @@ export const updateCompany = async (
 		serverComponent: true,
 	});
 
-	console.log(id, data);
-
 	const { status, error, statusText } = await supabase
 		.from("companies")
 		.update({

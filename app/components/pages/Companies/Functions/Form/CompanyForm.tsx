@@ -80,7 +80,7 @@ export default function CompanyForm({ data }: FormData) {
 	);
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		const companyData = { ...values, imageObject: [images[0]] };
+		const companyData = { ...values, imageObject: images[0] ? [images[0]] : [] };
 
 		if (data) {
 			const { error, message } = await updateCompanyAction(data.id, companyData);

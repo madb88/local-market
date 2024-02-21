@@ -6,6 +6,17 @@ export type ContactOptionsT = {
 	email: boolean;
 };
 
+export type AuthorT = {
+	userInfo: {
+		firstName?: string;
+		lastName?: string;
+		role?: string;
+		messengerId?: string;
+		email?: string;
+		number?: string;
+	};
+};
+
 export type Database = {
 	public: {
 		Tables: {
@@ -47,7 +58,7 @@ export type Database = {
 			};
 			offers: {
 				Row: {
-					author: Json | null;
+					author: AuthorT | null;
 					category_name: string | null;
 					contact_options: ContactOptionsT | null;
 					created_at: string;
@@ -61,7 +72,7 @@ export type Database = {
 					user_id: string | null;
 				};
 				Insert: {
-					author?: Json | null;
+					author?: AuthorT | null;
 					category_name?: string | null;
 					contact_options?: ContactOptionsT | null;
 					created_at?: string;
@@ -75,7 +86,7 @@ export type Database = {
 					user_id?: string | null;
 				};
 				Update: {
-					author?: Json | null;
+					author?: AuthorT | null;
 					category_name?: string | null;
 					contact_options?: ContactOptionsT | null;
 					created_at?: string;
