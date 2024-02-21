@@ -5,7 +5,7 @@ export const checkContact = () => {
 	const { sessionClaims } = auth();
 
 	return {
-		messangerId: sessionClaims?.metadata.messangerId,
+		messangerId: sessionClaims?.metadata.messengerId,
 		number: sessionClaims?.metadata.number,
 	};
 };
