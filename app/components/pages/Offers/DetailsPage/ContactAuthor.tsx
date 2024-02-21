@@ -1,6 +1,5 @@
 "use client";
-import { AuthorT, ContactOptionsT } from "@/lib/supabase/types";
-// import { checkContact } from "@/app/utils/checkIfMessangerAvailable";
+import { type AuthorT, type ContactOptionsT } from "@/lib/supabase/types";
 import { Button } from "@nextui-org/react";
 import { Mail, MessageCircleMore } from "lucide-react";
 import Link from "next/link";

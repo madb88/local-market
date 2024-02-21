@@ -24,17 +24,11 @@ export async function createOfferAction(values: {
 	const userInfo = {
 		firstName: sessionClaims && sessionClaims.firstName ? sessionClaims.firstName : "",
 		lastName: sessionClaims && sessionClaims.lastName ? sessionClaims.lastName : "",
-		role:
-			sessionClaims && sessionClaims.metadata.role ? (sessionClaims.metadata.role as string) : "",
+		role: sessionClaims && sessionClaims.metadata.role ? sessionClaims.metadata.role : "",
 		messengerId:
-			sessionClaims && sessionClaims.metadata.messengerId
-				? (sessionClaims.metadata.messengerId as string)
-				: "",
-		email: sessionClaims && sessionClaims.email ? (sessionClaims.email as string) : "",
-		number:
-			sessionClaims && sessionClaims.metadata.number
-				? (sessionClaims.metadata.number as string)
-				: "",
+			sessionClaims && sessionClaims.metadata.messengerId ? sessionClaims.metadata.messengerId : "",
+		email: sessionClaims && sessionClaims.email ? sessionClaims.email : "",
+		number: sessionClaims && sessionClaims.metadata.number ? sessionClaims.metadata.number : "",
 	};
 
 	revalidateTag("offers");
