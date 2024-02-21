@@ -17,7 +17,7 @@ import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input, Spinner, Textarea } from "@nextui-org/react";
 import { Image as ImageIcon } from "lucide-react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -29,6 +29,7 @@ import ImageList from "./ImageList";
 export default function CompanyForm({ data }: FormData) {
 	const [images, setImages] = useState<UploadFileResponse<{ uploadedFile: string }>[]>([]);
 	const [imageUpload, setImageUpload] = useState(false);
+	const router = useRouter();
 
 	const formSchema = z.object({
 		name: z
@@ -70,7 +71,7 @@ export default function CompanyForm({ data }: FormData) {
 	useEffect(() => {
 		if (form.formState.isSubmitSuccessful) {
 			form.reset();
-			redirect("/companies");
+			router.back();
 		}
 	}, [form.formState, form.reset, form]);
 
