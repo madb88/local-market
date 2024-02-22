@@ -78,6 +78,7 @@ export default function SearchBar() {
 										mainWrapper: "h-full",
 									}}
 									defaultSelectedKeys={["all"]}
+									size="xs"
 									aria-label="Gdzie chcesz szukac"
 								>
 									{(category) => (

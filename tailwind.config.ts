@@ -11,6 +11,7 @@ const config = withUt({
 		"./src/**/*.{ts,tsx}",
 		"./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
 	],
+	mode: "jit",
 	prefix: "",
 	theme: {
 		container: {
