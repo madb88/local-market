@@ -1,7 +1,8 @@
-import { UserButton } from "@clerk/nextjs";
+import { checkRole } from "@/app/utils/checkRole";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 import { Store } from "lucide-react";
 import Link from "next/link";
+import AddNewOfferButton from "../../pages/Offers/Functions/AddNewOfferButton";
 import { ModeToggle } from "../../toggle-mode";
 import LoginButton from "../atoms/LoginButton";
 import SearchBar from "../molecules/SearchBar";
@@ -32,13 +33,16 @@ export default function TopNavigationBar() {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				<NavbarItem className="hidden md:inline-block">
-					<UserButton afterSignOutUrl="/" />
-				</NavbarItem>
-				<NavbarItem className="hidden md:inline-block">
-					<ModeToggle />
+					{checkRole() ? <AddNewOfferButton /> : ""}
 				</NavbarItem>
 				<NavbarItem className="hidden md:inline-block">
 					<LoginButton />
+				</NavbarItem>
+				{/* <NavbarItem className="hidden md:inline-block">
+					<UserButton afterSignOutUrl="/" />
+				</NavbarItem> */}
+				<NavbarItem className="hidden md:inline-block">
+					<ModeToggle />
 				</NavbarItem>
 			</NavbarContent>
 		</Navbar>

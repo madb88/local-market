@@ -31,7 +31,7 @@ export const Pagination = ({
 				className="bg-blue-500 p-1 text-white"
 				disabled={!hasPrevPage}
 				onClick={() => {
-					router.push(`/${url}?page=${Number(page) - 1}&per_page=${per_page}`);
+					router.push(`/${url}page=${Number(page) - 1}&per_page=${per_page}`);
 				}}
 			>
 				<ArrowLeft />
@@ -45,7 +45,7 @@ export const Pagination = ({
 				className="bg-blue-500 p-1 text-white"
 				disabled={!hasNextPage}
 				onClick={() => {
-					router.push(`/${url}?page=${Number(page) + 1}&per_page=${per_page}`);
+					router.push(`/${url}page=${Number(page) + 1}&per_page=${per_page}`);
 				}}
 			>
 				<ArrowRight />

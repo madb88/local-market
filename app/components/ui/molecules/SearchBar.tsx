@@ -72,7 +72,7 @@ export default function SearchBar() {
 									items={searchCategories}
 									placeholder="Szukaj w"
 									classNames={{
-										base: " h-10",
+										base: "h-10",
 										mainWrapper: "h-full",
 									}}
 									defaultSelectedKeys={["all"]}

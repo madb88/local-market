@@ -39,7 +39,7 @@ export default async function Companies({
 						currentPage={page}
 						perPage={per_page}
 						count={count}
-						url="companies"
+						url="companies?"
 					/>
 				</div>
 			) : (

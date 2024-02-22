@@ -34,7 +34,7 @@ export default async function DetailCategoryPage({
 						currentPage={page}
 						perPage={per_page}
 						count={count}
-						url={`categories/${params.categoryName}`}
+						url={`offers/${params.categoryName}?`}
 					/>
 				</div>
 			) : null}
