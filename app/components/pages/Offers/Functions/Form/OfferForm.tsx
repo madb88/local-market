@@ -86,7 +86,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 			form.reset();
 			router.back();
 		}
-	}, [form.formState, form.reset, form]);
+	}, [form.formState, form.reset, form, router]);
 
 	useBeforeUnload(
 		form.formState.isDirty,
@@ -228,7 +228,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 								<FormField
 									control={form.control}
 									name="price"
-									render={({ field: { onChange, value } }) => (
+									render={({ field: { onChange } }) => (
 										<FormItem>
 											<FormControl>
 												<Input
@@ -239,10 +239,11 @@ export default function OfferForm({ categoryName, data }: FormData) {
 													{...form.register("price", {
 														valueAsNumber: true,
 													})}
+													onChange={onChange}
 												/>
 											</FormControl>
 											<FormDescription>
-												Jeśli cena pozostanie 0, przedmiot zostanie wystawiony jako "darmowy"
+												Jeśli cena pozostanie 0, przedmiot zostanie wystawiony jako darmowy
 											</FormDescription>
 											<FormMessage />
 										</FormItem>

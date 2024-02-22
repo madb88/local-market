@@ -73,7 +73,7 @@ export default function CompanyForm({ data }: FormData) {
 			form.reset();
 			router.back();
 		}
-	}, [form.formState, form.reset, form]);
+	}, [form.formState, form.reset, form, router]);
 
 	useBeforeUnload(
 		form.formState.isDirty,

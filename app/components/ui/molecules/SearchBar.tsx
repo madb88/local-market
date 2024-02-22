@@ -1,7 +1,7 @@
 "use client";
 
 import { Form, FormControl, FormField, FormItem } from "@/app/components/ui/molecules/form";
-import { CategoriesT, categories } from "@/app/utils/categoriesData";
+import { categories, type CategoriesT } from "@/app/utils/categoriesData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
 import { Diamond, Hammer, Search, SearchIcon } from "lucide-react";

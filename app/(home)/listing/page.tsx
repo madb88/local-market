@@ -8,7 +8,7 @@ import Loading from "./loading";
 export default async function ListingPage({
 	searchParams,
 }: {
-	searchParams: { [key: string]: string | string[] };
+	searchParams: { [key: string]: string };
 }) {
 	const page = (searchParams["page"] as string) ?? "1";
 	const per_page = (searchParams["per_page"] as string) ?? "10";
