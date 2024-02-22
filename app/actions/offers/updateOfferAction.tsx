@@ -19,6 +19,7 @@ export async function updateOfferAction(
 		imageObject: UploadFileResponse<{
 			uploadedFile: string;
 		}>[];
+		price: number;
 	},
 ): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken } = auth();

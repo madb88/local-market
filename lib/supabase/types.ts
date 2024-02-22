@@ -31,6 +31,7 @@ export type Database = {
 					status: string | null;
 					updated_at: string | null;
 					user_id: string | null;
+					name_description: string | null;
 				};
 				Insert: {
 					created_at?: string | null;
@@ -67,9 +68,11 @@ export type Database = {
 					image: string | null;
 					image_object: Json | null;
 					name: string | null;
+					price: number | null;
 					status: string | null;
 					updated_at: string | null;
 					user_id: string | null;
+					name_description: string | null;
 				};
 				Insert: {
 					author?: AuthorT | null;
@@ -81,6 +84,7 @@ export type Database = {
 					image?: string | null;
 					image_object?: Json | null;
 					name?: string | null;
+					price?: number | null;
 					status?: string | null;
 					updated_at?: string | null;
 					user_id?: string | null;
@@ -95,6 +99,7 @@ export type Database = {
 					image?: string | null;
 					image_object?: Json | null;
 					name?: string | null;
+					price?: number | null;
 					status?: string | null;
 					updated_at?: string | null;
 					user_id?: string | null;
@@ -106,6 +111,19 @@ export type Database = {
 			[_ in never]: never;
 		};
 		Functions: {
+			name_description:
+				| {
+						Args: {
+							"": unknown;
+						};
+						Returns: string;
+				  }
+				| {
+						Args: {
+							"": unknown;
+						};
+						Returns: string;
+				  };
 			requesting_user_id: {
 				Args: Record<PropertyKey, never>;
 				Returns: string;

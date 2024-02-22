@@ -52,6 +52,7 @@ export const createOffer = async (
 		email: boolean;
 		whatsapp: boolean;
 		categoryName: string;
+		price: number;
 	},
 	userInfo: {
 		firstName: string;
@@ -76,6 +77,7 @@ export const createOffer = async (
 		image_object: data.imageObject,
 		contact_options: { email: data.email, messanger: data.messanger, whatsapp: data.whatsapp },
 		author: { userInfo },
+		price: data.price,
 		status: "pending",
 	});
 
@@ -93,6 +95,7 @@ export const updateOffer = async (
 		email: boolean;
 		whatsapp: boolean;
 		categoryName: string;
+		price: number;
 	},
 	token: string,
 ): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
@@ -111,6 +114,7 @@ export const updateOffer = async (
 			contact_options: { email: data.email, messanger: data.messanger, whatsapp: data.whatsapp },
 			image: data.image,
 			image_object: data.imageObject,
+			price: data.price,
 		})
 		.eq("id", id);
 

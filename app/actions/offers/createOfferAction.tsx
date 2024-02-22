@@ -17,6 +17,7 @@ export async function createOfferAction(values: {
 	imageObject: UploadFileResponse<{
 		uploadedFile: string;
 	}>[];
+	price: number;
 }): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken, sessionClaims } = auth();
 	const token = await getToken({ template: "supabase" });
@@ -31,6 +32,7 @@ export async function createOfferAction(values: {
 		number: sessionClaims && sessionClaims.metadata.number ? sessionClaims.metadata.number : "",
 	};
 
+	console.log(values);
 	revalidateTag("offers");
 	if (token) {
 		const { error, message } = await createOffer(values, userInfo, token);

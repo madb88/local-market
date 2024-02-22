@@ -56,6 +56,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 		whatsapp: z.boolean(),
 		email: z.boolean(),
 		categoryName: z.string(),
+		price: z.number(),
 	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -68,6 +69,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 			whatsapp: data && data.contact_options?.whatsapp ? data.contact_options.whatsapp : false,
 			image: data && data.image ? data.image : "",
 			categoryName: data && data.category_name ? data.category_name : categoryName,
+			price: data && data.price ? data.price : 0,
 		},
 	});
 
@@ -93,6 +95,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		const offerData = { ...values, imageObject: images[0] ? [images[0]] : [] };
+		console.log(offerData);
 		if (data) {
 			const { error, message } = await updateOfferAction(data.id, offerData);
 			if (error) {
@@ -203,7 +206,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 									Informacje pochodzą z twojego profilu.
 								</FormDescription>
 							</div>
-							<div className="flex flex-col gap-2">
+							<div className="grid grid-cols-2 grid-rows-1 space-x-2">
 								<Controller
 									control={form.control}
 									name="categoryName"
@@ -222,6 +225,29 @@ export default function OfferForm({ categoryName, data }: FormData) {
 										</Select>
 									)}
 								></Controller>
+								<FormField
+									control={form.control}
+									name="price"
+									render={({ field: { onChange, value } }) => (
+										<FormItem>
+											<FormControl>
+												<Input
+													type="number"
+													label="Cena"
+													labelPlacement="inside"
+													placeholder="0"
+													{...form.register("price", {
+														valueAsNumber: true,
+													})}
+												/>
+											</FormControl>
+											<FormDescription>
+												Jeśli cena pozostanie 0, przedmiot zostanie wystawiony jako "darmowy"
+											</FormDescription>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 							</div>
 
 							<FormField
