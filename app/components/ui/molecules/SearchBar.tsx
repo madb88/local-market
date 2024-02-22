@@ -1,20 +1,20 @@
 "use client";
 
 import { Form, FormControl, FormField, FormItem } from "@/app/components/ui/molecules/form";
-import { categories } from "@/app/utils/categoriesData";
+import { CategoriesT, categories } from "@/app/utils/categoriesData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { Search, SearchIcon } from "lucide-react";
+import { Diamond, Hammer, Search, SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 export default function SearchBar() {
 	const router = useRouter();
-	const searchCategories = [
+	const searchCategories: CategoriesT[] = [
 		...categories,
-		{ value: "all", label: "Wszytkie Kategorie" },
-		{ value: "company", label: "Firmy" },
+		{ key: "all", value: "all", label: "Wszytkie Kategorie", icon: <Diamond /> },
+		{ key: "company", value: "company", label: "Firmy", icon: <Hammer /> },
 	];
 
 	const formSchema = z.object({
@@ -33,7 +33,7 @@ export default function SearchBar() {
 		router.push(`/listing?searchKeyWord=${values.searchKey}&filter=${values.searchFilter}`);
 	};
 	return (
-		<div className="w-full">
+		<div className="md:w-5/6">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-6 grid-rows-1">
 					<div className="col-span-3">
@@ -51,6 +51,7 @@ export default function SearchBar() {
 												inputWrapper:
 													"h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
 											}}
+											onFocus={() => window.scrollTo(0, 0)}
 											placeholder="Szukaj"
 											size="sm"
 											startContent={<Search size={18} />}
@@ -79,7 +80,15 @@ export default function SearchBar() {
 									defaultSelectedKeys={["all"]}
 									aria-label="Gdzie chcesz szukac"
 								>
-									{(category) => <SelectItem key={category.value}>{category.label}</SelectItem>}
+									{(category) => (
+										<SelectItem
+											key={category.value}
+											startContent={category.icon}
+											textValue={category.label}
+										>
+											<span className="hidden sm:inline-block sm:text-small">{category.label}</span>
+										</SelectItem>
+									)}
 								</Select>
 							)}
 						></FormField>

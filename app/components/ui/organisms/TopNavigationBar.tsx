@@ -14,7 +14,7 @@ export default function TopNavigationBar() {
 	const { user } = useUser();
 
 	return (
-		<Navbar shouldHideOnScroll>
+		<Navbar shouldHideOnScroll maxWidth="full">
 			<NavbarContent justify="start">
 				<NavbarItem className="lg:flex">
 					<div className="md:hidden">
@@ -32,7 +32,7 @@ export default function TopNavigationBar() {
 					</Link>
 				</NavbarBrand>
 			</NavbarContent>
-			<NavbarContent as="div" className="w-full items-center" justify="center">
+			<NavbarContent as="div" className="w-screen items-center" justify="center">
 				<SearchBar />
 			</NavbarContent>
 			<NavbarContent justify="end">

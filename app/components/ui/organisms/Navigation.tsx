@@ -1,4 +1,4 @@
-import { Calculator, Flower2, Hammer, LampFloor } from "lucide-react";
+import { Computer, Flower2, Hammer, LampFloor } from "lucide-react";
 import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 
 type NavigationT = {
@@ -7,7 +7,7 @@ type NavigationT = {
 
 export default function Navigation({ inSheet }: NavigationT) {
 	const categories = [
-		{ name: "Elektronika", url: "/offers/elektronika", icon: <Calculator /> },
+		{ name: "Elektronika", url: "/offers/elektronika", icon: <Computer /> },
 		{ name: "Ogród", url: "/offers/ogrod", icon: <Flower2 /> },
 		{ name: "Dom", url: "/offers/dom", icon: <LampFloor /> },
 		{ name: "Firmy", url: "/companies", icon: <Hammer /> },
