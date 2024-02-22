@@ -7,7 +7,7 @@ export default function CompaniesList({ companies }: { companies: CompanyType[] 
 	return (
 		<div className="h-fit">
 			{!isEmpty(companies) ? (
-				<ul className="grid gap-2 px-5 pt-2 md:grid-cols-2">
+				<ul className="grid gap-2 pt-2 md:grid-cols-2 md:px-5">
 					{companies.map((company: CompanyType, index) => (
 						<li key={index}>
 							<CompanyListElement company={company} />

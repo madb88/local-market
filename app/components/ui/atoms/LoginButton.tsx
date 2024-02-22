@@ -2,9 +2,11 @@
 
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginButton() {
 	const { isSignedIn } = useUser();
+	const router = useRouter();
 
 	return !isSignedIn ? (
 		<SignInButton>
@@ -13,7 +15,7 @@ export default function LoginButton() {
 			</Button>
 		</SignInButton>
 	) : (
-		<SignOutButton>
+		<SignOutButton signOutCallback={() => router.push("/")}>
 			<Button color="primary" variant="bordered" aria-label="Wyloguj sie">
 				Wyloguj się
 			</Button>

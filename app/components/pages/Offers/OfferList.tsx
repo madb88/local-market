@@ -9,7 +9,7 @@ const OfferList: FC<OfferListT> = ({ offers, name }) => {
 	return (
 		<div className="h-fit">
 			{!isEmpty(offers) ? (
-				<ul className="grid gap-2 px-5 pt-2 md:grid-cols-2">
+				<ul className="grid gap-2 pt-2 md:grid-cols-2 md:px-5">
 					{offers.map((offer: OfferType, index) => (
 						<li key={index}>
 							<CategoryListElement offer={offer} />

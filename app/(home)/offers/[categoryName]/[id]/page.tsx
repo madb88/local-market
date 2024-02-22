@@ -30,7 +30,7 @@ export default async function OfferPage({ params }: { params: { id: string } }) 
 
 	return (
 		<>
-			<div className="h-screen overflow-auto p-10">{offer && <Offer offer={offer} />}</div>
+			<div className="h-screen overflow-auto p-5 md:p-10">{offer && <Offer offer={offer} />}</div>
 		</>
 	);
 }
