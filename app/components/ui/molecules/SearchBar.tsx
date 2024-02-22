@@ -45,11 +45,11 @@ export default function SearchBar() {
 									<FormControl>
 										<Input
 											classNames={{
-												base: "w-full h-10",
-												mainWrapper: "h-full",
+												base: "w-full ",
+												mainWrapper: "",
 												input: "text-small",
 												inputWrapper:
-													"h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+													" font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
 											}}
 											onFocus={() => window.scrollTo(0, 0)}
 											placeholder="Szukaj"
@@ -77,6 +77,7 @@ export default function SearchBar() {
 										base: "h-10",
 										mainWrapper: "h-full",
 									}}
+									size="sm"
 									defaultSelectedKeys={["all"]}
 									aria-label="Gdzie chcesz szukac"
 								>
@@ -93,7 +94,7 @@ export default function SearchBar() {
 							)}
 						></FormField>
 					</div>
-					<div className="col-span-1">
+					<div className="col-span-1 pt-1">
 						<Button type="submit" size="md" isIconOnly aria-label="szukaj" color="primary">
 							<SearchIcon />
 						</Button>
