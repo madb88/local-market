@@ -28,7 +28,7 @@ export const ActiveLink = ({
 
 	const className = "text-white-500 hover:text-gray-900 w-full";
 	const activeClassName = "text-gray-900 border-b-2 border-gray-900";
-	const buttonClassName = "flex w-full gap-5 h-full";
+	const buttonClassName = "flex w-full gap-5 h-full shadow-md";
 
 	return (
 		<>

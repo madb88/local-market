@@ -11,12 +11,12 @@ export default async function AddNewOfferPage({ params }: { params: { categoryNa
 	}
 
 	return (
-		<div className="flex flex-col gap-5 px-5 pt-2">
+		<div className="flex h-full flex-col gap-5 px-5 pt-2 ">
 			<div className="flex justify-end pt-2">
 				<BackButton />
 			</div>
-			<div className="xl:w-6/6">
-				<h2 className="text-4xl font-extrabold dark:text-white">Dodaj nową ofertę</h2>
+			<div className="xl:w-6/6 ">
+				<h2 className="text-4xl font-extrabold  dark:text-white">Dodaj nową ofertę</h2>
 				<OfferForm categoryName={params.categoryName} />
 			</div>
 		</div>
