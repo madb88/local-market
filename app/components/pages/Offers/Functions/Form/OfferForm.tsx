@@ -174,7 +174,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 										control={form.control}
 										name="email"
 										render={({ field: { onChange, value } }) => (
-											<Checkbox onChange={onChange} isSelected={value}>
+											<Checkbox onChange={onChange} isSelected={value} color="primary">
 												Email
 											</Checkbox>
 										)}
@@ -183,7 +183,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 										control={form.control}
 										name="messanger"
 										render={({ field: { onChange, value } }) => (
-											<Checkbox onChange={onChange} isSelected={value}>
+											<Checkbox onChange={onChange} isSelected={value} color="primary">
 												Messanger
 											</Checkbox>
 										)}
@@ -192,7 +192,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 										control={form.control}
 										name="whatsapp"
 										render={({ field: { onChange, value } }) => (
-											<Checkbox onChange={onChange} isSelected={value}>
+											<Checkbox onChange={onChange} isSelected={value} color="primary">
 												Whatsapp
 											</Checkbox>
 										)}

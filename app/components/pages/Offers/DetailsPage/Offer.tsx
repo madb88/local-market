@@ -30,7 +30,7 @@ export default function Offer({ offer }: { offer: OfferType }) {
 						<div className="flex flex-col gap-2">
 							<Card>
 								<CardBody>
-									<div className="flex flex-row gap-2">
+									<div className="flex flex-row  gap-2">
 										<div>
 											Oferujący:{" "}
 											<Chip color="primary">
@@ -38,7 +38,7 @@ export default function Offer({ offer }: { offer: OfferType }) {
 											</Chip>
 										</div>
 										<Divider orientation="vertical" />
-										<div>
+										<div className="">
 											Dodane:{" "}
 											<Chip color="primary">
 												{format(new Date(offer.created_at), "dd/MM/yyyy")}
