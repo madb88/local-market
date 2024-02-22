@@ -29,7 +29,7 @@ export default function OfferHeader({ categoryName, name, authorId }: OfferHeade
 					<Star />
 				</Button>
 				{user && user.id === authorId ? (
-					<Button variant="outline">
+					<Button variant="outline" aria-label="Edytuj">
 						<Link href={`${pathname}/edit`}>
 							<p className="text-base">Edytuj</p>
 						</Link>

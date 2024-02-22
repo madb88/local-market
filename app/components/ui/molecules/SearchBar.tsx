@@ -55,6 +55,7 @@ export default function SearchBar() {
 											size="sm"
 											startContent={<Search size={18} />}
 											type="search"
+											aria-label="Szukana fraza"
 											{...field}
 										/>
 									</FormControl>
@@ -76,6 +77,7 @@ export default function SearchBar() {
 										mainWrapper: "h-full",
 									}}
 									defaultSelectedKeys={["all"]}
+									aria-label="Gdzie chcesz szukac"
 								>
 									{(category) => <SelectItem key={category.value}>{category.label}</SelectItem>}
 								</Select>

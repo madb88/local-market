@@ -20,7 +20,12 @@ export default function DeleteImage({
 	}
 
 	return (
-		<Button variant={"destructive"} onClick={() => deleteFunc(imageKey)} size={"icon"}>
+		<Button
+			variant={"destructive"}
+			onClick={() => deleteFunc(imageKey)}
+			size={"icon"}
+			aria-label="Kasuj"
+		>
 			<Trash />
 		</Button>
 	);

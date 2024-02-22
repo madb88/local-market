@@ -4,7 +4,7 @@ import { type TNavigationButton } from "./type";
 
 const BottomNavigationButton: FC<TNavigationButton> = ({ children }) => {
 	return (
-		<Button size="full" variant="ghost">
+		<Button size="full" variant="ghost" aria-label="Link nawigacji">
 			{children}
 		</Button>
 	);

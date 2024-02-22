@@ -12,6 +12,7 @@ export default function AddNewCompanyButton() {
 			color="primary"
 			radius="full"
 			className="bg-gradient-to-tr from-orange-700 to-yellow-500 text-white shadow-lg"
+			aria-label="Dodaj firme"
 		>
 			<Link href={`${pathname}/add`}>
 				<p className="text-base">Dodaj Firmę</p>

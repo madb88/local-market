@@ -13,4 +13,7 @@ declare global {
 		lastName: string;
 		email: string;
 	}
+	interface UserPublicMetadata {
+		role: string;
+	}
 }

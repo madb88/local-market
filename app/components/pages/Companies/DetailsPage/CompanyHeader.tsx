@@ -21,7 +21,7 @@ export default function CompanyHeader({ authorId }: CompanyHeaderT) {
 				<Star />
 			</Button>
 			{user && user.id === authorId ? (
-				<Button variant="outline">
+				<Button variant="outline" aria-label="Edytuj firme">
 					<Link href={`${pathname}/edit`}>
 						<p className="text-base">Edytuj</p>
 					</Link>

@@ -10,3 +10,9 @@ export const checkRole = () => {
 
 	// return sessionClaims?.metadata.role === role;
 };
+
+export const checkRoleClient = (role: string) => {
+	const allowedAuthorized = ["admin", "authorizedUser"];
+
+	return includes(role, allowedAuthorized);
+};

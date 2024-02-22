@@ -204,6 +204,7 @@ export default function CompanyForm({ data }: FormData) {
 								}
 								type="submit"
 								size="lg"
+								aria-label="Wywslij formularz"
 							>
 								{data ? <p className="text-base">Edytuj</p> : <p className="text-base">Dodaj</p>}
 							</Button>

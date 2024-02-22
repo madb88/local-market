@@ -273,6 +273,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 								}
 								type="submit"
 								size="lg"
+								aria-label="Wyslij formularz"
 							>
 								{data ? <p className="text-base">Edytuj</p> : <p className="text-base">Dodaj</p>}
 							</Button>

@@ -1,10 +1,10 @@
 "use client";
 
-import { type UrlObject } from "node:url";
-import Link from "next/link";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
 import type { Route } from "next";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { type UrlObject } from "node:url";
 import { Button } from "./button";
 import { SheetClose } from "./sheet";
 
@@ -45,6 +45,7 @@ export const ActiveLink = ({
 									type="submit"
 									variant={isActive ? "active" : "default"}
 									className={buttonClassName}
+									aria-label="link nawigacji"
 								>
 									{children}
 								</Button>
@@ -61,6 +62,7 @@ export const ActiveLink = ({
 							type="submit"
 							variant={isActive ? "active" : "default"}
 							className={buttonClassName}
+							aria-label="link nawigacji"
 						>
 							{children}
 						</Button>

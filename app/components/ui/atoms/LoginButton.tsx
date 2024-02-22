@@ -8,13 +8,13 @@ export default function LoginButton() {
 
 	return !isSignedIn ? (
 		<SignInButton>
-			<Button color="primary" variant="bordered">
+			<Button color="primary" variant="bordered" aria-label="Zaloguj sie">
 				Zaloguj się
 			</Button>
 		</SignInButton>
 	) : (
 		<SignOutButton>
-			<Button color="primary" variant="bordered">
+			<Button color="primary" variant="bordered" aria-label="Wyloguj sie">
 				Wyloguj się
 			</Button>
 		</SignOutButton>

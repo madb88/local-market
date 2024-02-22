@@ -33,6 +33,7 @@ export const Pagination = ({
 				onClick={() => {
 					router.push(`/${url}page=${Number(page) - 1}&per_page=${per_page}`);
 				}}
+				aria-label="Strona poprzednia"
 			>
 				<ArrowLeft />
 			</button>
@@ -47,6 +48,7 @@ export const Pagination = ({
 				onClick={() => {
 					router.push(`/${url}page=${Number(page) + 1}&per_page=${per_page}`);
 				}}
+				aria-label="Strona nastepna"
 			>
 				<ArrowRight />
 			</button>

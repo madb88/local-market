@@ -11,7 +11,7 @@ export default function BackButton() {
 
 	return (
 		<>
-			<Button color="primary">
+			<Button color="primary" aria-label="Wroc">
 				<Link href={previousPathname}>
 					<p className="text-base">Wróć</p>
 				</Link>

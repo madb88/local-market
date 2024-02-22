@@ -1,4 +1,6 @@
-import { checkRole } from "@/app/utils/checkRole";
+"use client";
+import { checkRoleClient } from "@/app/utils/checkRole";
+import { useUser } from "@clerk/nextjs";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 import { Store } from "lucide-react";
 import Link from "next/link";
@@ -9,6 +11,8 @@ import SearchBar from "../molecules/SearchBar";
 import SheetNavigation from "../molecules/SheetNavigation";
 
 export default function TopNavigationBar() {
+	const { user } = useUser();
+
 	return (
 		<Navbar shouldHideOnScroll>
 			<NavbarContent justify="start">
@@ -21,7 +25,7 @@ export default function TopNavigationBar() {
 					<Link href="/">
 						<div className="flex gap-2 pt-2 md:justify-center">
 							<span className="hidden sm:block">
-								<Store />{" "}
+								<Store />
 							</span>
 							<p className="hidden font-bold text-inherit sm:block">Local Market</p>
 						</div>
@@ -33,14 +37,11 @@ export default function TopNavigationBar() {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				<NavbarItem className="hidden md:inline-block">
-					{checkRole() ? <AddNewOfferButton /> : ""}
+					{user && checkRoleClient(user?.publicMetadata.role) && <AddNewOfferButton />}
 				</NavbarItem>
 				<NavbarItem className="hidden md:inline-block">
 					<LoginButton />
 				</NavbarItem>
-				{/* <NavbarItem className="hidden md:inline-block">
-					<UserButton afterSignOutUrl="/" />
-				</NavbarItem> */}
 				<NavbarItem className="hidden md:inline-block">
 					<ModeToggle />
 				</NavbarItem>

@@ -3,6 +3,7 @@ import OfferList from "@/app/components/pages/Offers/OfferList";
 import OffersHeader from "@/app/components/pages/Offers/OffersHeader";
 import { Pagination } from "@/app/components/ui/molecules/Pagination";
 import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function ListingPage({
 	searchParams,
@@ -22,7 +23,7 @@ export default async function ListingPage({
 	);
 
 	return (
-		<Suspense fallback={"...Loading"}>
+		<Suspense fallback={<Loading />}>
 			<h2 className="px-5 pt-2">{`Szukasz ${searchParams.searchKeyWord}`}</h2>
 			<OffersHeader />
 			{data ? <OfferList offers={data} name={searchParams.filter as string} /> : "Brak Ofert"}

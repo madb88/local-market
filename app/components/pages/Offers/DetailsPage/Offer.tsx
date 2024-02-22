@@ -1,5 +1,7 @@
 import DetailPageImage from "@/app/components/ui/molecules/DetailPageImage";
 import { type OfferType } from "@/lib/supabase/serverAppRouter";
+import { Card, CardBody, Chip, Divider } from "@nextui-org/react";
+import { format } from "date-fns";
 import { CameraOff } from "lucide-react";
 import { revalidateTag } from "next/cache";
 import ContactAuthor from "./ContactAuthor";
@@ -23,24 +25,59 @@ export default function Offer({ offer }: { offer: OfferType }) {
 						{offer.name}
 					</h1>
 				</div>
-				<div className="flex flex-col gap-2">
-					<p>
-						Dodał: {offer.author?.userInfo?.firstName} {offer.author?.userInfo?.lastName}
-					</p>
-					{offer.contact_options && offer.author?.userInfo ? (
-						<ContactAuthor contactOptions={offer.contact_options} userInfo={offer.author} />
-					) : (
-						"Brak informacji odnośnie kontaktu"
-					)}
-				</div>
+				<div>
+					<div className="grid grid-cols-1 grid-rows-1 space-x-2 lg:grid-cols-2">
+						<div className="flex flex-col gap-2">
+							<Card>
+								<CardBody>
+									<div className="flex flex-row gap-2">
+										<div>
+											Oferujący:{" "}
+											<Chip color="primary">
+												{offer.author?.userInfo?.firstName} {offer.author?.userInfo?.lastName}
+											</Chip>
+										</div>
+										<Divider orientation="vertical" />
+										<div>
+											Dodane:{" "}
+											<Chip color="primary">
+												{format(new Date(offer.created_at), "dd/MM/yyyy")}
+											</Chip>
+										</div>
+									</div>
+								</CardBody>
+							</Card>
+							<Card>
+								<CardBody>
+									<div className="">
+										{offer.contact_options && offer.author?.userInfo ? (
+											<ContactAuthor
+												contactOptions={offer.contact_options}
+												userInfo={offer.author}
+											/>
+										) : (
+											"Brak informacji odnośnie kontaktu"
+										)}
+									</div>
+								</CardBody>
+							</Card>
+							<div className="pt-5">
+								<Card>
+									<CardBody>
+										<p className="text-lg font-normal text-gray-500 dark:text-gray-400  lg:text-xl">
+											{offer.description}
+										</p>
+									</CardBody>
+								</Card>
+							</div>
+						</div>
 
-				<div className="pt-5">
-					<p className="text-lg font-normal text-gray-500 dark:text-gray-400  lg:text-xl">
-						{offer.description}
-					</p>
+						<div className="flex justify-center pt-10 lg:pt-0">
+							{offer.image ? <DetailPageImage element={offer.image} /> : <CameraOff />}
+						</div>
+					</div>
 				</div>
 			</div>
-			{offer.image ? <DetailPageImage element={offer.image} /> : <CameraOff />}
 		</div>
 	);
 }
