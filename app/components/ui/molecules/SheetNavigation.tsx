@@ -1,6 +1,6 @@
 import { Menu } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "../atoms/sheet";
 import Navigation from "../organisms/Navigation";
-import { Sheet, SheetTrigger, SheetContent } from "../atoms/sheet";
 
 export default function SheetNavigation() {
 	return (
@@ -8,7 +8,7 @@ export default function SheetNavigation() {
 			<SheetTrigger>
 				<Menu />
 			</SheetTrigger>
-			<SheetContent side={"left"} className="flex w-screen justify-center">
+			<SheetContent side={"left"} className="flex w-screen justify-center dark:bg-slate-600">
 				<Navigation inSheet={true} />
 			</SheetContent>
 		</Sheet>

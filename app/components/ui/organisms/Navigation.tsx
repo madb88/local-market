@@ -14,7 +14,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 	];
 
 	return (
-		<div className="dark:bg-black-300 flex h-full px-1 pt-2.5">
+		<div className="flex h-full bg-slate-100 px-1 pt-2.5 dark:bg-slate-600">
 			<ul className="space-y-2">
 				{categories.map((categoryItem) => {
 					return (

@@ -3,7 +3,7 @@ import { Skeleton } from "@/app/components/ui/atoms/skeleton";
 export default function Loading() {
 	return (
 		<div>
-			<ul className="grid gap-5 px-5 pt-2 md:grid-cols-2">
+			<ul className="grid gap-5 px-5 pt-2 dark:bg-slate-600 md:grid-cols-2">
 				{[...Array(8).keys()].map((i) => (
 					<li key={i}>
 						<div className="flex items-center space-x-4">
