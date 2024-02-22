@@ -10,23 +10,23 @@ export default async function ListingPage({
 }: {
 	searchParams: { [key: string]: string };
 }) {
-	const page = (searchParams["page"] as string) ?? "1";
-	const per_page = (searchParams["per_page"] as string) ?? "10";
+	const page = searchParams["page"] ?? "1";
+	const per_page = searchParams["per_page"] ?? "10";
 	const start = (Number(page) - 1) * Number(per_page);
 	const end = start - 1 + Number(per_page);
 
 	const { data, count } = await searchFunction(
 		start,
 		end,
-		searchParams.filter as string,
-		searchParams.searchKeyWord as string,
+		searchParams.filter,
+		searchParams.searchKeyWord,
 	);
 
 	return (
 		<Suspense fallback={<Loading />}>
 			<h2 className="px-5 pt-2">{`Szukasz ${searchParams.searchKeyWord}`}</h2>
 			<OffersHeader />
-			{data ? <OfferList offers={data} name={searchParams.filter as string} /> : "Brak Ofert"}
+			{data ? <OfferList offers={data} name={searchParams.filter} /> : "Brak Ofert"}
 			{count ? (
 				<div className="flex justify-center pb-10 pt-10 ">
 					<Pagination
