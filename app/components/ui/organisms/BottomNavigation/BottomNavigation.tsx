@@ -1,9 +1,10 @@
 "use client";
 
-import { Home, User } from "lucide-react";
+import { Home } from "lucide-react";
 import Link from "next/link";
 import BottomNavigationButton from "../../molecules/BottomNavigationButton/BottomNavigationButton";
 import BottomNavigationCategories from "./NavigationElements/BottomNavigationCategories";
+import BottomNavigationUser from "./NavigationElements/BottomNavigationUser";
 
 export default function BottomNavigation() {
 	return (
@@ -17,7 +18,7 @@ export default function BottomNavigation() {
 				<BottomNavigationCategories />
 			</BottomNavigationButton>
 			<BottomNavigationButton>
-				<User />
+				<BottomNavigationUser />
 			</BottomNavigationButton>
 		</div>
 	);

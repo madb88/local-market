@@ -240,6 +240,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 														valueAsNumber: true,
 													})}
 													onChange={onChange}
+													defaultValue={data && data.price?.toString()}
 												/>
 											</FormControl>
 											<FormDescription>

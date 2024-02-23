@@ -31,25 +31,36 @@ export default function Offer({ offer }: { offer: OfferType }) {
 							<Card>
 								<CardBody>
 									<div className="flex flex-row  gap-2">
-										<div>
-											Oferujący:{" "}
+										<div className="space-x-2">
+											<span>Oferujący:</span>
 											<Chip color="primary">
 												{offer.author?.userInfo?.firstName} {offer.author?.userInfo?.lastName}
 											</Chip>
 										</div>
 										<Divider orientation="vertical" />
-										<div className="">
-											Dodane:{" "}
+										<div className="space-x-2">
+											<span>Dodane:</span>
 											<Chip color="primary">
 												{format(new Date(offer.created_at), "dd/MM/yyyy")}
 											</Chip>
 										</div>
+										{offer.updated_at && (
+											<>
+												<Divider orientation="vertical" />
+												<div className="">
+													Aktualizowane:
+													<Chip color="primary">
+														{format(new Date(offer.updated_at), "dd/MM/yyyy")}
+													</Chip>
+												</div>
+											</>
+										)}
 									</div>
 								</CardBody>
 							</Card>
 							<Card>
 								<CardBody>
-									<div className="">
+									<div>
 										{offer.contact_options && offer.author?.userInfo ? (
 											<ContactAuthor
 												contactOptions={offer.contact_options}
@@ -58,6 +69,14 @@ export default function Offer({ offer }: { offer: OfferType }) {
 										) : (
 											"Brak informacji odnośnie kontaktu"
 										)}
+									</div>
+								</CardBody>
+							</Card>
+							<Card>
+								<CardBody>
+									<div className="space-x-2">
+										<span className="">Cena:</span>
+										<Chip color="success">{offer.price} zł</Chip>
 									</div>
 								</CardBody>
 							</Card>

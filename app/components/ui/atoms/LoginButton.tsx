@@ -16,7 +16,7 @@ export default function LoginButton() {
 		</SignInButton>
 	) : (
 		<SignOutButton signOutCallback={() => router.push("/")}>
-			<Button color="primary" variant="bordered" aria-label="Wyloguj sie">
+			<Button color="danger" variant="flat" aria-label="Wyloguj sie">
 				Wyloguj się
 			</Button>
 		</SignOutButton>
