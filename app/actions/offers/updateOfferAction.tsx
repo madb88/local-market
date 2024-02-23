@@ -23,7 +23,7 @@ export async function updateOfferAction(
 	},
 ): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken } = auth();
-	const token = await getToken({ template: "supabase" });
+	const token = await getToken({ template: process.env.JWT_SUPABASE_TEMPLATE });
 	revalidateTag("offers");
 	if (token) {
 		const { error, message } = await updateOffer(id, values, token);

@@ -15,10 +15,11 @@ export async function createCompanyAction(values: {
 	}>[];
 }): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken } = auth();
-	const token = await getToken({ template: "supabase" });
+	const token = await getToken({ template: process.env.JWT_SUPABASE_TEMPLATE });
 	revalidateTag("companies");
 	if (token) {
 		const { error, message } = await createCompany(values, token);
+		console.log(error);
 		return { message, error };
 	}
 

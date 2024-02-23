@@ -20,7 +20,7 @@ export async function createOfferAction(values: {
 	price: number;
 }): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken, sessionClaims } = auth();
-	const token = await getToken({ template: "supabase" });
+	const token = await getToken({ template: process.env.JWT_SUPABASE_TEMPLATE });
 
 	const userInfo = {
 		firstName: sessionClaims && sessionClaims.firstName ? sessionClaims.firstName : "",
