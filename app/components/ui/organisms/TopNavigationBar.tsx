@@ -4,6 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 import { Store } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import AddNewOfferButton from "../../pages/Offers/Functions/AddNewOfferButton";
 import { ModeToggle } from "../../toggle-mode";
 import LoginButton from "../atoms/LoginButton";
@@ -12,6 +13,7 @@ import SheetNavigation from "../molecules/SheetNavigation";
 
 export default function TopNavigationBar() {
 	const { user } = useUser();
+	const pathname = usePathname();
 
 	return (
 		<Navbar shouldHideOnScroll maxWidth="full">
@@ -37,7 +39,9 @@ export default function TopNavigationBar() {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				<NavbarItem className="hidden md:inline-block">
-					{user && checkRoleClient(user?.publicMetadata.role) && <AddNewOfferButton />}
+					{user && checkRoleClient(user?.publicMetadata.role) && pathname !== "/" && (
+						<AddNewOfferButton />
+					)}
 				</NavbarItem>
 				<NavbarItem className="hidden md:inline-block">
 					<LoginButton />

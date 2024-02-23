@@ -18,7 +18,11 @@ export default function ContactAuthor({
 					className="bg-gradient-to-tr from-blue-500 to-pink-500 shadow-lg"
 					aria-label="Kontakt przez messanger"
 				>
-					<Link href={`https://m.me/${userInfo.userInfo.messengerId}`} target="_blank">
+					<Link
+						href={`https://m.me/${userInfo.userInfo.messengerId}`}
+						target="_blank"
+						className="flex w-full justify-center"
+					>
 						<p className="flex gap-2 text-white dark:text-slate-950">
 							<MessageCircleMore /> Messenger
 						</p>
@@ -30,7 +34,11 @@ export default function ContactAuthor({
 					className="bg-gradient-to-tr from-green-700 to-green-500 shadow-lg"
 					aria-label="Kontakt przez whatsapp"
 				>
-					<Link href={`https://wa.me/${userInfo.userInfo.number}`} target="_blank">
+					<Link
+						href={`https://wa.me/${userInfo.userInfo.number}`}
+						target="_blank"
+						className="flex w-full justify-center"
+					>
 						<p className="flex gap-2 text-white dark:text-slate-950">
 							<MessageCircleMore /> Whatsapp
 						</p>
@@ -42,7 +50,11 @@ export default function ContactAuthor({
 					className="bg-gradient-to-tr from-blue-700 to-blue-500 shadow-lg"
 					aria-label="Kontakt przez email"
 				>
-					<Link href={`mailto:${userInfo.userInfo.email}`} target="_blank">
+					<Link
+						href={`mailto:${userInfo.userInfo.email}`}
+						target="_blank"
+						className="flex w-full justify-center"
+					>
 						<p className="flex gap-2 text-white dark:text-slate-950">
 							<Mail /> Email
 						</p>
