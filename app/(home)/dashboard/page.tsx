@@ -1,9 +1,4 @@
-"use server";
-import { currentUser } from "@clerk/nextjs";
-
 export default async function DashboardPage() {
-	const user = await currentUser();
-
 	return (
 		<>Główna strona</>
 		// <div className="px-2 pt-2 md:px-5">

@@ -1,6 +1,6 @@
 import { Button } from "@nextui-org/react";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { SheetClose } from "./sheet";
 
 type ButtonLinkT = {

@@ -80,7 +80,13 @@
 		],
 		"@typescript-eslint/no-unsafe-argument": "off",
 		"@typescript-eslint/no-redundant-type-constituents": "off",
-		"@typescript-eslint/no-duplicate-type-constituents": "off"
+		"@typescript-eslint/no-duplicate-type-constituents": "off",
+		"@typescript-eslint/unbound-method": [
+			"error",
+			{
+				"ignoreStatic": true
+			}
+		]
 	},
 	"overrides": [
 		{

@@ -32,7 +32,7 @@ export default function UserOffersTable({ headers, data }: DashboardTableT) {
 		>
 			<TableHeader>
 				{headers.map((header) => (
-					<TableColumn>{header}</TableColumn>
+					<TableColumn key={header}>{header}</TableColumn>
 				))}
 			</TableHeader>
 			<TableBody>
