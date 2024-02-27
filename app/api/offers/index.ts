@@ -120,3 +120,14 @@ export const updateOffer = async (
 
 	return { status: status, error: error, message: statusText };
 };
+
+export const getUserOffers = unstable_cache(
+	async (userId: string) => {
+		const supabase = await createSupabaseServerComponentClient();
+		const { data: offers } = await supabase.from("offers").select("*").match({ user_id: userId });
+
+		return offers;
+	},
+	["userOffers"],
+	{ tags: ["userOffers"], revalidate: 360 },
+);

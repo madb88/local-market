@@ -10,13 +10,13 @@ export default function LoginButton() {
 
 	return !isSignedIn ? (
 		<SignInButton>
-			<Button color="primary" variant="bordered" aria-label="Zaloguj sie">
+			<Button color="primary" variant="light" aria-label="Zaloguj sie">
 				Zaloguj się
 			</Button>
 		</SignInButton>
 	) : (
 		<SignOutButton signOutCallback={() => router.push("/")}>
-			<Button color="danger" variant="flat" aria-label="Wyloguj sie">
+			<Button color="danger" variant="light" aria-label="Wyloguj sie">
 				Wyloguj się
 			</Button>
 		</SignOutButton>

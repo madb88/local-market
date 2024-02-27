@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<ClerkProvider>
 			<html lang="en" suppressHydrationWarning>
-				<body className={`${inter.className} h-screen bg-slate-100 dark:bg-slate-600`}>
+				<body className={`${inter.className} h-screen bg-slate-200 dark:bg-slate-600`}>
 					<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
 					<Toaster position="top-center" richColors />
 					<ThemeProvider

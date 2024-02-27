@@ -15,10 +15,11 @@ export default function BottomNavigationUser() {
 			<SheetContent side={"bottom"} className="flex  w-screen justify-center dark:bg-slate-600">
 				<div className="grid space-y-2">
 					<ButtonLink
-						link="#"
+						link="/dashboard/offers"
 						label="Profil"
 						style="shadow-md bg-gradient-to-tr from-green-700 to-green-500"
 						startContent={<User />}
+						isSheet={true}
 					>
 						Panel Uzytkownika
 					</ButtonLink>
