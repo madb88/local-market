@@ -56,7 +56,7 @@ export default function UserPersonalInforForm({ user }: { user: userData }) {
 	}
 
 	return (
-		<div className="w-6/12">
+		<div className="md:w-6/12">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 					<FormField

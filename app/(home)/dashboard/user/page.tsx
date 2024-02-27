@@ -18,9 +18,6 @@ export type userData = {
 export default async function DashboardUserInfoPage() {
 	const user = await currentUser();
 
-	// const userOffers = user ? await getUserOffers(user?.id) : [];
-
-	// const headers = ["Nazwa", "Kategoria", "Status", "Utworzona dnia", "Akcje"];
 	const userData = {
 		role: user?.publicMetadata.role as string,
 		number: user?.publicMetadata.number as string,
@@ -32,7 +29,7 @@ export default async function DashboardUserInfoPage() {
 	};
 	return (
 		<Suspense fallback={<Loading />}>
-			<div className="flex justify-center pt-5">
+			<div className="flex justify-center pt-2 md:pt-5">
 				{user ? <UserPersonalInforForm user={userData} /> : "Brak danych"}
 			</div>
 		</Suspense>

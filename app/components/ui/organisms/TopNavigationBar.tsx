@@ -39,9 +39,10 @@ export default function TopNavigationBar() {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				<NavbarItem className="hidden md:inline-block">
-					{user && checkRoleClient(user?.publicMetadata.role) && pathname !== "/" && (
-						<AddNewOfferButton />
-					)}
+					{user &&
+						user.publicMetadata.role &&
+						checkRoleClient(user?.publicMetadata.role) &&
+						pathname !== "/" && <AddNewOfferButton />}
 				</NavbarItem>
 				<NavbarItem className="hidden md:inline-block">
 					<LoginButton />
