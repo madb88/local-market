@@ -14,6 +14,9 @@ declare global {
 		email: string;
 	}
 	interface UserPublicMetadata {
-		role: string;
+		role?: string;
+		messengerId?: string;
+		number?: string;
+		email?: string;
 	}
 }

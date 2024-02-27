@@ -95,7 +95,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		const offerData = { ...values, imageObject: images[0] ? [images[0]] : [] };
-		console.log(offerData);
+
 		if (data) {
 			const { error, message } = await updateOfferAction(data.id, offerData);
 			if (error) {
