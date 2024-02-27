@@ -23,7 +23,7 @@ export type DashboardUserOffersTableT = {
 };
 
 export default function UserOffersTable({ headers, data }: DashboardUserOffersTableT) {
-	const { items, pagination } = UseTablePagination(data, "offers");
+	const { items, pagination } = UseTablePagination(data);
 	const tableData = items ? (items as OfferType[]) : [];
 	return (
 		<Table

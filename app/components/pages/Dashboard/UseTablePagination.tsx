@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 type DataType = [] | null | CompanyType[] | OfferType[];
 
-export default function UseTablePagination(data: DataType, type: string) {
+export default function UseTablePagination(data: DataType) {
 	const [page, setPage] = useState(1);
 	const rowsPerPage = 5;
 	const pages = data ? Math.ceil(data?.length / rowsPerPage) : 1;

@@ -23,7 +23,7 @@ export async function updateUser({
 	const userTest = await clerk.users.getUser(id);
 	const test2 = userTest.publicMetadata;
 	try {
-		await clerk.users.updateUser(id as string, {
+		await clerk.users.updateUser(id, {
 			publicMetadata: {
 				...test2,
 				messengerId: messengerId,

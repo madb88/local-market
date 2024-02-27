@@ -23,7 +23,7 @@ export type DashboardUserCompaniesTableT = {
 };
 
 export default function UserCompaniesTable({ headers, data }: DashboardUserCompaniesTableT) {
-	const { items, pagination } = UseTablePagination(data, "companies");
+	const { items, pagination } = UseTablePagination(data);
 
 	const tableData = items ? (items as CompanyType[]) : [];
 	return (

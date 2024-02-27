@@ -32,8 +32,8 @@ export default function UserPersonalInforForm({ user }: { user: userData }) {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			messengerId: user?.messengerId as string,
-			number: user?.number as string,
+			messengerId: user?.messengerId,
+			number: user?.number,
 			id: user?.id,
 			email: user?.email,
 			firstName: user?.firstName,
