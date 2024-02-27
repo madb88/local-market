@@ -1,6 +1,6 @@
 "use client";
 
-import { OfferType } from "@/lib/supabase/serverAppRouter";
+import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import {
 	Chip,
 	Table,
@@ -14,7 +14,8 @@ import {
 import { format } from "date-fns";
 import { EditIcon, EyeIcon, Trash } from "lucide-react";
 import Link from "next/link";
-import { statusCode } from "./utils/statusCode";
+import { default as UseTablePagination } from "../UseTablePagination";
+import { statusCode } from "../utils/statusCode";
 
 export type DashboardTableT = {
 	headers: string[];
@@ -22,16 +23,21 @@ export type DashboardTableT = {
 };
 
 export default function UserOffersTable({ headers, data }: DashboardTableT) {
+	const { items, pagination } = UseTablePagination({ data });
+
 	return (
-		<Table aria-label="Tabela z twoimi ofertami">
+		<Table
+			aria-label="Tabela z twoimi ofertami"
+			bottomContent={<div className="flex w-full justify-center">{pagination}</div>}
+		>
 			<TableHeader>
 				{headers.map((header) => (
 					<TableColumn>{header}</TableColumn>
 				))}
 			</TableHeader>
 			<TableBody>
-				{data ? (
-					data?.map((element) => (
+				{items ? (
+					items?.map((element) => (
 						<TableRow key={element.id}>
 							<TableCell>{element.name}</TableCell>
 
@@ -41,7 +47,7 @@ export default function UserOffersTable({ headers, data }: DashboardTableT) {
 							<TableCell>
 								{element.status ? (
 									<Chip color={statusCode[element.status].color}>
-										<p className="first-letter:uppercase">{element.status}</p>
+										<p className="first-letter:uppercase">{statusCode[element.status].label}</p>
 									</Chip>
 								) : (
 									"Brak statusu"

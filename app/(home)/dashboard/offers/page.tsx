@@ -1,5 +1,5 @@
 import { getUserOffers } from "@/app/api/offers";
-import UserOffersTable from "@/app/components/pages/Dashboard/UserOffersTable";
+import UserOffersTable from "@/app/components/pages/Dashboard/Options/UserOffersTable";
 import { currentUser } from "@clerk/nextjs";
 import { Suspense } from "react";
 import Loading from "./loading";

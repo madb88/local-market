@@ -1,4 +1,6 @@
-import { Computer, Flower2, Hammer, LampFloor } from "lucide-react";
+import { Divider } from "@nextui-org/react";
+import { Computer, Flower2, Hammer, LampFloor, User } from "lucide-react";
+import ButtonLink from "../atoms/ButtonLink";
 import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 
 type NavigationT = {
@@ -14,7 +16,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 	];
 
 	return (
-		<div className="flex h-full bg-slate-200 px-1 pt-2.5 dark:bg-slate-600">
+		<div className="flex h-full flex-col  bg-slate-200 px-1 pt-2.5 dark:bg-slate-600">
 			<ul className="space-y-2">
 				{categories.map((categoryItem) => {
 					return (
@@ -29,6 +31,21 @@ export default function Navigation({ inSheet }: NavigationT) {
 					);
 				})}
 			</ul>
+			{!inSheet && (
+				<div className="flex flex-col justify-center pt-10">
+					<Divider />
+					<div className="flex justify-center pt-10">
+						<ButtonLink
+							link="/dashboard/offers"
+							label="Profil"
+							style="shadow-md bg-gradient-to-tr from-green-700 to-green-500"
+							startContent={<User />}
+						>
+							Panel Uzytkownika
+						</ButtonLink>
+					</div>
+				</div>
+			)}
 		</div>
 	);
 }

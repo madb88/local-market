@@ -129,5 +129,5 @@ export const getUserOffers = unstable_cache(
 		return offers;
 	},
 	["userOffers"],
-	{ tags: ["userOffers"], revalidate: 360 },
+	{ tags: ["userOffers"], revalidate: 1 },
 );
