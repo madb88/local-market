@@ -1,6 +1,6 @@
 "use client";
 
-import { type OfferType } from "@/lib/supabase/serverAppRouter";
+import { type CompanyType } from "@/lib/supabase/serverAppRouter";
 import {
 	Chip,
 	Table,
@@ -17,14 +17,15 @@ import Link from "next/link";
 import { default as UseTablePagination } from "../UseTablePagination";
 import { statusCode } from "../utils/statusCode";
 
-export type DashboardUserOffersTableT = {
+export type DashboardUserCompaniesTableT = {
 	headers: string[];
-	data: [] | null | OfferType[];
+	data: [] | null | CompanyType[];
 };
 
-export default function UserOffersTable({ headers, data }: DashboardUserOffersTableT) {
-	const { items, pagination } = UseTablePagination(data, "offers");
-	const tableData = items ? (items as OfferType[]) : [];
+export default function UserCompaniesTable({ headers, data }: DashboardUserCompaniesTableT) {
+	const { items, pagination } = UseTablePagination(data, "companies");
+
+	const tableData = items ? (items as CompanyType[]) : [];
 	return (
 		<Table
 			aria-label="Tabela z twoimi ofertami"
@@ -42,9 +43,6 @@ export default function UserOffersTable({ headers, data }: DashboardUserOffersTa
 							<TableCell>{element.name}</TableCell>
 
 							<TableCell>
-								<p className="first-letter:uppercase">{element.category_name}</p>
-							</TableCell>
-							<TableCell>
 								{element.status ? (
 									<Chip color={statusCode[element.status].color}>
 										<p className="first-letter:uppercase">{statusCode[element.status].label}</p>
@@ -53,20 +51,24 @@ export default function UserOffersTable({ headers, data }: DashboardUserOffersTa
 									"Brak statusu"
 								)}
 							</TableCell>
-							<TableCell>{format(new Date(element.created_at), "dd/MM/yyyy")}</TableCell>
+							<TableCell>
+								{element.created_at
+									? format(new Date(element.created_at), "dd/MM/yyyy")
+									: "Brak daty"}
+							</TableCell>
 
 							<TableCell>
 								<div className="relative flex items-center gap-2">
 									<Tooltip content="Zobacz ofertę">
 										<span className="cursor-pointer text-lg text-default-400 active:opacity-50">
-											<Link href={`/offers/${element.category_name}/${element.id}`}>
+											<Link href={`/companies/${element.id}`}>
 												<EyeIcon />
 											</Link>
 										</span>
 									</Tooltip>
 									<Tooltip content="Edytuj ofertę">
 										<span className="cursor-pointer text-lg text-default-400 active:opacity-50">
-											<Link href={`/offers/${element.category_name}/${element.id}/edit`}>
+											<Link href={`/companies/${element.id}/edit`}>
 												<EditIcon />
 											</Link>
 										</span>
@@ -82,7 +84,7 @@ export default function UserOffersTable({ headers, data }: DashboardUserOffersTa
 					))}
 				</TableBody>
 			) : (
-				<TableBody emptyContent={"Brak ofert"}>{[]}</TableBody>
+				<TableBody emptyContent={"Brak firm"}>{[]}</TableBody>
 			)}
 		</Table>
 	);

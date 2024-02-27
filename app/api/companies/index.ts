@@ -83,3 +83,17 @@ export const updateCompany = async (
 
 	return { status: status, error: error, message: statusText };
 };
+
+export const getUserCompanies = unstable_cache(
+	async (userId: string) => {
+		const supabase = await createSupabaseServerComponentClient();
+		const { data: offers } = await supabase
+			.from("companies")
+			.select("*")
+			.match({ user_id: userId });
+
+		return offers;
+	},
+	["userCompanies"],
+	{ tags: ["userCompanies"], revalidate: 1 },
+);

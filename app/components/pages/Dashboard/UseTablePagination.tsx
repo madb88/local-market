@@ -1,14 +1,12 @@
 "use client";
 
-import { type OfferType } from "@/lib/supabase/serverAppRouter";
+import { type CompanyType, type OfferType } from "@/lib/supabase/serverAppRouter";
 import { Pagination } from "@nextui-org/react";
 import { useMemo, useState } from "react";
 
-export type TablePaginationT = {
-	data: [] | null | OfferType[];
-};
+type DataType = [] | null | CompanyType[] | OfferType[];
 
-export default function UseTablePagination({ data }: TablePaginationT) {
+export default function UseTablePagination(data: DataType, type: string) {
 	const [page, setPage] = useState(1);
 	const rowsPerPage = 5;
 	const pages = data ? Math.ceil(data?.length / rowsPerPage) : 1;
@@ -17,7 +15,8 @@ export default function UseTablePagination({ data }: TablePaginationT) {
 		const start = (page - 1) * rowsPerPage;
 		const end = start + rowsPerPage;
 
-		return data ? data.slice(start, end) : [];
+		const items = data ? data.slice(start, end) : [];
+		return items;
 	}, [page, data]);
 
 	return {
