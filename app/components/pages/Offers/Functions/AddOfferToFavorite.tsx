@@ -5,7 +5,7 @@ import { Input } from "@/app/components/ui/atoms/input";
 import { Form, FormControl, FormField, FormItem } from "@/app/components/ui/molecules/form";
 import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Spinner } from "@nextui-org/react";
+import { Button, Spinner, Tooltip } from "@nextui-org/react";
 import { Star } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -82,14 +82,17 @@ export default function AddOfferToFavorite({
 				{form.formState.isSubmitting ? (
 					<Spinner />
 				) : (
-					<Button
-						aria-label="Do ulubionych"
-						isIconOnly
-						type="submit"
-						disabled={form.formState.isSubmitting}
-					>
-						{isFavoriteCheck ? <Star fill="#111" strokeWidth={0} /> : <Star />}
-					</Button>
+					<Tooltip content="Dodaj do ulubionych">
+						<Button
+							aria-label="Do ulubionych"
+							isIconOnly
+							type="submit"
+							disabled={form.formState.isSubmitting}
+							className="shadow-lg"
+						>
+							{isFavoriteCheck ? <Star fill="#111" strokeWidth={0} /> : <Star />}
+						</Button>
+					</Tooltip>
 				)}
 			</form>
 		</Form>

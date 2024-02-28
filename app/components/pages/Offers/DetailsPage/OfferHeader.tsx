@@ -1,8 +1,9 @@
 "use client";
 import BackButton from "@/app/components/ui/atoms/BackButton";
-import { Button } from "@/app/components/ui/atoms/button";
 import { checkRoleClient } from "@/app/utils/checkRole";
 import { useUser } from "@clerk/nextjs";
+import { Button } from "@nextui-org/react";
+import { Edit } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import AddOfferToFavorite from "../Functions/AddOfferToFavorite";
@@ -38,7 +39,13 @@ export default function OfferHeader({
 					<AddOfferToFavorite offerId={offerId} isFavorite={isFavorite} />
 				)}
 				{user && user.id === authorId ? (
-					<Button variant="outline" aria-label="Edytuj">
+					<Button
+						aria-label="Edytuj"
+						color="primary"
+						className="shadow-lg"
+						variant="ghost"
+						endContent={<Edit />}
+					>
 						<Link href={`${pathname}/edit`}>
 							<p className="text-base">Edytuj</p>
 						</Link>
