@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function AddNewOfferButton({ href }: { href: string }) {
+export default function AddNewOfferButton({ href }: { href?: string }) {
 	const pathname = usePathname();
 
 	const link = href ? href : `${pathname}/add`;
