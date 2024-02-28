@@ -1,22 +1,31 @@
 "use client";
 import BackButton from "@/app/components/ui/atoms/BackButton";
 import { Button } from "@/app/components/ui/atoms/button";
+import { checkRoleClient } from "@/app/utils/checkRole";
 import { useUser } from "@clerk/nextjs";
-import { Star } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import AddOfferToFavorite from "../Functions/AddOfferToFavorite";
 import OfferBreadCrumbs from "./OfferBreadCrumbs";
 
 type OfferHeaderT = {
 	categoryName: string | null;
 	name: string | null;
 	authorId: string | null;
+	offerId: number;
+	isFavorite: boolean;
 };
 
-export default function OfferHeader({ categoryName, name, authorId }: OfferHeaderT) {
+export default function OfferHeader({
+	categoryName,
+	name,
+	authorId,
+	offerId,
+	isFavorite,
+}: OfferHeaderT) {
 	const pathname = usePathname();
 
-	const { user } = useUser();
+	const { user, isSignedIn } = useUser();
 
 	return (
 		<div className="flex justify-between">
@@ -25,9 +34,9 @@ export default function OfferHeader({ categoryName, name, authorId }: OfferHeade
 			</div>
 
 			<div className="flex gap-2">
-				<Button aria-label="Do ulubionych" size="icon" variant="outline">
-					<Star />
-				</Button>
+				{isSignedIn && user.publicMetadata.role && checkRoleClient(user?.publicMetadata.role) && (
+					<AddOfferToFavorite offerId={offerId} isFavorite={isFavorite} />
+				)}
 				{user && user.id === authorId ? (
 					<Button variant="outline" aria-label="Edytuj">
 						<Link href={`${pathname}/edit`}>

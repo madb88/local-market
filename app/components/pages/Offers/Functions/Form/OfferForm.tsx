@@ -146,9 +146,9 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 									<FormItem>
 										<FormControl>
 											<Input
-												label="Nazwa Firmy"
+												label="Nazwa Przedmiotu"
 												labelPlacement="outside"
-												placeholder="Nazwa Firmy"
+												placeholder="Nazwa Przedmiotu"
 												{...field}
 												isRequired
 											/>
@@ -164,9 +164,9 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 									<FormItem>
 										<FormControl>
 											<Textarea
-												label="Opis działalności firmy"
+												label="Opis przedmiotu"
 												labelPlacement="outside"
-												placeholder="Opis"
+												placeholder="Opis przedmiotu"
 												{...field}
 												className="resize-y"
 												cols={100}

@@ -7,7 +7,7 @@ import { revalidateTag } from "next/cache";
 import ContactAuthor from "./ContactAuthor";
 import OfferHeader from "./OfferHeader";
 
-export default function Offer({ offer }: { offer: OfferType }) {
+export default function Offer({ offer, isFavorite }: { offer: OfferType; isFavorite: boolean }) {
 	revalidateTag("offer");
 	return (
 		<div className="flex flex-col gap-5">
@@ -16,6 +16,8 @@ export default function Offer({ offer }: { offer: OfferType }) {
 					categoryName={offer.category_name}
 					name={offer.name}
 					authorId={offer.user_id ? offer.user_id : null}
+					offerId={offer.id}
+					isFavorite={isFavorite}
 				/>
 			) : null}
 

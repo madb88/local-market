@@ -32,14 +32,14 @@ export const getOffersByCategory = unstable_cache(
 );
 
 export const getOffer = unstable_cache(
-	async (id: string) => {
+	async (id: number) => {
 		const supabase = await createSupabaseServerClient({ shouldBeAuth: false });
 		const { data: offer } = await supabase.from("offers").select().match({ id }).single();
 
 		return offer;
 	},
 	["offer"],
-	{ tags: ["offer"] },
+	{ tags: ["offer"], revalidate: 1 },
 );
 
 export const createOffer = async (

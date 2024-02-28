@@ -32,7 +32,7 @@ export async function createOfferAction(values: {
 		number: sessionClaims && sessionClaims.metadata.number ? sessionClaims.metadata.number : "",
 	};
 
-	console.log(values);
+	console.log(token);
 	revalidateTag("offers");
 	if (token) {
 		const { error, message } = await createOffer(values, userInfo, token);

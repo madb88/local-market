@@ -36,7 +36,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 					<Divider />
 					<div className="flex justify-center pt-10">
 						<ButtonLink
-							link="/dashboard/offers"
+							link="/dashboard/user"
 							label="Profil"
 							style="shadow-md bg-gradient-to-tr from-green-700 to-green-500"
 							startContent={<User />}

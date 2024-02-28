@@ -1,8 +1,7 @@
-import { Button } from "@/app/components/ui/atoms/button";
 import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import { Chip, Image } from "@nextui-org/react";
 import { format } from "date-fns";
-import { Camera, Star } from "lucide-react";
+import { Camera } from "lucide-react";
 import Link from "next/link";
 
 import { Card, CardContent, CardTitle } from "../../ui/atoms/card";
@@ -35,9 +34,6 @@ export default function OfferListElement({ offer }: { offer: OfferType }) {
 							<CardTitle>
 								<div className="flex pt-2">{offer.name}</div>
 							</CardTitle>
-							<Button aria-label="Do ulubionych" size="icon" variant="outline">
-								<Star />
-							</Button>
 						</div>
 						<div className="flex h-full justify-end pt-14">
 							<Chip color="primary">{format(new Date(offer.created_at), "dd/MM/yyyy")}</Chip>

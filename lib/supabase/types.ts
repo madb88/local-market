@@ -1,21 +1,6 @@
+import { type AuthorT, type ContactOptionsT } from "./additionalTypes";
+
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
-
-export type ContactOptionsT = {
-	messanger: boolean;
-	whatsapp: boolean;
-	email: boolean;
-};
-
-export type AuthorT = {
-	userInfo: {
-		firstName?: string;
-		lastName?: string;
-		role?: string;
-		messengerId?: string;
-		email?: string;
-		number?: string;
-	};
-};
 
 export type Database = {
 	public: {
@@ -31,6 +16,7 @@ export type Database = {
 					status: string | null;
 					updated_at: string | null;
 					user_id: string | null;
+					name_description: string | null;
 				};
 				Insert: {
 					created_at?: string | null;
@@ -56,6 +42,35 @@ export type Database = {
 				};
 				Relationships: [];
 			};
+			favorite_offers: {
+				Row: {
+					created_at: string;
+					id: number;
+					offer_id: number | null;
+					user_id: string | null;
+				};
+				Insert: {
+					created_at?: string;
+					id?: number;
+					offer_id?: number | null;
+					user_id?: string | null;
+				};
+				Update: {
+					created_at?: string;
+					id?: number;
+					offer_id?: number | null;
+					user_id?: string | null;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "public_favorite_offers_offer_id_fkey";
+						columns: ["offer_id"];
+						isOneToOne: false;
+						referencedRelation: "offers";
+						referencedColumns: ["id"];
+					},
+				];
+			};
 			offers: {
 				Row: {
 					author: AuthorT | null;
@@ -71,6 +86,7 @@ export type Database = {
 					status: string | null;
 					updated_at: string | null;
 					user_id: string | null;
+					name_description: string | null;
 				};
 				Insert: {
 					author?: AuthorT | null;
