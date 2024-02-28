@@ -3,7 +3,7 @@ import OfferForm from "@/app/components/pages/Offers/Functions/Form/OfferForm";
 import BackButton from "@/app/components/ui/atoms/BackButton";
 import { currentUser } from "@clerk/nextjs";
 
-export default async function EditOfferPage({ params }: { params: { id: string } }) {
+export default async function EditOfferPage({ params }: { params: { id: number } }) {
 	const offer = await getOffer(params.id);
 
 	const user = await currentUser();

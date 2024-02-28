@@ -3,6 +3,7 @@ import { addOfferToFavoriteAction } from "@/app/actions/favorite/offers/addOffer
 import { deleteOfferFromFavoriteAction } from "@/app/actions/favorite/offers/deleteOfferFromFavoriteAction";
 import { Input } from "@/app/components/ui/atoms/input";
 import { Form, FormControl, FormField, FormItem } from "@/app/components/ui/molecules/form";
+import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Spinner } from "@nextui-org/react";
 import { Star } from "lucide-react";
@@ -18,6 +19,7 @@ export default function AddOfferToFavorite({
 	offerId: number;
 	isFavorite: boolean;
 }) {
+	const { user } = useUser();
 	const [isFavoriteCheck, setIsFavoriteCheck] = useState<boolean>(isFavorite);
 	const formSchema = z.object({
 		id: z.number(),
@@ -29,8 +31,8 @@ export default function AddOfferToFavorite({
 	});
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		if (isFavoriteCheck) {
-			const offerData = { ...values, user_id: "user_2bo8FKsaKjOluPm7Ehw79h4WhVW" };
+		if (isFavoriteCheck && user) {
+			const offerData = { ...values, user_id: user.id };
 
 			const { error } = await deleteOfferFromFavoriteAction(offerData);
 			setIsFavoriteCheck(false);
