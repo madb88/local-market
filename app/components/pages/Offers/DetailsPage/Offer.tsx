@@ -75,8 +75,10 @@ export default function Offer({ offer }: { offer: OfferType }) {
 							<Card>
 								<CardBody>
 									<div className="space-x-2">
-										<span className="">Cena:</span>
-										<Chip color="success">{offer.price} zł</Chip>
+										{offer.price !== 0 ? `Cena: ` : ""}
+										<Chip color="success">
+											{offer.price !== 0 ? `${offer.price} zł` : "Za darmo"}{" "}
+										</Chip>
 									</div>
 								</CardBody>
 							</Card>
