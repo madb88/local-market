@@ -12,6 +12,12 @@ export default async function AddNewOfferPage({ params }: { params: { categoryNa
 	}
 
 	revalidateTag("offers");
+	const userContactInfo = {
+		messengerId: user.publicMetadata.messengerId ? user.publicMetadata.messengerId : "",
+		number: user.publicMetadata.number ? user.publicMetadata.number : "",
+		email: user.publicMetadata.email ? user.publicMetadata.email : "",
+	};
+	const categoryName = params.categoryName === "all" ? "elektronika" : params.categoryName;
 	return (
 		<div className="flex h-full flex-col gap-5 px-5 pt-2 ">
 			<div className="flex justify-end pt-2">
@@ -19,7 +25,7 @@ export default async function AddNewOfferPage({ params }: { params: { categoryNa
 			</div>
 			<div className="xl:w-6/6 ">
 				<h2 className="text-4xl font-extrabold  dark:text-white">Dodaj nową ofertę</h2>
-				<OfferForm categoryName={params.categoryName} />
+				<OfferForm categoryName={categoryName} userContactInfo={userContactInfo} />
 			</div>
 		</div>
 	);

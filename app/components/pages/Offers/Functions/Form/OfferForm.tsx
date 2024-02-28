@@ -18,7 +18,16 @@ import { supabaseErrorCode } from "@/lib/helpers/errorCodeTranslations";
 import { useBeforeUnload } from "@/lib/hooks/useBeforeUnload";
 import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Checkbox, Input, Select, SelectItem, Spinner, Textarea } from "@nextui-org/react";
+import {
+	Checkbox,
+	Input,
+	Link,
+	Button as NextUiButton,
+	Select,
+	SelectItem,
+	Spinner,
+	Textarea,
+} from "@nextui-org/react";
 import { ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -29,7 +38,7 @@ import { z } from "zod";
 import ImageList from "../../../Companies/Functions/Form/ImageList";
 import { type FormData } from "./FormData";
 
-export default function OfferForm({ categoryName, data }: FormData) {
+export default function OfferForm({ categoryName, data, userContactInfo }: FormData) {
 	const router = useRouter();
 	const [images, setImages] = useState<UploadFileResponse<{ uploadedFile: string }>[]>([]);
 	const [imageUpload, setImageUpload] = useState(false);
@@ -55,7 +64,7 @@ export default function OfferForm({ categoryName, data }: FormData) {
 		messanger: z.boolean(),
 		whatsapp: z.boolean(),
 		email: z.boolean(),
-		categoryName: z.string(),
+		categoryName: z.string().min(1, { message: "To pole jest wymagane" }),
 		price: z.number(),
 	});
 
@@ -177,7 +186,12 @@ export default function OfferForm({ categoryName, data }: FormData) {
 										control={form.control}
 										name="email"
 										render={({ field: { onChange, value } }) => (
-											<Checkbox onChange={onChange} isSelected={value} color="primary">
+											<Checkbox
+												onChange={onChange}
+												isSelected={value}
+												color="primary"
+												isDisabled={userContactInfo && userContactInfo.email ? false : true}
+											>
 												Email
 											</Checkbox>
 										)}
@@ -186,7 +200,12 @@ export default function OfferForm({ categoryName, data }: FormData) {
 										control={form.control}
 										name="messanger"
 										render={({ field: { onChange, value } }) => (
-											<Checkbox onChange={onChange} isSelected={value} color="primary">
+											<Checkbox
+												onChange={onChange}
+												isSelected={value}
+												color="primary"
+												isDisabled={userContactInfo && userContactInfo.messengerId ? false : true}
+											>
 												Messanger
 											</Checkbox>
 										)}
@@ -195,15 +214,33 @@ export default function OfferForm({ categoryName, data }: FormData) {
 										control={form.control}
 										name="whatsapp"
 										render={({ field: { onChange, value } }) => (
-											<Checkbox onChange={onChange} isSelected={value} color="primary">
+											<Checkbox
+												onChange={onChange}
+												isSelected={value}
+												color="primary"
+												isDisabled={userContactInfo && userContactInfo.number ? false : true}
+											>
 												Whatsapp
 											</Checkbox>
 										)}
 									></Controller>
 								</div>
-								<FormDescription>
-									Udostępnij odpowiednie formy kontaktu z tobą, widoczne na stronie z ofertą.
-									Informacje pochodzą z twojego profilu.
+								<FormDescription className="flex flex-col">
+									<span className="">
+										Udostępnij odpowiednie formy kontaktu z tobą, widoczne na stronie z ofertą.
+										Informacje pochodzą z twojego profilu:
+									</span>
+									<NextUiButton
+										href="/dashboard/user"
+										as={Link}
+										showAnchorIcon
+										variant="flat"
+										size="sm"
+										color="primary"
+										className="w-6/6 text-white shadow-lg md:w-3/6"
+									>
+										Edytuj profil
+									</NextUiButton>
 								</FormDescription>
 							</div>
 							<div className="grid grid-cols-2 grid-rows-1 space-x-2">
@@ -220,11 +257,14 @@ export default function OfferForm({ categoryName, data }: FormData) {
 											isInvalid={fieldState.invalid}
 											errorMessage={formState.errors.categoryName?.message}
 											defaultSelectedKeys={[categoryName]}
+											isRequired
 										>
 											{(category) => <SelectItem key={category.value}>{category.label}</SelectItem>}
 										</Select>
 									)}
-								></Controller>
+								/>
+								<FormMessage />
+
 								<FormField
 									control={form.control}
 									name="price"

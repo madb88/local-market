@@ -13,6 +13,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
+import { useBeforeUnload } from "react-use";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -41,9 +42,13 @@ export default function UserPersonalInforForm({ user }: { user: userData }) {
 		},
 	});
 
+	useBeforeUnload(
+		form.formState.isDirty,
+		"Po opuszczeniu strony stracisz niezapisane dane w formularzu",
+	);
+
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		const userData = { ...values };
-		console.log(userData);
 		const { message, code } = await updateUser(userData);
 		if (code === "error") {
 			return toast.error(`${message}`, { duration: 6000 });

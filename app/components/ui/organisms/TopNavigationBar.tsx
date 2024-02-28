@@ -42,7 +42,7 @@ export default function TopNavigationBar() {
 					{user &&
 						user.publicMetadata.role &&
 						checkRoleClient(user?.publicMetadata.role) &&
-						pathname !== "/" && <AddNewOfferButton />}
+						pathname !== "/" && <AddNewOfferButton href="/offers/all/add" />}
 				</NavbarItem>
 				<NavbarItem className="hidden md:inline-block">
 					<LoginButton />
