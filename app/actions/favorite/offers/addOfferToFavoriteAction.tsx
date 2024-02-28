@@ -9,7 +9,7 @@ export async function addOfferToFavoriteAction(values: {
 	id: number;
 }): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken } = auth();
-	const token = await getToken({ template: process.env.JWT_SUPABASE_TEMPLATE });
+	const token = await getToken({ template: String(process.env.JWT_SUPABASE_TEMPLATE) });
 	revalidateTag("companies");
 	if (token) {
 		const { error, message } = await addOfferToFavorite(values, token);

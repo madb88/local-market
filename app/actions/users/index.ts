@@ -18,7 +18,7 @@ export async function updateUser({
 	firstName: string;
 	lastName: string;
 }) {
-	const clerk = createClerkClient({ secretKey: process.env.CLERK_SECRET_KEY });
+	const clerk = createClerkClient({ secretKey: String(process.env.CLERK_SECRET_KEY) });
 
 	const userTest = await clerk.users.getUser(id);
 	const test2 = userTest.publicMetadata;
