@@ -94,8 +94,15 @@ export default function SearchBar() {
 							)}
 						></FormField>
 					</div>
-					<div className="col-span-1 pt-1">
-						<Button type="submit" size="md" isIconOnly aria-label="szukaj" color="primary">
+					<div className="col-span-1">
+						<Button
+							type="submit"
+							aria-label="szukaj"
+							size={"lg"}
+							isIconOnly
+							color="primary"
+							className="bg-gradient-to-tr from-orange-700 to-yellow-500 text-white shadow-lg"
+						>
 							<SearchIcon />
 						</Button>
 					</div>

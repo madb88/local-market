@@ -14,8 +14,8 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Local Market",
-	description: "Local Market app",
+	title: "Osiedlowe Targowisko",
+	description: "Osiedlowe Targowisko",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

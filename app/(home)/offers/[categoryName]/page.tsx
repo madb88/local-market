@@ -2,6 +2,7 @@ import { getOffersByCategory } from "@/app/api/offers";
 import OfferList from "@/app/components/pages/Offers/OfferList";
 import OffersHeader from "@/app/components/pages/Offers/OffersHeader";
 import { Pagination } from "@/app/components/ui/molecules/Pagination";
+import { revalidateTag } from "next/cache";
 import { Suspense } from "react";
 import Loading from "./loading";
 
@@ -22,6 +23,7 @@ export default async function DetailCategoryPage({
 		return "Brak ofert";
 	}
 
+	revalidateTag("offersByCategory");
 	return (
 		<Suspense fallback={<Loading />}>
 			<OffersHeader />

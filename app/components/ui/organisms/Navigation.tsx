@@ -38,7 +38,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 						<ButtonLink
 							link="/dashboard/user"
 							label="Profil"
-							style="shadow-md bg-gradient-to-tr from-green-700 to-green-500"
+							style="bg-gradient-to-tr from-orange-700 to-yellow-500 text-white shadow-lg"
 							startContent={<User />}
 						>
 							Panel Uzytkownika
