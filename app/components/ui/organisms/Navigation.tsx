@@ -16,7 +16,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 	];
 
 	return (
-		<div className="flex h-full flex-col  bg-slate-200 px-1 pt-2.5 dark:bg-slate-600">
+		<div className="flex h-full flex-col  bg-slate-100 px-1 pt-2.5 dark:bg-slate-600">
 			<ul className="space-y-2">
 				{categories.map((categoryItem) => {
 					return (

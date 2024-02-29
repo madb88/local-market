@@ -10,7 +10,10 @@ export default function BottomNavigationCategories() {
 			<SheetTrigger asChild className="w-full">
 				<List />
 			</SheetTrigger>
-			<SheetContent side={"bottom"} className="flex  w-screen justify-center dark:bg-slate-600">
+			<SheetContent
+				side={"bottom"}
+				className="flex  w-screen justify-center bg-slate-100 dark:bg-slate-600"
+			>
 				<Navigation inSheet={true} />
 			</SheetContent>
 		</Sheet>
