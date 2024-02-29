@@ -1,16 +1,26 @@
+import { type CompanyType } from "@/lib/supabase/serverAppRouter";
 import { CameraOff } from "lucide-react";
 import { revalidateTag } from "next/cache";
 import DetailPageImage from "../../../ui/molecules/DetailPageImage";
 import CompanyHeader from "./CompanyHeader";
-import { type CompanyDetailsPageT } from "./types";
 
 export const revalidate = 1;
-export default function Company({ company }: CompanyDetailsPageT) {
+export default function Company({
+	company,
+	isFavorite,
+}: {
+	company: CompanyType;
+	isFavorite: boolean;
+}) {
 	revalidateTag("company");
 	return (
 		<div className="flex flex-col gap-5">
 			<div className="flex justify-end">
-				<CompanyHeader authorId={company.user_id ? company.user_id : null} />
+				<CompanyHeader
+					authorId={company.user_id ? company.user_id : null}
+					companyId={company.id}
+					isFavorite={isFavorite}
+				/>
 			</div>
 			<div className="lg:grid-row-2 lg:grid">
 				<div>

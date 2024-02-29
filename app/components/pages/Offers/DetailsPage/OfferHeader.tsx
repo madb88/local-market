@@ -1,6 +1,5 @@
 "use client";
 import BackButton from "@/app/components/ui/atoms/BackButton";
-import { checkRoleClient } from "@/app/utils/checkRole";
 import { useUser } from "@clerk/nextjs";
 import { Button } from "@nextui-org/react";
 import { Edit } from "lucide-react";
@@ -35,9 +34,7 @@ export default function OfferHeader({
 			</div>
 
 			<div className="flex gap-2">
-				{isSignedIn && user.publicMetadata.role && checkRoleClient(user?.publicMetadata.role) && (
-					<AddOfferToFavorite offerId={offerId} isFavorite={isFavorite} />
-				)}
+				{isSignedIn && <AddOfferToFavorite offerId={offerId} isFavorite={isFavorite} />}
 				{user && user.id === authorId ? (
 					<Button
 						aria-label="Edytuj"
