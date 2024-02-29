@@ -234,7 +234,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 										href="/dashboard/user"
 										as={Link}
 										showAnchorIcon
-										variant="flat"
 										size="sm"
 										color="primary"
 										className="w-6/6 text-white shadow-lg md:w-3/6"

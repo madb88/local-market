@@ -1,6 +1,7 @@
 import {
 	createSupabaseServerClient,
 	createSupabaseServerComponentClient,
+	type OfferType,
 } from "@/lib/supabase/serverAppRouter";
 import { type PostgrestError } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
@@ -130,4 +131,48 @@ export const getUserOffers = unstable_cache(
 	},
 	["userOffers"],
 	{ tags: ["userOffers"], revalidate: 1 },
+);
+
+export const getUserFavoriteOffers = unstable_cache(
+	async (userId) => {
+		// 	const supabase = await createSupabaseServerComponentClient();
+
+		// 	const favoriteOffersQuery = supabase
+		// 		.from("favorite_offers")
+		// 		.select(
+		// 			`
+		// 	offers (
+		// 	  *
+		// 	)
+		//   `,
+		// 		)
+		// 		.match({ user_id: userId });
+
+		// 	type FavoriteOffersType = QueryData<typeof favoriteOffersQuery>;
+
+		// 	const { data, error } = await favoriteOffersQuery;
+		// 	if (error) throw error;
+		// 	// const favoriteOffers: FavoriteOffersType = data;
+		// 	if (isNil(data)) {
+		// 		return [];
+		// 	}
+		// 	const newData = data.map((element) => element.offers);
+
+		// 	return newData;
+		const supabase = await createSupabaseServerComponentClient();
+		const { data: favoriteOffers, error } = await supabase
+			.from("favorite_offers")
+			.select("id, offers(*)")
+			.match({ user_id: userId });
+		if (error) throw error;
+
+		const newData = favoriteOffers.map((element) => element.offers !== null && element.offers);
+
+		return newData as OfferType[];
+	},
+	["userFavoriteOffers"],
+	{
+		tags: ["userFavoriteOffers"],
+		revalidate: 1,
+	},
 );

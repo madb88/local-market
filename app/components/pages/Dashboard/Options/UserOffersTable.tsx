@@ -20,9 +20,14 @@ import { statusCode } from "../utils/statusCode";
 export type DashboardUserOffersTableT = {
 	headers: string[];
 	data: [] | null | OfferType[];
+	favoriteData?: boolean;
 };
 
-export default function UserOffersTable({ headers, data }: DashboardUserOffersTableT) {
+export default function UserOffersTable({
+	headers,
+	data,
+	favoriteData,
+}: DashboardUserOffersTableT) {
 	const { items, pagination } = UseTablePagination(data);
 	const tableData = items ? (items as OfferType[]) : [];
 	return (
@@ -64,25 +69,31 @@ export default function UserOffersTable({ headers, data }: DashboardUserOffersTa
 											</Link>
 										</span>
 									</Tooltip>
-									<Tooltip content="Edytuj ofertę">
-										<span className="cursor-pointer text-lg text-default-400 active:opacity-50">
-											<Link href={`/offers/${element.category_name}/${element.id}/edit`}>
-												<EditIcon />
-											</Link>
-										</span>
-									</Tooltip>
-									<Tooltip color="danger" content="Usuń ofertę">
-										<span className="cursor-pointer text-lg text-danger active:opacity-50">
-											<Trash />
-										</span>
-									</Tooltip>
+									{!favoriteData && (
+										<Tooltip content="Edytuj ofertę">
+											<span className="cursor-pointer text-lg text-default-400 active:opacity-50">
+												<Link href={`/offers/${element.category_name}/${element.id}/edit`}>
+													<EditIcon />
+												</Link>
+											</span>
+										</Tooltip>
+									)}
+									{!favoriteData && (
+										<Tooltip color="danger" content="Usuń ofertę">
+											<span className="cursor-pointer text-lg text-danger active:opacity-50">
+												<Trash />
+											</span>
+										</Tooltip>
+									)}
 								</div>
 							</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
 			) : (
-				<TableBody emptyContent={"Brak ofert"}>{[]}</TableBody>
+				<TableBody emptyContent={favoriteData ? "Brak obserwowanych ofert" : "Brak ofert"}>
+					{[]}
+				</TableBody>
 			)}
 		</Table>
 	);

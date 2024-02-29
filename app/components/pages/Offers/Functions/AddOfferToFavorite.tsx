@@ -6,7 +6,7 @@ import { Form, FormControl, FormField, FormItem } from "@/app/components/ui/mole
 import { useUser } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Spinner, Tooltip } from "@nextui-org/react";
-import { Star } from "lucide-react";
+import { EyeIcon, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -42,7 +42,7 @@ export default function AddOfferToFavorite({
 
 				return toast.error(`${error.message}`, { duration: 6000 });
 			}
-			return toast.info("Oferta została usnięta z ulubionych", {
+			return toast.info("Oferta została usnięta z obserwowanych", {
 				closeButton: true,
 				duration: 3000,
 			});
@@ -59,7 +59,7 @@ export default function AddOfferToFavorite({
 			}
 		}
 
-		return toast.success("Oferta została dodana do ulubionych", {
+		return toast.success("Oferta została dodana do obserwowanych", {
 			closeButton: true,
 			duration: 3000,
 		});
@@ -82,15 +82,17 @@ export default function AddOfferToFavorite({
 				{form.formState.isSubmitting ? (
 					<Spinner />
 				) : (
-					<Tooltip content="Dodaj do ulubionych">
+					<Tooltip content="Dodaj do obserwowanych">
 						<Button
-							aria-label="Do ulubionych"
+							aria-label="Do obserwowanych"
 							isIconOnly
 							type="submit"
 							disabled={form.formState.isSubmitting}
 							className="shadow-lg"
+							color="primary"
+							variant="bordered"
 						>
-							{isFavoriteCheck ? <Star fill="#111" strokeWidth={0} /> : <Star />}
+							{isFavoriteCheck ? <EyeIcon /> : <EyeOff />}
 						</Button>
 					</Tooltip>
 				)}
