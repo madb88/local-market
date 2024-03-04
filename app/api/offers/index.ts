@@ -152,3 +152,20 @@ export const getUserFavoriteOffers = unstable_cache(
 		revalidate: 1,
 	},
 );
+
+export const getLastOffers = unstable_cache(
+	async () => {
+		const supabase = await createSupabaseServerComponentClient();
+		const { data: lastOffers, error } = await supabase
+			.from("offers")
+			.select("*")
+			.order("created_at", { ascending: false })
+			.limit(5);
+
+		if (error) throw error;
+
+		return lastOffers;
+	},
+	["lastOffers"],
+	{ tags: ["lastOffers"], revalidate: 10 },
+);

@@ -10,7 +10,7 @@ export default function Home() {
 				<div className="order-2 hidden md:order-1 md:flex">
 					<Navigation inSheet={false} />
 				</div>
-				<div className="order-1 h-screen md:order-2">
+				<div className="order-1 w-screen md:order-2">
 					<HomeInfo />
 				</div>
 				<div className="hidden md:block">
