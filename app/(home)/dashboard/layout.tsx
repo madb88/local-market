@@ -6,12 +6,12 @@ export default async function DashboardLayout({ children }: { children: React.Re
 	const user = await currentUser();
 
 	return (
-		<div className="bg-slate-200 pb-20 dark:bg-slate-600">
+		<div className="bg-slate-100 pb-20 dark:bg-slate-600">
 			<div className="px-2 pt-2 md:px-5">
 				<Card>
 					<CardBody>
 						<div className="flex space-x-2">
-							<p>Panel Uzytkownika</p>
+							<p>Panel Użytkownika</p>
 							<p className="inline-block bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-400 bg-clip-text text-transparent">
 								{user?.firstName} {user?.lastName}
 							</p>

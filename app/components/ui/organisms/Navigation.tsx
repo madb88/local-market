@@ -41,7 +41,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 							style="bg-gradient-to-tr from-orange-700 to-yellow-500 text-white shadow-lg"
 							startContent={<User />}
 						>
-							Panel Uzytkownika
+							Panel Użytkownika
 						</ButtonLink>
 					</div>
 				</div>

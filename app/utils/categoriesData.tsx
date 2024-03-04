@@ -29,5 +29,6 @@ export const categoriesWithKeys: CategoriesWithKeysT = {
 	},
 	dom: { key: "dom", value: "dom", label: "Dom" },
 	ogrod: { key: "ogrod", value: "ogrod", label: "Ogród" },
+	company: { key: "company", value: "company", label: "Firmy" },
 	all: { key: "all", value: "all", label: "Wszytkie kategorie" },
 };

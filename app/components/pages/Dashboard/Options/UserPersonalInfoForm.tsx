@@ -54,7 +54,7 @@ export default function UserPersonalInforForm({ user }: { user: userData }) {
 			return toast.error(`${message}`, { duration: 6000 });
 		}
 
-		return toast.success("Uzytkownik zaktualizowany", {
+		return toast.success("Użytkownik zaktualizowany", {
 			closeButton: true,
 			duration: 3000,
 		});

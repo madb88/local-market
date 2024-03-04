@@ -20,9 +20,14 @@ import { statusCode } from "../utils/statusCode";
 export type DashboardUserCompaniesTableT = {
 	headers: string[];
 	data: [] | null | CompanyType[];
+	favoriteData?: boolean;
 };
 
-export default function UserCompaniesTable({ headers, data }: DashboardUserCompaniesTableT) {
+export default function UserCompaniesTable({
+	headers,
+	data,
+	favoriteData,
+}: DashboardUserCompaniesTableT) {
 	const { items, pagination } = UseTablePagination(data);
 
 	const tableData = items ? (items as CompanyType[]) : [];
@@ -84,7 +89,9 @@ export default function UserCompaniesTable({ headers, data }: DashboardUserCompa
 					))}
 				</TableBody>
 			) : (
-				<TableBody emptyContent={"Brak firm"}>{[]}</TableBody>
+				<TableBody emptyContent={favoriteData ? "Brak obserwowanych ofert" : "Brak ofert"}>
+					{[]}
+				</TableBody>
 			)}
 		</Table>
 	);

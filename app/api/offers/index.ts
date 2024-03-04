@@ -134,31 +134,7 @@ export const getUserOffers = unstable_cache(
 );
 
 export const getUserFavoriteOffers = unstable_cache(
-	async (userId) => {
-		// 	const supabase = await createSupabaseServerComponentClient();
-
-		// 	const favoriteOffersQuery = supabase
-		// 		.from("favorite_offers")
-		// 		.select(
-		// 			`
-		// 	offers (
-		// 	  *
-		// 	)
-		//   `,
-		// 		)
-		// 		.match({ user_id: userId });
-
-		// 	type FavoriteOffersType = QueryData<typeof favoriteOffersQuery>;
-
-		// 	const { data, error } = await favoriteOffersQuery;
-		// 	if (error) throw error;
-		// 	// const favoriteOffers: FavoriteOffersType = data;
-		// 	if (isNil(data)) {
-		// 		return [];
-		// 	}
-		// 	const newData = data.map((element) => element.offers);
-
-		// 	return newData;
+	async (userId: string) => {
 		const supabase = await createSupabaseServerComponentClient();
 		const { data: favoriteOffers, error } = await supabase
 			.from("favorite_offers")

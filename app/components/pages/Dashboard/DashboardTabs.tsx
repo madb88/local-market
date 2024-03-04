@@ -8,10 +8,16 @@ export default function DashboardTabs() {
 	const pathname = usePathname();
 	return (
 		<div className="flex w-full flex-col">
-			<Tabs aria-label="Options" fullWidth color="primary" selectedKey={pathname}>
+			<Tabs
+				aria-label="Options"
+				fullWidth
+				color="primary"
+				selectedKey={pathname}
+				className="rounded-lg  shadow-lg"
+			>
 				<Tab key="/dashboard/offers" title="Oferty" href="/dashboard/offers" as={Link}></Tab>
 				<Tab key="/dashboard/companies" title="Firmy" href="/dashboard/companies" as={Link}></Tab>
-				<Tab key="/dashboard/user" title="Uzytkownik" href="/dashboard/user" as={Link}></Tab>
+				<Tab key="/dashboard/user" title="Użytkownik" href="/dashboard/user" as={Link}></Tab>
 			</Tabs>
 		</div>
 	);

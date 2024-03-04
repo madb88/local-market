@@ -21,7 +21,7 @@ export default function BottomNavigationUser() {
 						startContent={<User />}
 						isSheet={true}
 					>
-						Panel uzytkownika
+						Panel użytkownika
 					</ButtonLink>
 					<div className="flex justify-between gap-2 align-middle">
 						<LoginButton />

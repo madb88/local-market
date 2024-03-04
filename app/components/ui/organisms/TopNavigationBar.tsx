@@ -23,7 +23,7 @@ export default function TopNavigationBar() {
 							<span className="hidden sm:block">
 								<Store />
 							</span>
-							<p className="hidden font-bold text-inherit sm:block">Local Market</p>
+							<p className="hidden font-bold text-inherit sm:block">Osiedlowe Targowisko</p>
 						</div>
 					</Link>
 				</NavbarBrand>

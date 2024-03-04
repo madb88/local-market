@@ -1,6 +1,7 @@
 import {
 	createSupabaseServerClient,
 	createSupabaseServerComponentClient,
+	type CompanyType,
 } from "@/lib/supabase/serverAppRouter";
 import { type PostgrestError } from "@supabase/supabase-js";
 import { unstable_cache } from "next/cache";
@@ -96,4 +97,27 @@ export const getUserCompanies = unstable_cache(
 	},
 	["userCompanies"],
 	{ tags: ["userCompanies"], revalidate: 1 },
+);
+
+export const getUserFavoriteCompanies = unstable_cache(
+	async (userId: string) => {
+		const supabase = await createSupabaseServerComponentClient();
+		const { data: favoriteCompanies, error } = await supabase
+			.from("favorite_companies")
+			.select("id, companies(*)")
+			.match({ user_id: userId });
+
+		if (error) throw error;
+
+		const newData = favoriteCompanies.map(
+			(element) => element.companies !== null && element.companies,
+		);
+
+		return newData as unknown as CompanyType[];
+	},
+	["userFavoriteCompanies"],
+	{
+		tags: ["userFavoriteCompanies"],
+		revalidate: 1,
+	},
 );
