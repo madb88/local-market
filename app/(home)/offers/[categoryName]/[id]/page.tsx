@@ -5,8 +5,8 @@ import { currentUser } from "@clerk/nextjs";
 import { revalidateTag } from "next/cache";
 import { notFound } from "next/navigation";
 
-// export const dynamic = "force-static";
-
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 type PageParams = {
 	id: string;
 };
