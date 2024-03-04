@@ -167,5 +167,5 @@ export const getLastOffers = unstable_cache(
 		return lastOffers;
 	},
 	["lastOffers"],
-	{ tags: ["lastOffers"], revalidate: 10 },
+	{ tags: ["lastOffers"], revalidate: 1 },
 );

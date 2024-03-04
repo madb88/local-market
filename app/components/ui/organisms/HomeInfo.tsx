@@ -7,7 +7,13 @@ export default function HomeInfo() {
 		<div className="flex flex-col gap-2 bg-slate-100 px-2 pt-2  dark:bg-slate-600 md:px-10">
 			<div className="grid grid-cols-2 grid-rows-3">
 				<div className="col-span-2">
-					<Suspense fallback={<Spinner />}>
+					<Suspense
+						fallback={
+							<div className="flex justify-center pt-5">
+								<Spinner label="Ładuję najnowsze oferty" />
+							</div>
+						}
+					>
 						<LastOffers />
 					</Suspense>
 				</div>

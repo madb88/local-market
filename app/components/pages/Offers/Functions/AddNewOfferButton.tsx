@@ -12,12 +12,7 @@ export default function AddNewOfferButton({ href }: { href?: string }) {
 	const link = href ? href : `${pathname}/add`;
 
 	const disableButton =
-		user &&
-		user.publicMetadata.role &&
-		checkRoleClient(user?.publicMetadata.role) &&
-		pathname !== "/"
-			? false
-			: true;
+		user && user.publicMetadata.role && checkRoleClient(user?.publicMetadata.role) ? false : true;
 
 	return (
 		<>

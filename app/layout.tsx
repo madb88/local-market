@@ -1,5 +1,7 @@
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import { plPL } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark, neobrutalism } from "@clerk/themes";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
@@ -20,7 +22,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<ClerkProvider>
+		<ClerkProvider
+			localization={plPL}
+			appearance={{
+				baseTheme: dark,
+				signIn: { baseTheme: neobrutalism },
+			}}
+		>
 			<html lang="en" suppressHydrationWarning>
 				<body className={`${inter.className} h-screen bg-slate-100 dark:bg-slate-600`}>
 					<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
