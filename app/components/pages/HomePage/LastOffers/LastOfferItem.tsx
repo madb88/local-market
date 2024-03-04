@@ -36,7 +36,7 @@ export default function LastOfferItem({ offer }: { offer: OfferType }) {
 								height={150}
 							/>
 						) : (
-							<Image src="noPhoto.png" height={250} width={250} alt={"Brak zdjecia"} />
+							<Image src="/noPhoto.png" height={250} width={250} alt={"Brak zdjecia"} />
 						)}
 					</div>
 				</CardBody>
