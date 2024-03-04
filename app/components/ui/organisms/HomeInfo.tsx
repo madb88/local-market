@@ -2,8 +2,6 @@ import { Spinner } from "@nextui-org/react";
 import { Suspense } from "react";
 import LastOffers from "../../pages/HomePage/LastOffers/LastOffers";
 
-export const dynamic = "force-dynamic";
-
 export default function HomeInfo() {
 	return (
 		<div className="flex flex-col gap-2 bg-slate-100 px-2 pt-2  dark:bg-slate-600 md:px-10">
