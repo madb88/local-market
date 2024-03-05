@@ -1,3 +1,4 @@
+import { type ImageObject } from "@/lib/supabase/additionalTypes";
 import {
 	createSupabaseServerClient,
 	createSupabaseServerComponentClient,
@@ -42,7 +43,7 @@ export const getCompany = unstable_cache(
 );
 
 export const createCompany = async (
-	data: { name: string; description: string; images: string; imageObject: {} },
+	data: { name: string; description: string; images: string; imageObject: ImageObject },
 	token: string,
 ): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
 	const supabase = await createSupabaseServerClient({
@@ -63,7 +64,7 @@ export const createCompany = async (
 
 export const updateCompany = async (
 	id: number,
-	data: { name: string; description: string; images: string; imageObject: {} },
+	data: { name: string; description: string; images: string; imageObject: ImageObject },
 	token: string,
 ): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
 	const supabase = await createSupabaseServerClient({
