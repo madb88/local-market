@@ -74,7 +74,7 @@ export default function UserOffersTable({
 											</Link>
 										</span>
 									</Tooltip>
-									{!favoriteData && (
+									{!favoriteData && element.status !== "delete" && (
 										<Tooltip content="Edytuj ofertę">
 											<span className="cursor-pointer text-lg text-default-400 active:opacity-50">
 												<Link href={`/offers/${element.category_name}/${element.id}/edit`}>
@@ -83,7 +83,7 @@ export default function UserOffersTable({
 											</span>
 										</Tooltip>
 									)}
-									{!favoriteData && (
+									{!favoriteData && element.status !== "delete" && (
 										<Tooltip color="danger" content="Usuń ofertę">
 											<form
 												action={async () => {
