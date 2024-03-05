@@ -169,3 +169,26 @@ export const getLastOffers = unstable_cache(
 	["lastOffers"],
 	{ tags: ["lastOffers"], revalidate: 1 },
 );
+
+export const setOfferForDelete = async (
+	id: number,
+	data: {
+		status: string;
+	},
+	token: string,
+): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+
+	const { status, error, statusText } = await supabase
+		.from("offers")
+		.update({
+			status: data.status,
+		})
+		.eq("id", id);
+
+	return { status: status, error: error, message: statusText };
+};

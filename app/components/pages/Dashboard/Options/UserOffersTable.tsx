@@ -1,5 +1,6 @@
 "use client";
 
+import { setOfferForDeleteAction } from "@/app/actions/offers/deleteOfferAction";
 import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import {
 	Chip,
@@ -12,11 +13,14 @@ import {
 	Tooltip,
 } from "@nextui-org/react";
 import { format } from "date-fns";
-import { EditIcon, EyeIcon, Trash } from "lucide-react";
+import { EditIcon, EyeIcon } from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
+import DeleteOfferButton from "../Functions/DeleteOfferButton";
 import { default as UseTablePagination } from "../UseTablePagination";
 import { statusCode } from "../utils/statusCode";
 
+export const revalidate = 1;
 export type DashboardUserOffersTableT = {
 	headers: string[];
 	data: [] | null | OfferType[];
@@ -30,6 +34,7 @@ export default function UserOffersTable({
 }: DashboardUserOffersTableT) {
 	const { items, pagination } = UseTablePagination(data);
 	const tableData = items ? (items as OfferType[]) : [];
+
 	return (
 		<Table
 			aria-label="Tabela z twoimi ofertami"
@@ -80,9 +85,18 @@ export default function UserOffersTable({
 									)}
 									{!favoriteData && (
 										<Tooltip color="danger" content="Usuń ofertę">
-											<span className="cursor-pointer text-lg text-danger active:opacity-50">
-												<Trash />
-											</span>
+											<form
+												action={async () => {
+													const { error } = await setOfferForDeleteAction(element.id, {
+														status: "delete",
+													});
+													if (!error) return toast.success("Oferta dodana do usunięcia");
+
+													return toast.error(error?.message);
+												}}
+											>
+												<DeleteOfferButton />
+											</form>
 										</Tooltip>
 									)}
 								</div>

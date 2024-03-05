@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const packageJson = require("./package.json");
+const withMDX = require("@next/mdx")();
 
 const nextConfig = {
 	images: {
@@ -8,7 +9,9 @@ const nextConfig = {
 	env: {
 		APP_VERSION: packageJson.version,
 	},
+	pageExtensions: ["mdx", "ts", "tsx"],
+
 	compress: true,
 };
 
-module.exports = nextConfig;
+module.exports = withMDX(nextConfig);

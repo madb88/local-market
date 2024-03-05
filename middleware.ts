@@ -17,6 +17,8 @@ export default authMiddleware({
 		"/api/uploadthing",
 		"/listing",
 		"/listing/(.*)",
+		"/polityka-prywatnosci",
+		"/regulamin",
 	],
 	ignoredRoutes: ["/api/uploadthing"],
 });

@@ -7,7 +7,7 @@ export default function Footer() {
 						© 2024 Jakub Kamiński {String(process.env.APP_VERSION)}
 					</span>
 					<ul className="mt-3 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-						<li>
+						{/* <li>
 							<a href="#" className="me-4 hover:underline md:me-6">
 								O stronie
 							</a>
@@ -16,13 +16,13 @@ export default function Footer() {
 							<a href="#" className="me-4 hover:underline md:me-6">
 								Regulamin
 							</a>
-						</li>
+						</li> */}
 
-						<li>
-							<a href="#" className="hover:underline">
-								Kontakt
+						{/* <li>
+							<a href="/polityka-prywatnosci" className="hover:underline">
+								Polityka prywatności
 							</a>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</footer>

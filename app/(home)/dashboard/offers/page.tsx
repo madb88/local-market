@@ -4,7 +4,7 @@ import { currentUser } from "@clerk/nextjs";
 import { Suspense } from "react";
 import Loading from "./loading";
 
-export const revalidate = 60;
+export const revalidate = 1;
 
 export default async function DashboardUserOffersPage() {
 	const user = await currentUser();
