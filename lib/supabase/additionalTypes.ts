@@ -14,3 +14,13 @@ export type AuthorT = {
 		number?: string;
 	};
 };
+
+export type ImageObject = {
+	name: string;
+	size: number;
+	key: string;
+	serverData: {
+		uploadedFile: string;
+	};
+	url: string;
+}[];

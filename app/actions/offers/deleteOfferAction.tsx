@@ -9,6 +9,7 @@ export async function setOfferForDeleteAction(
 	id: number,
 	values: {
 		status: string;
+		image: string;
 	},
 ): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken } = auth();

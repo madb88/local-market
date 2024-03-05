@@ -1,10 +1,12 @@
+import { type ImageObject } from "@/lib/supabase/additionalTypes";
 import {
 	createSupabaseServerClient,
 	createSupabaseServerComponentClient,
 	type OfferType,
 } from "@/lib/supabase/serverAppRouter";
+import { utapi } from "@/lib/uploadApi";
 import { type PostgrestError } from "@supabase/supabase-js";
-import { unstable_cache } from "next/cache";
+import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 
 export const getAllOffers = async () => {
 	const supabase = await createSupabaseServerComponentClient();
@@ -48,7 +50,7 @@ export const createOffer = async (
 		name: string;
 		description: string;
 		image: string;
-		imageObject: {};
+		imageObject: ImageObject;
 		messanger: boolean;
 		email: boolean;
 		whatsapp: boolean;
@@ -91,7 +93,7 @@ export const updateOffer = async (
 		name: string;
 		description: string;
 		image: string;
-		imageObject: {};
+		imageObject: ImageObject;
 		messanger: boolean;
 		email: boolean;
 		whatsapp: boolean;
@@ -174,6 +176,7 @@ export const setOfferForDelete = async (
 	id: number,
 	data: {
 		status: string;
+		image: string;
 	},
 	token: string,
 ): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
@@ -189,6 +192,14 @@ export const setOfferForDelete = async (
 			status: data.status,
 		})
 		.eq("id", id);
+
+	revalidateTag("userOffers");
+	revalidatePath("dashboard/offers");
+
+	if (!error && data.image) {
+		const { success } = await utapi.deleteFiles(data.image);
+		console.log(success);
+	}
 
 	return { status: status, error: error, message: statusText };
 };

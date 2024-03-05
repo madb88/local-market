@@ -1,4 +1,4 @@
-import { type AuthorT, type ContactOptionsT } from "./additionalTypes";
+import { type AuthorT, type ContactOptionsT, type ImageObject } from "./additionalTypes";
 
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
@@ -10,7 +10,7 @@ export type Database = {
 					created_at: string | null;
 					description: string | null;
 					id: number;
-					image_object: Json | null;
+					image_object: ImageObject | null;
 					images: string | null;
 					name: string | null;
 					status: string | null;
@@ -22,7 +22,7 @@ export type Database = {
 					created_at?: string | null;
 					description?: string | null;
 					id?: never;
-					image_object?: Json | null;
+					image_object?: ImageObject | null;
 					images?: string | null;
 					name?: string | null;
 					status?: string | null;
@@ -33,7 +33,7 @@ export type Database = {
 					created_at?: string | null;
 					description?: string | null;
 					id?: never;
-					image_object?: Json | null;
+					image_object?: ImageObject | null;
 					images?: string | null;
 					name?: string | null;
 					status?: string | null;
@@ -80,7 +80,7 @@ export type Database = {
 					description: string | null;
 					id: number;
 					image: string | null;
-					image_object: Json | null;
+					image_object: ImageObject | null;
 					name: string | null;
 					price: number | null;
 					status: string | null;
@@ -96,7 +96,7 @@ export type Database = {
 					description?: string | null;
 					id?: number;
 					image?: string | null;
-					image_object?: Json | null;
+					image_object?: ImageObject | null;
 					name?: string | null;
 					price?: number | null;
 					status?: string | null;
@@ -111,7 +111,7 @@ export type Database = {
 					description?: string | null;
 					id?: number;
 					image?: string | null;
-					image_object?: Json | null;
+					image_object?: ImageObject | null;
 					name?: string | null;
 					price?: number | null;
 					status?: string | null;
