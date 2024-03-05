@@ -192,3 +192,24 @@ export const setOfferForDelete = async (
 
 	return { status: status, error: error, message: statusText };
 };
+
+export const deleteOffer = async (
+	token: string,
+): Promise<{
+	status: number;
+	error: PostgrestError | null;
+	message: string;
+}> => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+
+	const { status, error, statusText } = await supabase
+		.from("offers")
+		.delete()
+		.eq("status", "delete");
+
+	return { status: status, error: error, message: statusText };
+};
