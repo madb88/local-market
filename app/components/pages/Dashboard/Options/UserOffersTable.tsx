@@ -43,13 +43,6 @@ export default function UserOffersTable({
 	const { items, pagination } = UseTablePagination(data);
 	const tableData = items ? (items as OfferType[]) : [];
 
-	// const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-	// 	onOpen();
-	// 	if (!confirm("Are you sure?")) {
-	// 		e.preventDefault();
-	// 	}
-	// };
-
 	return (
 		<>
 			<Table
@@ -103,7 +96,7 @@ export default function UserOffersTable({
 										)}
 										{!favoriteData && element.status !== "delete" && (
 											<>
-												<Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+												<Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
 													<ModalContent>
 														{(onClose) => (
 															<>
