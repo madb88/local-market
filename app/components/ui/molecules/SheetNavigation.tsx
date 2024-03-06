@@ -8,7 +8,10 @@ export default function SheetNavigation() {
 			<SheetTrigger>
 				<Menu />
 			</SheetTrigger>
-			<SheetContent side={"left"} className="flex w-screen justify-center dark:bg-slate-600">
+			<SheetContent
+				side={"left"}
+				className="flex w-screen justify-center bg-slate-100 dark:bg-slate-600"
+			>
 				<Navigation inSheet={true} />
 			</SheetContent>
 		</Sheet>
