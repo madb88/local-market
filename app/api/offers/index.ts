@@ -6,7 +6,7 @@ import {
 } from "@/lib/supabase/serverAppRouter";
 import { utapi } from "@/lib/uploadApi";
 import { type PostgrestError } from "@supabase/supabase-js";
-import { addDays } from "date-fns";
+import { addDays, format } from "date-fns";
 import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 
 export const getAllOffers = async () => {
@@ -227,5 +227,27 @@ export const deleteOffer = async (
 		.delete()
 		.eq("status", "delete");
 
+	return { status: status, error: error, message: statusText };
+};
+
+export const deleteExpiredOffer = async (
+	token: string,
+): Promise<{
+	status: number;
+	error: PostgrestError | null;
+	message: string;
+}> => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+
+	const { status, error, statusText } = await supabase
+		.from("offers")
+		.delete()
+		.lt("expired_at", format(new Date(), "yyyy-MM-dd"));
+
+	console.log(status, error, statusText, format(new Date(), "yyyy-MM-dd"));
 	return { status: status, error: error, message: statusText };
 };
