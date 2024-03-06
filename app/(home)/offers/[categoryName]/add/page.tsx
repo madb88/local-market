@@ -1,5 +1,6 @@
 import OfferForm from "@/app/components/pages/Offers/Functions/Form/OfferForm";
 import BackButton from "@/app/components/ui/atoms/BackButton";
+import { checkRole } from "@/app/utils/checkRole";
 import { currentUser } from "@clerk/nextjs";
 import { revalidateTag } from "next/cache";
 
@@ -7,7 +8,7 @@ export const revalidate = 1;
 export default async function AddNewOfferPage({ params }: { params: { categoryName: string } }) {
 	const user = await currentUser();
 
-	if (!user) {
+	if (!user || !checkRole()) {
 		return <p>Brak uprawnień</p>;
 	}
 

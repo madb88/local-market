@@ -11,12 +11,15 @@ export default function AddNewOfferButton({ href }: { href?: string }) {
 	const { user } = useUser();
 	const link = href ? href : `${pathname}/add`;
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const disableButton =
 		user && user.publicMetadata.role && checkRoleClient(user?.publicMetadata.role) ? false : true;
 
 	return (
 		<>
-			<Link href={link}>
+			{/* {console.log(user)}
+			{user && user.publicMetadata.role && console.log(checkRoleClient(user.publicMetadata.role))} */}
+			<Link href={disableButton ? "" : link}>
 				<Button
 					color="primary"
 					radius="full"

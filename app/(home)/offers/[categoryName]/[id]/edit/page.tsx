@@ -1,6 +1,7 @@
 import { getOffer } from "@/app/api/offers";
 import OfferForm from "@/app/components/pages/Offers/Functions/Form/OfferForm";
 import BackButton from "@/app/components/ui/atoms/BackButton";
+import { checkRole } from "@/app/utils/checkRole";
 import { currentUser } from "@clerk/nextjs";
 
 export default async function EditOfferPage({ params }: { params: { id: number } }) {
@@ -8,9 +9,10 @@ export default async function EditOfferPage({ params }: { params: { id: number }
 
 	const user = await currentUser();
 
-	if (!user) {
+	if (!user || !checkRole()) {
 		return <p>Brak uprawnień</p>;
 	}
+
 	const userContactInfo = {
 		messengerId: user.publicMetadata.messengerId ? user.publicMetadata.messengerId : "",
 		number: user.publicMetadata.number ? user.publicMetadata.number : "",

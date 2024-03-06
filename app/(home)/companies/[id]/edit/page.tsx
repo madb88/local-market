@@ -1,6 +1,7 @@
 import { getCompany } from "@/app/api/companies";
 import CompanyForm from "@/app/components/pages/Companies/Functions/Form/CompanyForm";
 import BackButton from "@/app/components/ui/atoms/BackButton";
+import { checkRole } from "@/app/utils/checkRole";
 import { currentUser } from "@clerk/nextjs";
 
 export default async function EditCompanyPage({ params }: { params: { id: string } }) {
@@ -8,7 +9,7 @@ export default async function EditCompanyPage({ params }: { params: { id: string
 
 	const user = await currentUser();
 
-	if (!user) {
+	if (!user || !checkRole()) {
 		return <p>Brak uprawnień</p>;
 	}
 
