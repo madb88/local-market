@@ -262,7 +262,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 										</Select>
 									)}
 								/>
-								<FormMessage />
 
 								<FormField
 									control={form.control}
