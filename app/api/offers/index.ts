@@ -26,7 +26,7 @@ export const getOffersByCategory = unstable_cache(
 			.from("offers")
 			.select("*", { count: "exact" })
 			.match({ status: "accepted", category_name: categoryName })
-			.range(start, end)
+			.range(start, end - 1)
 			.order("created_at", { ascending: false });
 
 		return { offers: offers, count: count };

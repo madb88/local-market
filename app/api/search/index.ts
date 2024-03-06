@@ -6,7 +6,7 @@ export const searchFunction = unstable_cache(
 	async (start: number, end: number, categoryName: string, searchWord: string) => {
 		const table: { tableName?: string } = {};
 
-		if (includes(categoryName, ["elektronika", "ogrod", "dom", "all", "wlasne-produkty"])) {
+		if (includes(categoryName, ["elektronika", "ogrod", "dom", "all", "wlasne-wyroby"])) {
 			table.tableName = "offers";
 		} else {
 			table.tableName = "companies";
