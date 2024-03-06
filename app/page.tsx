@@ -1,9 +1,11 @@
+import { revalidateTag } from "next/cache";
 import Footer from "./components/ui/molecules/Footer";
 import BottomNavigation from "./components/ui/organisms/BottomNavigation/BottomNavigation";
 import HomeInfo from "./components/ui/organisms/HomeInfo";
 import Navigation from "./components/ui/organisms/Navigation";
 
 export default function Home() {
+	revalidateTag("lastOffers");
 	return (
 		<>
 			<main className="flex flex-col md:flex-row md:overflow-hidden">

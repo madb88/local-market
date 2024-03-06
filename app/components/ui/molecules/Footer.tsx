@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
 	return (
 		<>
@@ -7,13 +9,13 @@ export default function Footer() {
 						© 2024 Jakub Kamiński {String(process.env.APP_VERSION)}
 					</span>
 					<ul className="mt-3 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-						{/* <li>
-							<a href="#" className="me-4 hover:underline md:me-6">
-								O stronie
-							</a>
-						</li>
 						<li>
-							<a href="#" className="me-4 hover:underline md:me-6">
+							<Link href="/informacje" className="me-4 hover:underline md:me-6">
+								O stronie
+							</Link>
+						</li>
+						{/* <li>
+							<a href="/regulamin" className="me-4 hover:underline md:me-6">
 								Regulamin
 							</a>
 						</li> */}
@@ -22,7 +24,7 @@ export default function Footer() {
 							<a href="/polityka-prywatnosci" className="hover:underline">
 								Polityka prywatności
 							</a>
-						</li> */}
+						</li>  */}
 					</ul>
 				</div>
 			</footer>

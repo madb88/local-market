@@ -16,17 +16,17 @@ export default function AddNewOfferButton({ href }: { href?: string }) {
 
 	return (
 		<>
-			<Button
-				color="primary"
-				radius="full"
-				className="bg-gradient-to-tr from-orange-700 to-yellow-500 text-white shadow-lg"
-				aria-label="Dodaj oferte"
-				isDisabled={disableButton}
-			>
-				<Link href={link}>
+			<Link href={link}>
+				<Button
+					color="primary"
+					radius="full"
+					className="bg-gradient-to-tr from-orange-700 to-yellow-500 text-white shadow-lg"
+					aria-label="Dodaj oferte"
+					isDisabled={disableButton}
+				>
 					<p className="text-base">Dodaj Ofertę</p>
-				</Link>
-			</Button>
+				</Button>
+			</Link>
 		</>
 	);
 }
