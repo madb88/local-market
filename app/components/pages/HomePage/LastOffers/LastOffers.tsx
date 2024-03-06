@@ -12,7 +12,11 @@ export default async function LastOffers() {
 					<h1 className="px-5 text-base">Najnowsze oferty:</h1>
 				</CardHeader>
 				<CardBody className="w-full pb-10 pt-10 md:px-20">
-					{lastOffers ? <OffersCarousel data={lastOffers} /> : "Brak ofert"}
+					{lastOffers.length > 0 ? (
+						<OffersCarousel data={lastOffers} />
+					) : (
+						<p className="flex justify-center">{"Brak Ofert"}</p>
+					)}
 				</CardBody>
 			</Card>
 		</div>
