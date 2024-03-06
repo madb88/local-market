@@ -46,6 +46,13 @@ export default function Offer({ offer, isFavorite }: { offer: OfferType; isFavor
 												{format(new Date(offer.created_at), "dd/MM/yyyy")}
 											</Chip>
 										</div>
+										<Divider orientation="vertical" />
+										<div className="space-x-2">
+											<span>Wygasa dnia:</span>
+											<Chip color="primary">
+												{offer.expired_at && format(new Date(offer.expired_at), "dd/MM/yyyy")}
+											</Chip>
+										</div>
 										{offer.updated_at && (
 											<>
 												<Divider orientation="vertical" />

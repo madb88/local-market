@@ -6,6 +6,7 @@ import {
 } from "@/lib/supabase/serverAppRouter";
 import { utapi } from "@/lib/uploadApi";
 import { type PostgrestError } from "@supabase/supabase-js";
+import { addDays } from "date-fns";
 import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 
 export const getAllOffers = async () => {
@@ -56,6 +57,7 @@ export const createOffer = async (
 		whatsapp: boolean;
 		categoryName: string;
 		price: number;
+		expired_at: string;
 	},
 	userInfo: {
 		firstName: string;
@@ -72,6 +74,8 @@ export const createOffer = async (
 		serverComponent: true,
 	});
 
+	const expiredAt = addDays(new Date(), Number(data.expired_at)).toDateString();
+
 	const { status, error, statusText } = await supabase.from("offers").insert({
 		name: data.name,
 		category_name: data.categoryName,
@@ -82,6 +86,7 @@ export const createOffer = async (
 		author: { userInfo },
 		price: data.price,
 		status: "accepted",
+		expired_at: expiredAt,
 	});
 
 	return { status: status, error: error, message: statusText };

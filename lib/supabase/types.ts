@@ -42,6 +42,35 @@ export type Database = {
 				};
 				Relationships: [];
 			};
+			favorite_companies: {
+				Row: {
+					company_id: number | null;
+					created_at: string;
+					id: number;
+					user_id: string | null;
+				};
+				Insert: {
+					company_id?: number | null;
+					created_at?: string;
+					id?: number;
+					user_id?: string | null;
+				};
+				Update: {
+					company_id?: number | null;
+					created_at?: string;
+					id?: number;
+					user_id?: string | null;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "public_favorite_companies_company_id_fkey";
+						columns: ["company_id"];
+						isOneToOne: false;
+						referencedRelation: "companies";
+						referencedColumns: ["id"];
+					},
+				];
+			};
 			favorite_offers: {
 				Row: {
 					created_at: string;
@@ -78,6 +107,7 @@ export type Database = {
 					contact_options: ContactOptionsT | null;
 					created_at: string;
 					description: string | null;
+					expired_at: string | null;
 					id: number;
 					image: string | null;
 					image_object: ImageObject | null;
@@ -94,6 +124,7 @@ export type Database = {
 					contact_options?: ContactOptionsT | null;
 					created_at?: string;
 					description?: string | null;
+					expired_at?: string | null;
 					id?: number;
 					image?: string | null;
 					image_object?: ImageObject | null;
@@ -109,6 +140,7 @@ export type Database = {
 					contact_options?: ContactOptionsT | null;
 					created_at?: string;
 					description?: string | null;
+					expired_at?: string | null;
 					id?: number;
 					image?: string | null;
 					image_object?: ImageObject | null;

@@ -20,6 +20,7 @@ import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
 	Checkbox,
+	Chip,
 	Input,
 	Link,
 	Button as NextUiButton,
@@ -28,6 +29,7 @@ import {
 	Spinner,
 	Textarea,
 } from "@nextui-org/react";
+import { format } from "date-fns";
 import { ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -66,6 +68,7 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 		email: z.boolean(),
 		categoryName: z.string().min(1, { message: "To pole jest wymagane" }),
 		price: z.number(),
+		expired_at: z.string().min(1, { message: "To pole jest wymagane" }),
 	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -79,8 +82,15 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 			image: data && data.image ? data.image : "",
 			categoryName: data && data.category_name ? data.category_name : categoryName,
 			price: data && data.price ? data.price : 0,
+			expired_at: data && data?.expired_at ? data.expired_at : "3",
 		},
 	});
+
+	const expiredDates = [
+		{ key: 3, label: "Trzy dni", value: "3" },
+		{ key: 7, label: "Siedem dni", value: "7" },
+		{ key: 14, label: "Dwa tygodnie", value: "14" },
+	];
 
 	useEffect(() => {
 		if (data) {
@@ -242,7 +252,7 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 									</NextUiButton>
 								</FormDescription>
 							</div>
-							<div className="grid grid-cols-2 grid-rows-1 space-x-2">
+							<div className="grid grid-cols-3 grid-rows-1 space-x-2">
 								<Controller
 									control={form.control}
 									name="categoryName"
@@ -288,6 +298,36 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 										</FormItem>
 									)}
 								/>
+
+								{!data ? (
+									<FormField
+										control={form.control}
+										name="expired_at"
+										render={({ field, fieldState }) => (
+											<FormItem>
+												<Select
+													{...field}
+													items={expiredDates}
+													label="Czas trwania"
+													placeholder="Czas trwania"
+													className="max-w-xs"
+													isInvalid={fieldState.invalid}
+													defaultSelectedKeys={[expiredDates[0].value]}
+												>
+													{(date) => <SelectItem key={date.value}>{date.label}</SelectItem>}
+												</Select>
+												<FormMessage />
+											</FormItem>
+										)}
+									></FormField>
+								) : (
+									<div className="flex flex-col">
+										Wygasa dnia:
+										<Chip>
+											{data.expired_at && format(new Date(data.expired_at), "dd/MM/yyyy")}
+										</Chip>
+									</div>
+								)}
 							</div>
 
 							<FormField

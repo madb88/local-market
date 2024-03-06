@@ -18,6 +18,7 @@ export async function createOfferAction(values: {
 		uploadedFile: string;
 	}>[];
 	price: number;
+	expired_at: string;
 }): Promise<{ message: string; error: PostgrestError | null }> {
 	const { getToken, sessionClaims } = auth();
 	const token = await getToken({ template: String(process.env.JWT_SUPABASE_TEMPLATE) });
@@ -32,7 +33,6 @@ export async function createOfferAction(values: {
 		number: sessionClaims && sessionClaims.metadata.number ? sessionClaims.metadata.number : "",
 	};
 
-	console.log(token);
 	revalidateTag("offers");
 	if (token) {
 		const { error, message } = await createOffer(values, userInfo, token);
