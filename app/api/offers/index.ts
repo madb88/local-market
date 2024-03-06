@@ -81,7 +81,7 @@ export const createOffer = async (
 		contact_options: { email: data.email, messanger: data.messanger, whatsapp: data.whatsapp },
 		author: { userInfo },
 		price: data.price,
-		status: "pending",
+		status: "accepted",
 	});
 
 	return { status: status, error: error, message: statusText };

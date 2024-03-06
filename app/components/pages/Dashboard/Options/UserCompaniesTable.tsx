@@ -1,5 +1,6 @@
 "use client";
 
+import { setCompanyForDeleteAction } from "@/app/actions/companies/deleteCompanyAction";
 import { type CompanyType } from "@/lib/supabase/serverAppRouter";
 import {
 	Chip,
@@ -12,8 +13,9 @@ import {
 	Tooltip,
 } from "@nextui-org/react";
 import { format } from "date-fns";
-import { EditIcon, EyeIcon, Trash } from "lucide-react";
+import { EditIcon, EyeIcon } from "lucide-react";
 import Link from "next/link";
+import DeleteModal from "../Functions/DeleteModal";
 import { default as UseTablePagination } from "../UseTablePagination";
 import { statusCode } from "../utils/statusCode";
 
@@ -78,18 +80,22 @@ export default function UserCompaniesTable({
 											</Link>
 										</span>
 									</Tooltip>
-									<Tooltip color="danger" content="Usuń ofertę">
-										<span className="cursor-pointer text-lg text-danger active:opacity-50">
-											<Trash />
-										</span>
-									</Tooltip>
+									{!favoriteData && element.status !== "delete" && (
+										<DeleteModal
+											element={element}
+											title="Czy jesteś pewien ze chcesz usunąć swoja firmę?"
+											actionFunction={setCompanyForDeleteAction}
+											tooltipText="Skasuj firmę"
+											toastMessage="Firma dodana do usunięcia"
+										/>
+									)}
 								</div>
 							</TableCell>
 						</TableRow>
 					))}
 				</TableBody>
 			) : (
-				<TableBody emptyContent={favoriteData ? "Brak obserwowanych ofert" : "Brak ofert"}>
+				<TableBody emptyContent={favoriteData ? "Brak obserwowanych firm" : "Brak firm"}>
 					{[]}
 				</TableBody>
 			)}

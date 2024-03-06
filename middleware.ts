@@ -20,7 +20,7 @@ export default authMiddleware({
 		"/polityka-prywatnosci",
 		"/regulamin",
 	],
-	ignoredRoutes: ["/api/uploadthing", "/api/cron/offers"],
+	ignoredRoutes: ["/api/uploadthing", "/api/cron/offers", "/api/cron/companies"],
 });
 
 export const config = {

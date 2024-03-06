@@ -3,13 +3,7 @@
 import { setOfferForDeleteAction } from "@/app/actions/offers/deleteOfferAction";
 import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import {
-	Button,
 	Chip,
-	Modal,
-	ModalBody,
-	ModalContent,
-	ModalFooter,
-	ModalHeader,
 	Table,
 	TableBody,
 	TableCell,
@@ -17,13 +11,11 @@ import {
 	TableHeader,
 	TableRow,
 	Tooltip,
-	useDisclosure,
 } from "@nextui-org/react";
 import { format } from "date-fns";
-import { EditIcon, EyeIcon, Trash } from "lucide-react";
+import { EditIcon, EyeIcon } from "lucide-react";
 import Link from "next/link";
-import { toast } from "sonner";
-import DeleteOfferButton from "../Functions/DeleteOfferButton";
+import DeleteModal from "../Functions/DeleteModal";
 import { default as UseTablePagination } from "../UseTablePagination";
 import { statusCode } from "../utils/statusCode";
 
@@ -39,7 +31,6 @@ export default function UserOffersTable({
 	data,
 	favoriteData,
 }: DashboardUserOffersTableT) {
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const { items, pagination } = UseTablePagination(data);
 	const tableData = items ? (items as OfferType[]) : [];
 
@@ -95,61 +86,13 @@ export default function UserOffersTable({
 											</Tooltip>
 										)}
 										{!favoriteData && element.status !== "delete" && (
-											<>
-												<Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
-													<ModalContent>
-														{(onClose) => (
-															<>
-																<ModalHeader className="flex flex-col gap-1">
-																	Czy jesteś pewien ze chcesz usunąć swoja ofertę?
-																</ModalHeader>
-																<ModalBody>
-																	<form
-																		action={async () => {
-																			const { error } = await setOfferForDeleteAction(element.id, {
-																				status: "delete",
-																				image:
-																					element.image_object && element.image_object[0]
-																						? element.image_object[0].key
-																						: "",
-																			});
-																			if (!error) {
-																				onClose();
-																				return toast.success("Oferta dodana do usunięcia", {
-																					closeButton: true,
-																					duration: 3000,
-																				});
-																			}
-																			onClose();
-																			return toast.error(error?.message, {
-																				closeButton: true,
-																				duration: 3000,
-																			});
-																		}}
-																	>
-																		<ModalFooter>
-																			<Button color="danger" variant="light" onPress={onClose}>
-																				Zamknij
-																			</Button>
-																			<DeleteOfferButton />
-																		</ModalFooter>
-																	</form>
-																</ModalBody>
-															</>
-														)}
-													</ModalContent>
-												</Modal>
-												<Tooltip color="danger" content="Usuń ofertę">
-													<Button
-														color="danger"
-														aria-label="Skasuj oferte"
-														isIconOnly
-														onClick={onOpen}
-													>
-														<Trash />
-													</Button>
-												</Tooltip>
-											</>
+											<DeleteModal
+												element={element}
+												title="Czy jesteś pewien ze chcesz usunąć swoja ofertę?"
+												actionFunction={setOfferForDeleteAction}
+												tooltipText="Skasuj ofertę"
+												toastMessage="Oferta dodana do usunięcia"
+											/>
 										)}
 									</div>
 								</TableCell>

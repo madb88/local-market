@@ -4,8 +4,9 @@ import {
 	createSupabaseServerComponentClient,
 	type CompanyType,
 } from "@/lib/supabase/serverAppRouter";
+import { utapi } from "@/lib/uploadApi";
 import { type PostgrestError } from "@supabase/supabase-js";
-import { unstable_cache } from "next/cache";
+import { revalidatePath, revalidateTag, unstable_cache } from "next/cache";
 
 export const getCompanies = unstable_cache(
 	async (start: number, end: number) => {
@@ -57,6 +58,7 @@ export const createCompany = async (
 		description: data.description,
 		images: data.images,
 		image_object: data.imageObject,
+		status: "accepted",
 	});
 
 	return { status: status, error: error, message: statusText };
@@ -122,3 +124,55 @@ export const getUserFavoriteCompanies = unstable_cache(
 		revalidate: 1,
 	},
 );
+
+export const setCompanyForDelete = async (
+	id: number,
+	data: {
+		status: string;
+		image: string;
+	},
+	token: string,
+): Promise<{ status: number; error: PostgrestError | null; message: string }> => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+
+	const { status, error, statusText } = await supabase
+		.from("companies")
+		.update({
+			status: data.status,
+		})
+		.eq("id", id);
+
+	revalidateTag("userCompanies");
+	revalidatePath("dashboard/companies");
+
+	if (!error && data.image) {
+		await utapi.deleteFiles(data.image);
+	}
+
+	return { status: status, error: error, message: statusText };
+};
+
+export const deleteCompany = async (
+	token: string,
+): Promise<{
+	status: number;
+	error: PostgrestError | null;
+	message: string;
+}> => {
+	const supabase = await createSupabaseServerClient({
+		shouldBeAuth: true,
+		token: token,
+		serverComponent: true,
+	});
+
+	const { status, error, statusText } = await supabase
+		.from("companies")
+		.delete()
+		.eq("status", "delete");
+
+	return { status: status, error: error, message: statusText };
+};

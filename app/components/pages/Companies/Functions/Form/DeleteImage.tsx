@@ -1,5 +1,5 @@
 "use client";
-import { deleteCompanyImageAction } from "@/app/actions/deleteCompanyImageAction";
+import { deleteCompanyImageAction } from "@/app/actions/companies/deleteCompanyImageAction";
 import { Button } from "@/app/components/ui/atoms/button";
 import { Trash } from "lucide-react";
 import { toast } from "sonner";

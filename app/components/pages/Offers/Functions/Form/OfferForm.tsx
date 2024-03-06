@@ -122,7 +122,7 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 			}
 		}
 
-		return toast.success("Nowa oferta została dodana, i oczekuję na akceptację", {
+		return toast.success("Nowa oferta została dodana", {
 			closeButton: true,
 			duration: 3000,
 		});

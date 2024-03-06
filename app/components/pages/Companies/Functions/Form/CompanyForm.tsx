@@ -1,7 +1,7 @@
 "use client";
 
-import { createCompanyAction } from "@/app/actions/createCompanyAction";
-import { updateCompanyAction } from "@/app/actions/updateCompanyAction";
+import { createCompanyAction } from "@/app/actions/companies/createCompanyAction";
+import { updateCompanyAction } from "@/app/actions/companies/updateCompanyAction";
 import { Button } from "@/app/components/ui/atoms/button";
 import { Input as AtomInput } from "@/app/components/ui/atoms/input";
 import {

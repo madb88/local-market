@@ -3,7 +3,7 @@
 import { Button, Spinner } from "@nextui-org/react";
 import { useFormStatus } from "react-dom";
 
-export default function DeleteOfferButton() {
+export default function DeleteButton() {
 	const { pending } = useFormStatus();
 
 	return (
