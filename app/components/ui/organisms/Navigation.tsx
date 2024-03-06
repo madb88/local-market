@@ -1,5 +1,5 @@
 import { Divider } from "@nextui-org/react";
-import { Computer, Flower2, Hammer, LampFloor, User } from "lucide-react";
+import { Computer, Flower2, Hammer, LampFloor, Triangle, User } from "lucide-react";
 import ButtonLink from "../atoms/ButtonLink";
 import NavigationButton from "../molecules/NavigationButton/NavigationButton";
 
@@ -12,6 +12,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 		{ name: "Elektronika", url: "/offers/elektronika", icon: <Computer /> },
 		{ name: "Ogród", url: "/offers/ogrod", icon: <Flower2 /> },
 		{ name: "Dom", url: "/offers/dom", icon: <LampFloor /> },
+		{ name: "Własne wyroby", url: "/offers/wlasne-wyroby", icon: <Triangle /> },
 		{ name: "Firmy", url: "/companies", icon: <Hammer /> },
 	];
 

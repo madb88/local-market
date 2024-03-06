@@ -107,7 +107,7 @@ export default function UserPersonalInforForm({ user }: { user: userData }) {
 									/>
 								</FormControl>
 								<FormDescription>
-									Potrzebny jeśli chcesz, udostepniac kontakt przez messengera w swoich ofertach
+									Potrzebny jeśli chcesz, udostępniać kontakt przez messengera w swoich ofertach
 								</FormDescription>
 								<FormMessage />
 							</FormItem>
@@ -128,7 +128,7 @@ export default function UserPersonalInforForm({ user }: { user: userData }) {
 									/>
 								</FormControl>
 								<FormDescription>
-									Potrzebny jeśli chcesz, udostepniac kontakt przez whatsappa w swoich ofertach
+									Potrzebny jeśli chcesz, udostępniać kontakt przez whatsappa w swoich ofertach
 								</FormDescription>
 								<FormMessage />
 							</FormItem>
@@ -143,7 +143,7 @@ export default function UserPersonalInforForm({ user }: { user: userData }) {
 									<Input label="Email" labelPlacement="outside" placeholder="Email" {...field} />
 								</FormControl>
 								<FormDescription>
-									Potrzebny jeśli chcesz, udostepniac kontakt przez email w swoich ofertach
+									Potrzebny jeśli chcesz, udostępniać kontakt przez email w swoich ofertach
 								</FormDescription>
 								<FormMessage />
 							</FormItem>
