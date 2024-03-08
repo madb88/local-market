@@ -27,29 +27,31 @@ export default function ButtonLink({
 	return (
 		<>
 			{isSheet ? (
-				<Link href={link} target={target} className="flex w-full justify-center">
-					<SheetClose asChild>
-						<Button
-							className={style}
-							aria-label={label}
-							variant={variant}
-							startContent={startContent}
-						>
-							<p className="flex gap-2  text-white">{children}</p>
-						</Button>
-					</SheetClose>
-				</Link>
-			) : (
-				<Link href={link} target={target} className="flex w-full justify-center">
+				<SheetClose asChild>
 					<Button
 						className={style}
 						aria-label={label}
 						variant={variant}
 						startContent={startContent}
+						as={Link}
+						href={link}
+						target={target}
 					>
-						<p className="flex gap-2 text-white">{children}</p>
+						<p className="flex gap-2  text-white">{children}</p>
 					</Button>
-				</Link>
+				</SheetClose>
+			) : (
+				<Button
+					className={style}
+					aria-label={label}
+					variant={variant}
+					startContent={startContent}
+					as={Link}
+					href={link}
+					target={target}
+				>
+					<p className="flex gap-2 text-white">{children}</p>
+				</Button>
 			)}
 		</>
 	);

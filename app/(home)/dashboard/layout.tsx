@@ -1,10 +1,10 @@
+import AdminTabs from "@/app/components/pages/Dashboard/AdminTabs";
 import DashboardTabs from "@/app/components/pages/Dashboard/DashboardTabs";
 import { currentUser } from "@clerk/nextjs";
 import { Card, CardBody } from "@nextui-org/react";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
 	const user = await currentUser();
-
 	return (
 		<div className="bg-slate-100 pb-20 dark:bg-slate-600">
 			<div className="px-2 pt-2 md:px-5">
@@ -18,7 +18,14 @@ export default async function DashboardLayout({ children }: { children: React.Re
 						</div>
 					</CardBody>
 				</Card>
-				<div className="w-full pt-2">{<DashboardTabs />}</div>
+				<div className="w-full pt-2">
+					{user?.publicMetadata.role === "admin" && (
+						<>
+							Admin <AdminTabs />
+						</>
+					)}
+					<DashboardTabs />
+				</div>
 				<div className="px-2 pt-2 md:px-5">{children}</div>
 			</div>
 		</div>

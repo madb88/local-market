@@ -23,6 +23,15 @@ export default function BottomNavigationUser() {
 					>
 						Panel użytkownika
 					</ButtonLink>
+					<ButtonLink
+						link="/dashboard/admin"
+						label="Profil"
+						style="bg-gradient-to-tr from-purple-500 to-slate-800 text-white shadow-lg"
+						startContent={<User />}
+						isSheet={true}
+					>
+						Panel administratora
+					</ButtonLink>
 					<div className="flex justify-between gap-2 align-middle">
 						<LoginButton />
 						<ModeToggle />

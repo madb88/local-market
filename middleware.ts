@@ -25,6 +25,7 @@ export default authMiddleware({
 		"/api/cron/offers",
 		"/api/cron/companies",
 		"/api/cron/expiredOffers",
+		"/api/offers/all",
 	],
 });
 

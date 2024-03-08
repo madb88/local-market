@@ -33,7 +33,7 @@ export default function Navigation({ inSheet }: NavigationT) {
 				})}
 			</ul>
 			{!inSheet && (
-				<div className="flex flex-col justify-center pt-10">
+				<div className="flex w-full flex-col justify-center pt-10">
 					<Divider />
 					<div className="flex justify-center pt-10">
 						<ButtonLink
@@ -43,6 +43,16 @@ export default function Navigation({ inSheet }: NavigationT) {
 							startContent={<User />}
 						>
 							Panel Użytkownika
+						</ButtonLink>
+					</div>
+					<div className="flex justify-center pt-5">
+						<ButtonLink
+							link="/dashboard/admin"
+							label="Profil"
+							style="bg-gradient-to-tr from-purple-500 to-slate-800 text-white shadow-lg"
+							startContent={<User />}
+						>
+							Panel Administratora
 						</ButtonLink>
 					</div>
 				</div>

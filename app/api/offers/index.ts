@@ -251,3 +251,37 @@ export const deleteExpiredOffer = async (
 	console.log(status, error, statusText, format(new Date(), "yyyy-MM-dd"));
 	return { status: status, error: error, message: statusText };
 };
+
+type FiltersT = {
+	status?: string;
+	category_name?: string;
+};
+
+export const getAllOffersWithFilters = unstable_cache(
+	async (start: number, end: number, categoryName?: string, status?: string) => {
+		const matchFilter: FiltersT = {};
+
+		if (categoryName) {
+			matchFilter.category_name = categoryName;
+		}
+
+		if (status) {
+			matchFilter.status = status;
+		}
+
+		const supabase = await createSupabaseServerClient({
+			shouldBeAuth: false,
+			serverComponent: true,
+		});
+		const { data: offers, count } = await supabase
+			.from("offers")
+			.select("*", { count: "exact" })
+			.match(matchFilter)
+			.range(start, end - 1)
+			.order("created_at", { ascending: false });
+
+		return { offers: offers, count: count };
+	},
+	["offersByCategory"],
+	{ tags: ["offersByCategory"], revalidate: 1 },
+);
