@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { includes } from "ramda";
 
-export type Roles = "admin" | "modeauthorizedUserrator";
+export type Roles = "admin" | "authorizedUser";
 
 export const checkRole = () => {
 	const allowedAuthorized = ["admin", "authorizedUser"];
