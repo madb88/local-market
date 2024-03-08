@@ -11,7 +11,7 @@ export type AllOffersT = {
 
 export async function GET(request: NextRequest): Promise<NextResponse<AllOffersT>> {
 	const page = request.nextUrl.searchParams.get("page") ?? "1";
-	const per_page = request.nextUrl.searchParams.get("per_page") ?? "1";
+	const per_page = request.nextUrl.searchParams.get("per_page") ?? "4";
 	const start = (Number(page) - 1) * Number(per_page);
 	const end = start + Number(per_page);
 

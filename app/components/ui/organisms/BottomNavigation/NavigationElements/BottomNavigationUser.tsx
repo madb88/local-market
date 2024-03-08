@@ -24,7 +24,7 @@ export default function BottomNavigationUser() {
 						Panel użytkownika
 					</ButtonLink>
 					<ButtonLink
-						link="/dashboard/admin"
+						link="/admin"
 						label="Profil"
 						style="bg-gradient-to-tr from-purple-500 to-slate-800 text-white shadow-lg"
 						startContent={<User />}

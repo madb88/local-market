@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import AllUsersOffersTable from "@/app/components/pages/Dashboard/Options/admin/AllUsersOffersTable";
+import AllUsersOffersTable from "@/app/components/pages/Admin/AllUsersOffersTable";
 import { type OfferType } from "@/lib/supabase/serverAppRouter";
 import { Suspense } from "react";
 import Loading from "./loading";

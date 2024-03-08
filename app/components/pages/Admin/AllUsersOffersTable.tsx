@@ -15,9 +15,9 @@ import {
 import { format } from "date-fns";
 import { EditIcon, EyeIcon } from "lucide-react";
 import Link from "next/link";
-import DeleteModal from "../../Functions/DeleteModal";
-import UseAsyncTablePagination from "../../UseAsyncTablePagination";
-import { statusCode } from "../../utils/statusCode";
+import DeleteModal from "../Dashboard/Functions/DeleteModal";
+import { statusCode } from "../Dashboard/utils/statusCode";
+import UseAsyncTablePagination from "./UseAsyncTablePagination";
 
 export const revalidate = 1;
 export type DashboardUserOffersTableT = {

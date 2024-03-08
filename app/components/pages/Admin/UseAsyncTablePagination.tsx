@@ -14,7 +14,7 @@ export default function UseAsyncTablePagination() {
 		keepPreviousData: true,
 	});
 
-	const rowsPerPage = 1;
+	const rowsPerPage = 4;
 
 	const pages = useMemo(() => {
 		return data?.count ? Math.ceil(data.count / rowsPerPage) : 0;
