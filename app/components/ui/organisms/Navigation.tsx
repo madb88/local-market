@@ -1,3 +1,4 @@
+import { checkSpecificRole } from "@/app/utils/checkRole";
 import { Divider } from "@nextui-org/react";
 import { Computer, Flower2, Hammer, LampFloor, Triangle, User } from "lucide-react";
 import ButtonLink from "../atoms/ButtonLink";
@@ -45,16 +46,18 @@ export default function Navigation({ inSheet }: NavigationT) {
 							Panel Użytkownika
 						</ButtonLink>
 					</div>
-					<div className="flex justify-center pt-5">
-						<ButtonLink
-							link="/admin"
-							label="Profil"
-							style="bg-gradient-to-tr from-purple-500 to-slate-800 text-white shadow-lg"
-							startContent={<User />}
-						>
-							Panel Administratora
-						</ButtonLink>
-					</div>
+					{checkSpecificRole("admin") && (
+						<div className="flex justify-center pt-5">
+							<ButtonLink
+								link="/admin"
+								label="Profil"
+								style="bg-gradient-to-tr from-purple-500 to-slate-800 text-white shadow-lg"
+								startContent={<User />}
+							>
+								Panel Administratora
+							</ButtonLink>
+						</div>
+					)}
 				</div>
 			)}
 		</div>
