@@ -1,29 +1,29 @@
 import { checkIfFavorite } from "@/app/api/favorites/offers";
-import { getAllOffers, getOffer } from "@/app/api/offers";
+import { getOffer } from "@/app/api/offers";
 import Offer from "@/app/components/pages/Offers/DetailsPage/Offer";
 import { currentUser } from "@clerk/nextjs";
-import { revalidateTag } from "next/cache";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export const dynamic = "force-dynamic";
-export const dynamicParams = true;
-type PageParams = {
-	id: string;
+type Props = {
+	params: { id: number };
 };
 
-export async function generateStaticParams(): Promise<PageParams[]> {
-	const offers = await getAllOffers();
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const id = params.id;
 
-	const result = offers?.map((offer) => ({
-		id: String(offer.id),
-	}));
+	const offer = await getOffer(id);
 
-	return result as PageParams[];
+	return {
+		title: offer?.name,
+		description: offer?.description,
+		openGraph: {
+			images: [`${offer?.image}`],
+		},
+	};
 }
 
 export default async function OfferPage({ params }: { params: { id: number } }) {
-	revalidateTag("offer");
-	revalidateTag("isFavorite");
 	const user = await currentUser();
 
 	const offer = await getOffer(params.id);

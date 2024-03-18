@@ -50,6 +50,6 @@ export const checkIfCompanyIsFavorite = unstable_cache(
 
 		return favoriteCompany ? (favoriteCompany?.length > 0 ? true : false) : false;
 	},
-	["isFavorite"],
+	[`isFavorite`],
 	{ tags: ["isFavorite"], revalidate: 1 },
 );

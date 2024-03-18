@@ -1,24 +1,27 @@
-import { getAllCompanies, getCompany } from "@/app/api/companies";
+import { getCompany } from "@/app/api/companies";
 import { checkIfCompanyIsFavorite } from "@/app/api/favorites/companies";
 import Company from "@/app/components/pages/Companies/DetailsPage/Company";
 import { currentUser } from "@clerk/nextjs";
+import { type Metadata } from "next";
 import { revalidateTag } from "next/cache";
 import { notFound } from "next/navigation";
 
-// export const dynamic = "force-static";
-
-type PageParams = {
-	id: string;
+type Props = {
+	params: { id: string };
 };
 
-export async function generateStaticParams(): Promise<PageParams[]> {
-	const companies = await getAllCompanies();
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const id = params.id;
 
-	const result = companies?.map((company) => ({
-		id: String(company.id),
-	}));
+	const company = await getCompany(id);
 
-	return result as PageParams[];
+	return {
+		title: company?.name,
+		description: company?.description,
+		openGraph: {
+			images: [`${company?.images}`],
+		},
+	};
 }
 
 export default async function CompanyPage({ params }: { params: { id: string } }) {

@@ -1,8 +1,17 @@
 import { getUserCompanies, getUserFavoriteCompanies } from "@/app/api/companies";
 import UserCompaniesTable from "@/app/components/pages/Dashboard/Options/UserCompaniesTable";
 import { currentUser } from "@clerk/nextjs";
+import { type Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "./loading";
+
+export async function generateMetadata(): Promise<Metadata> {
+	const user = await currentUser();
+
+	return {
+		title: `Firmy Użytkownika ${user?.firstName} - ${user?.lastName}`,
+	};
+}
 
 export default async function DashboardUserCompaniesPage() {
 	const user = await currentUser();

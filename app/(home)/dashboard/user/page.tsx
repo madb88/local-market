@@ -1,5 +1,6 @@
 import UserPersonalInforForm from "@/app/components/pages/Dashboard/Options/UserPersonalInfoForm";
 import { currentUser } from "@clerk/nextjs";
+import { type Metadata } from "next";
 import { Suspense } from "react";
 import Loading from "./loading";
 
@@ -14,6 +15,14 @@ export type userData = {
 	firstName: string;
 	lastName: string;
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+	const user = await currentUser();
+
+	return {
+		title: `Panel Użytkownika ${user?.firstName} - ${user?.lastName}`,
+	};
+}
 
 export default async function DashboardUserInfoPage() {
 	const user = await currentUser();
