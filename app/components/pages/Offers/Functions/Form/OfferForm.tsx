@@ -40,36 +40,36 @@ import { z } from "zod";
 import ImageList from "../../../Companies/Functions/Form/ImageList";
 import { type FormData } from "./FormData";
 
+export const formSchema = z.object({
+	name: z
+		.string()
+		.min(1, {
+			message: "Nazwa musi mieć minimum 1 znak",
+		})
+		.max(50, {
+			message: "Nazwa moze mieć maksymalnie 50 znaków",
+		}),
+	description: z
+		.string()
+		.min(1, {
+			message: "Opis musi mieć minimum 1 znak",
+		})
+		.max(300, {
+			message: "Opis moze mieć maksymalnie 300 znaków",
+		}),
+	image: z.string(),
+	messanger: z.boolean(),
+	whatsapp: z.boolean(),
+	email: z.boolean(),
+	categoryName: z.string().min(1, { message: "To pole jest wymagane" }),
+	price: z.number(),
+	expired_at: z.string().min(1, { message: "To pole jest wymagane" }),
+});
+
 export default function OfferForm({ categoryName, data, userContactInfo }: FormData) {
 	const router = useRouter();
 	const [images, setImages] = useState<UploadFileResponse<{ uploadedFile: string }>[]>([]);
 	const [imageUpload, setImageUpload] = useState(false);
-
-	const formSchema = z.object({
-		name: z
-			.string()
-			.min(1, {
-				message: "Nazwa musi mieć minimum 1 znak",
-			})
-			.max(50, {
-				message: "Nazwa moze mieć maksymalnie 50 znaków",
-			}),
-		description: z
-			.string()
-			.min(1, {
-				message: "Opis musi mieć minimum 1 znak",
-			})
-			.max(300, {
-				message: "Opis moze mieć maksymalnie 300 znaków",
-			}),
-		image: z.string(),
-		messanger: z.boolean(),
-		whatsapp: z.boolean(),
-		email: z.boolean(),
-		categoryName: z.string().min(1, { message: "To pole jest wymagane" }),
-		price: z.number(),
-		expired_at: z.string().min(1, { message: "To pole jest wymagane" }),
-	});
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -103,7 +103,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 	useEffect(() => {
 		if (form.formState.isSubmitSuccessful) {
 			form.reset();
-			router.back();
 		}
 	}, [form.formState, form.reset, form, router]);
 
@@ -132,6 +131,7 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 			}
 		}
 
+		router.push(`/offers/${values.categoryName}`);
 		return toast.success("Nowa oferta została dodana", {
 			closeButton: true,
 			duration: 3000,
@@ -160,7 +160,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 												labelPlacement="outside"
 												placeholder="Nazwa Przedmiotu"
 												{...field}
-												isRequired
 											/>
 										</FormControl>
 										<FormMessage />
@@ -180,7 +179,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 												{...field}
 												className="resize-y"
 												cols={100}
-												isRequired
 											/>
 										</FormControl>
 										<FormMessage />
@@ -266,7 +264,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 											isInvalid={fieldState.invalid}
 											errorMessage={formState.errors.categoryName?.message}
 											defaultSelectedKeys={[categoryName]}
-											isRequired
 										>
 											{(category) => <SelectItem key={category.value}>{category.label}</SelectItem>}
 										</Select>

@@ -99,7 +99,7 @@ export default function CompanyForm({ data }: FormData) {
 				return toast.error(`${error.message}`, { duration: 6000 });
 			}
 		}
-
+		router.push(`/companies`);
 		return toast.success("Nowa firma została dodana, i oczekuję na akceptację", {
 			closeButton: true,
 			duration: 3000,
@@ -128,7 +128,6 @@ export default function CompanyForm({ data }: FormData) {
 												labelPlacement="outside"
 												placeholder="Nazwa Firmy"
 												{...field}
-												isRequired
 											/>
 										</FormControl>
 										<FormMessage />
@@ -148,7 +147,6 @@ export default function CompanyForm({ data }: FormData) {
 												{...field}
 												className="resize-y"
 												cols={100}
-												isRequired
 											/>
 										</FormControl>
 										<FormMessage />
