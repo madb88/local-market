@@ -167,6 +167,7 @@ export const getLastOffers = unstable_cache(
 			.from("offers")
 			.select("*")
 			.order("created_at", { ascending: false })
+			.match({ status: "accepted" })
 			.limit(5);
 
 		if (error) throw error;

@@ -184,6 +184,7 @@ export const getLastCompanies = unstable_cache(
 			.from("companies")
 			.select("*")
 			.order("created_at", { ascending: false })
+			.match({ status: "accepted" })
 			.limit(5);
 
 		if (error) throw error;
