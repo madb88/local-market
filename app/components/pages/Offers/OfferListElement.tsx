@@ -11,7 +11,7 @@ export default function OfferListElement({ offer }: { offer: OfferType }) {
 		<>
 			<Link href={`/offers/${offer.category_name}/${offer.id}`}>
 				<Card className="flex h-36 flex-row overflow-hidden shadow-lg hover:bg-gray-100 dark:hover:bg-gray-900">
-					<div className="w-40">
+					<div className="h-full w-40">
 						{offer.image ? (
 							<Image
 								src={offer.image}

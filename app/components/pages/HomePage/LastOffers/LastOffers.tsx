@@ -11,7 +11,7 @@ export default async function LastOffers() {
 				<CardHeader>
 					<h1 className="px-5 text-base">Najnowsze oferty:</h1>
 				</CardHeader>
-				<CardBody className="w-full pb-10 pt-10 md:px-20">
+				<CardBody className="h-auto w-full pb-10 pt-10 md:px-20">
 					{lastOffers.length > 0 ? (
 						<OffersCarousel data={lastOffers} />
 					) : (

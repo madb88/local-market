@@ -1,6 +1,6 @@
 "use client";
 
-import { type OfferType } from "@/lib/supabase/serverAppRouter";
+import { type CompanyType } from "@/lib/supabase/serverAppRouter";
 import {
 	Carousel,
 	CarouselContent,
@@ -8,9 +8,9 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "../../ui/atoms/carousel";
-import LastOfferItem from "./LastOffers/LastOfferItem";
+import LastCompanyItem from "./LastCompanies/LastCompanyItem";
 
-export default function OffersCarousel({ data }: { data: OfferType[] | [] }) {
+export default function CompaniesCarousel({ data }: { data: CompanyType[] | [] }) {
 	return (
 		<Carousel
 			opts={{
@@ -21,10 +21,13 @@ export default function OffersCarousel({ data }: { data: OfferType[] | [] }) {
 			<CarouselPrevious />
 			<CarouselContent className="h-fit px-2 pb-2 pl-2 pt-2">
 				{data &&
-					data.map((offer) => {
+					data.map((company) => {
 						return (
-							<CarouselItem key={`${offer.id}_${offer.name}`} className="md:basis-1/2 lg:basis-1/3">
-								<LastOfferItem offer={offer} />
+							<CarouselItem
+								key={`${company.id}_${company.name}`}
+								className="md:basis-1/2 lg:basis-1/3"
+							>
+								<LastCompanyItem company={company} />
 							</CarouselItem>
 						);
 					})}

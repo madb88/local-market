@@ -176,3 +176,20 @@ export const deleteCompany = async (
 
 	return { status: status, error: error, message: statusText };
 };
+
+export const getLastCompanies = unstable_cache(
+	async () => {
+		const supabase = await createSupabaseServerComponentClient();
+		const { data: lastCompanies, error } = await supabase
+			.from("companies")
+			.select("*")
+			.order("created_at", { ascending: false })
+			.limit(5);
+
+		if (error) throw error;
+
+		return lastCompanies;
+	},
+	["lastCompanies"],
+	{ tags: ["lastCompanies"], revalidate: 60 },
+);

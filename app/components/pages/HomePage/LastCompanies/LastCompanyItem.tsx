@@ -1,37 +1,29 @@
-import { categoriesWithKeys } from "@/app/utils/categoriesData";
-import { type OfferType } from "@/lib/supabase/serverAppRouter";
-import { Card, CardBody, CardHeader, Chip, Image } from "@nextui-org/react";
+import { type CompanyType } from "@/lib/supabase/serverAppRouter";
+import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import { format } from "date-fns";
 import NextImage from "next/image";
 import Link from "next/link";
 
-export default function LastOfferItem({ offer }: { offer: OfferType }) {
+export default function LastCompanyItem({ company }: { company: CompanyType }) {
 	return (
-		<Link href={`/offers/${offer.category_name}/${offer.id}`}>
+		<Link href={`/companies/${company.id}`}>
 			<Card className="h-full cursor-pointer bg-slate-100 py-4  shadow-md dark:bg-slate-500">
 				<CardHeader className="flex-col items-start px-4 pb-0 pt-2">
 					<div className="flex w-full  justify-between">
 						<p className="text-tiny font-bold uppercase">
-							{format(new Date(offer.created_at), "dd/MM/yyyy")}
+							{company.created_at ? format(new Date(company.created_at), "dd/MM/yyyy") : ""}
 						</p>
-						{offer.category_name ? (
-							<Chip color="primary">
-								<small className="text-tiny">{categoriesWithKeys[offer.category_name].label}</small>
-							</Chip>
-						) : (
-							"Brak Kategorii"
-						)}
 					</div>
-					<h4 className="text-large font-bold">{offer.name}</h4>
+					<h4 className="text-large font-bold">{company.name}</h4>
 				</CardHeader>
 				<CardBody className="flex justify-center overflow-visible">
 					<div className="flex justify-center">
-						{offer.image ? (
+						{company.images ? (
 							<Image
 								as={NextImage}
 								alt="Card background"
 								className="rounded-xl object-cover"
-								src={offer.image}
+								src={company.images}
 								width={150}
 								height={150}
 								sizes="(min-width: 2880px) 400px, (min-width: 780px) calc(16.06vw - 59px), calc(33.7vw - 30px)"

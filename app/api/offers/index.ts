@@ -174,7 +174,7 @@ export const getLastOffers = unstable_cache(
 		return lastOffers;
 	},
 	["lastOffers"],
-	{ tags: ["lastOffers"], revalidate: 1 },
+	{ tags: ["lastOffers"], revalidate: 60 },
 );
 
 export const setOfferForDelete = async (

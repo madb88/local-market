@@ -17,9 +17,9 @@ export async function createCompanyAction(values: {
 	const { getToken } = auth();
 	const token = await getToken({ template: String(process.env.JWT_SUPABASE_TEMPLATE) });
 	revalidateTag("companies");
+	revalidateTag("lastCompanies");
 	if (token) {
 		const { error, message } = await createCompany(values, token);
-		console.log(error);
 		return { message, error };
 	}
 

@@ -34,6 +34,7 @@ export async function createOfferAction(values: {
 	};
 
 	revalidateTag("offers");
+	revalidateTag("lastOffers");
 	if (token) {
 		const { error, message } = await createOffer(values, userInfo, token);
 		return { message, error };
