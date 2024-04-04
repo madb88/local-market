@@ -22,15 +22,14 @@ import {
 	Checkbox,
 	Chip,
 	Input,
-	Link,
-	Button as NextUiButton,
 	Select,
 	SelectItem,
 	Spinner,
 	Textarea,
+	Tooltip,
 } from "@nextui-org/react";
 import { format } from "date-fns";
-import { ImageIcon } from "lucide-react";
+import { ImageIcon, Info } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -144,7 +143,7 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 	};
 
 	return (
-		<div className="grid h-full grid-cols-1 gap-10 md:grid-cols-2 ">
+		<div className="grid h-full grid-cols-1 gap-10 lg:grid-cols-2 ">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 					<div className="">
@@ -185,11 +184,15 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 									</FormItem>
 								)}
 							/>
-							<div className="flex flex-col gap-2">
+							<div className="flex flex-col justify-evenly gap-2">
 								<div className="flex gap-2">
 									<FormLabel>Opcje Kontaktu</FormLabel>
+									<Tooltip content="Opcje kontaktu, możliwe są do ustawienia w profilu użytkownika">
+										<Info />
+									</Tooltip>
 								</div>
-								<div className="flex gap-5">
+
+								<div className="flex flex-col gap-5 md:flex-row">
 									<Controller
 										control={form.control}
 										name="email"
@@ -233,43 +236,30 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 										)}
 									></Controller>
 								</div>
-								<FormDescription className="flex flex-col">
-									<span className="">
-										Udostępnij odpowiednie formy kontaktu z tobą, widoczne na stronie z ofertą.
-										Informacje pochodzą z twojego profilu:
-									</span>
-									<NextUiButton
-										href="/dashboard/user"
-										as={Link}
-										showAnchorIcon
-										size="sm"
-										color="primary"
-										className="w-6/6 text-white shadow-lg md:w-3/6"
-									>
-										Edytuj profil
-									</NextUiButton>
-								</FormDescription>
 							</div>
-							<div className="grid grid-cols-3 grid-rows-1 space-x-2">
-								<Controller
+							<div className="grid grid-cols-1 grid-rows-3 sm:grid-cols-3 sm:grid-rows-1 sm:space-x-2">
+								<FormField
 									control={form.control}
 									name="categoryName"
 									render={({ field, fieldState, formState }) => (
-										<Select
-											{...field}
-											items={categories}
-											label="Kategoria"
-											placeholder="Wybierz kategorię"
-											className="max-w-xs"
-											isInvalid={fieldState.invalid}
-											errorMessage={formState.errors.categoryName?.message}
-											defaultSelectedKeys={[categoryName]}
-										>
-											{(category) => <SelectItem key={category.value}>{category.label}</SelectItem>}
-										</Select>
+										<FormItem>
+											<Select
+												{...field}
+												items={categories}
+												label="Kategoria"
+												placeholder="Wybierz kategorię"
+												isInvalid={fieldState.invalid}
+												errorMessage={formState.errors.categoryName?.message}
+												defaultSelectedKeys={[categoryName]}
+											>
+												{(category) => (
+													<SelectItem key={category.value}>{category.label}</SelectItem>
+												)}
+											</Select>
+											<FormMessage />
+										</FormItem>
 									)}
 								/>
-
 								<FormField
 									control={form.control}
 									name="price"
@@ -307,7 +297,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 													items={expiredDates}
 													label="Czas trwania"
 													placeholder="Czas trwania"
-													className="max-w-xs"
 													isInvalid={fieldState.invalid}
 													defaultSelectedKeys={[expiredDates[0].value]}
 												>
