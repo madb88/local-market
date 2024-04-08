@@ -5,7 +5,7 @@ import Navigation from "../components/ui/organisms/Navigation";
 export default function HomeLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
-			<div className="flex h-full flex-col overflow-hidden dark:bg-slate-600 md:flex-row">
+			<div className="flex h-full flex-col overflow-hidden dark:bg-slate-600 md:h-screen md:flex-row">
 				<div className="order-2 hidden md:order-1 md:flex">
 					<Navigation inSheet={false} />
 				</div>

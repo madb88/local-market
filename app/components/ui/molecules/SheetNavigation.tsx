@@ -10,7 +10,7 @@ export default function SheetNavigation() {
 			</SheetTrigger>
 			<SheetContent
 				side={"left"}
-				className="flex w-screen justify-center bg-slate-100 dark:bg-slate-600"
+				className="flex w-screen justify-center bg-slate-200 dark:bg-slate-700"
 			>
 				<Navigation inSheet={true} />
 			</SheetContent>

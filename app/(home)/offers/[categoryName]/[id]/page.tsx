@@ -34,7 +34,7 @@ export default async function OfferPage({ params }: { params: { id: number } }) 
 	const isFavorite = user ? await checkIfFavorite(offer.id, user.id) : false;
 	return (
 		<>
-			<div className="h-screen overflow-auto p-5 md:p-10">
+			<div className="h-full overflow-auto p-5 md:p-10">
 				{offer && <Offer offer={offer} isFavorite={isFavorite} />}
 			</div>
 		</>
