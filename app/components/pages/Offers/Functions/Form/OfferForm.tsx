@@ -88,7 +88,6 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 	const expiredDates = [
 		{ key: 3, label: "Trzy dni", value: "3" },
 		{ key: 7, label: "Siedem dni", value: "7" },
-		{ key: 14, label: "Dwa tygodnie", value: "14" },
 	];
 
 	useEffect(() => {
@@ -295,8 +294,8 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 												<Select
 													{...field}
 													items={expiredDates}
-													label="Czas trwania"
-													placeholder="Czas trwania"
+													label="Czas trwania oferty"
+													placeholder="Czas trwania oferty"
 													isInvalid={fieldState.invalid}
 													defaultSelectedKeys={[expiredDates[0].value]}
 												>
