@@ -6,6 +6,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { Toaster } from "sonner";
 import { extractRouterConfig } from "uploadthing/server";
 import { ThemeProvider } from "./components/theme-provider";
@@ -30,6 +31,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			}}
 		>
 			<html lang="en" suppressHydrationWarning>
+				<head>
+					<Script
+						id="Cookiebot"
+						src="https://consent.cookiebot.com/uc.js"
+						data-cbid="7adc617f-117b-404c-9297-fce08fde3a84"
+						data-blockingmode="auto"
+						type="text/javascript"
+					></Script>
+				</head>
 				<body className={`${inter.className} h-screen bg-slate-100 dark:bg-slate-600`}>
 					<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
 					<Toaster position="top-center" richColors />
