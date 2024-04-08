@@ -36,17 +36,17 @@ export default function OfferHeader({
 			<div className="flex gap-2">
 				{isSignedIn && <AddOfferToFavorite offerId={offerId} isFavorite={isFavorite} />}
 				{user && user.id === authorId ? (
-					<Button
-						aria-label="Edytuj"
-						color="primary"
-						className="shadow-lg"
-						variant="ghost"
-						endContent={<Edit />}
-					>
-						<Link href={`${pathname}/edit`}>
-							<p className="text-base">Edytuj</p>
-						</Link>
-					</Button>
+					<Link href={`${pathname}/edit`}>
+						<Button
+							aria-label="Edytuj"
+							color="primary"
+							className="shadow-lg"
+							variant="ghost"
+							endContent={<Edit />}
+						>
+							Edytuj
+						</Button>
+					</Link>
 				) : null}
 				<BackButton />
 			</div>

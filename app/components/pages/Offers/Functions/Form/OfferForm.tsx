@@ -118,6 +118,8 @@ export default function OfferForm({ categoryName, data, userContactInfo }: FormD
 				return toast.error(supabaseErrorCode[message].message, { duration: 6000 });
 			}
 
+			router.push(`/offers/${values.categoryName}/${data.id}`);
+
 			return toast.success(`Oferta ${data.name} została zaktualizowana`, {
 				closeButton: true,
 				duration: 3000,

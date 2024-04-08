@@ -89,6 +89,8 @@ export default function CompanyForm({ data }: FormData) {
 				return toast.error(supabaseErrorCode[message].message, { duration: 6000 });
 			}
 
+			router.push(`/companies/${data.id}`);
+
 			return toast.success(`Firma ${data.name} została zaktualizowana`, {
 				closeButton: true,
 				duration: 3000,
@@ -100,7 +102,7 @@ export default function CompanyForm({ data }: FormData) {
 			}
 		}
 		router.push(`/companies`);
-		return toast.success("Nowa firma została dodana, i oczekuję na akceptację", {
+		return toast.success("Nowa firma została dodana", {
 			closeButton: true,
 			duration: 3000,
 		});

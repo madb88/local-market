@@ -11,11 +11,11 @@ export default function BackButton() {
 
 	return (
 		<>
-			<Button color="primary" aria-label="Wroc" className="shadow-lg" variant="ghost">
-				<Link href={previousPathname}>
-					<p className="text-base">Wróć</p>
-				</Link>
-			</Button>
+			<Link href={previousPathname}>
+				<Button color="primary" aria-label="Wroc" className="shadow-lg" variant="ghost">
+					Wróć
+				</Button>
+			</Link>
 		</>
 	);
 }
