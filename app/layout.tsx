@@ -23,40 +23,41 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<ClerkProvider
-			localization={plPL}
-			appearance={{
-				baseTheme: dark,
-				signIn: { baseTheme: neobrutalism },
-			}}
-		>
-			<html lang="en" suppressHydrationWarning>
-				<head>
-					<Script
-						id="Cookiebot"
-						src="https://consent.cookiebot.com/uc.js"
-						data-cbid="7adc617f-117b-404c-9297-fce08fde3a84"
-						data-blockingmode="auto"
-						type="text/javascript"
-					></Script>
-				</head>
-				<body className={`${inter.className} h-screen bg-slate-100 dark:bg-slate-600`}>
-					<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-					<Toaster position="top-center" richColors />
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="light"
-						enableSystem
-						disableTransitionOnChange
-					>
-						<div className="sticky top-0 z-50 ">
-							<SearchBar />
-						</div>
-						<Providers>{children}</Providers>
-						<Analytics />
-					</ThemeProvider>
-				</body>
-			</html>
-		</ClerkProvider>
+		<>
+			<Script
+				id="Cookiebot"
+				src="https://consent.cookiebot.com/uc.js"
+				data-cbid="7adc617f-117b-404c-9297-fce08fde3a84"
+				data-blockingmode="auto"
+				type="text/javascript"
+			></Script>
+			<ClerkProvider
+				localization={plPL}
+				appearance={{
+					baseTheme: dark,
+					signIn: { baseTheme: neobrutalism },
+				}}
+			>
+				<html lang="en" suppressHydrationWarning>
+					<head></head>
+					<body className={`${inter.className} h-screen bg-slate-100 dark:bg-slate-600`}>
+						<NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+						<Toaster position="top-center" richColors />
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="light"
+							enableSystem
+							disableTransitionOnChange
+						>
+							<div className="sticky top-0 z-50 ">
+								<SearchBar />
+							</div>
+							<Providers>{children}</Providers>
+							<Analytics />
+						</ThemeProvider>
+					</body>
+				</html>
+			</ClerkProvider>
+		</>
 	);
 }
