@@ -24,7 +24,7 @@ export default function Footer() {
 							<a href="/polityka-prywatnosci" className="hover:underline">
 								Polityka prywatności
 							</a>
-						</li>  */}
+						</li> */}
 					</ul>
 				</div>
 			</footer>
