@@ -8,7 +8,7 @@ export default function Home() {
 	revalidateTag("lastOffers");
 	return (
 		<>
-			<main className="flex flex-col md:flex-row md:overflow-hidden">
+			<main className="flex h-full flex-col md:flex-row md:overflow-hidden">
 				<div className="order-2 hidden md:order-1 md:flex">
 					<Navigation inSheet={false} />
 				</div>
