@@ -9,7 +9,7 @@ export default async function LastOffers() {
 		<div>
 			<Card>
 				<CardHeader>
-					<h1 className="px-5 text-base">Najnowsze polecane firmy:</h1>
+					<h1 className="px-5 text-base">Najnowsze oferty:</h1>
 				</CardHeader>
 				<CardBody className="h-auto w-full pb-10 pt-10 md:px-20">
 					{lastOffers.length > 0 ? (
