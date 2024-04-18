@@ -34,7 +34,7 @@ export const getAllCompanies = async () => {
 
 export const getCompany = unstable_cache(
 	async (id: string) => {
-		const supabase = await createSupabaseServerClient({ shouldBeAuth: false });
+		const supabase = await createSupabaseServerComponentClient();
 		const { data: company } = await supabase.from("companies").select().match({ id }).single();
 
 		return company;

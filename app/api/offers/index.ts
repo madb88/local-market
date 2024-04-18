@@ -18,10 +18,7 @@ export const getAllOffers = async () => {
 
 export const getOffersByCategory = unstable_cache(
 	async (start: number, end: number, categoryName: string) => {
-		const supabase = await createSupabaseServerClient({
-			shouldBeAuth: false,
-			serverComponent: true,
-		});
+		const supabase = await createSupabaseServerComponentClient();
 		const { data: offers, count } = await supabase
 			.from("offers")
 			.select("*", { count: "exact" })
@@ -37,7 +34,7 @@ export const getOffersByCategory = unstable_cache(
 
 export const getOffer = unstable_cache(
 	async (id: number) => {
-		const supabase = await createSupabaseServerClient({ shouldBeAuth: false });
+		const supabase = await createSupabaseServerComponentClient();
 		const { data: offer } = await supabase.from("offers").select().match({ id }).single();
 
 		return offer;

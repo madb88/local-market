@@ -7,6 +7,7 @@ import { Card, CardBody } from "@nextui-org/react";
 import { Suspense } from "react";
 import Loading from "./loading";
 
+export const revalidate = 1;
 export default async function ListingPage({
 	searchParams,
 }: {
